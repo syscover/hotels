@@ -17,8 +17,9 @@ class HotelsCreateTableEnvironment extends Migration {
             $table->integer('id_151')->unsigned();
             $table->string('lang_151',2);
             $table->string('name_151', 50);
+            $table->text('data_151');
 
-            $table->primary(array('id_151', 'lang_151'));
+            $table->primary(['id_151', 'lang_151']);
             $table->foreign('lang_151')->references('id_001')->on('001_001_lang')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
