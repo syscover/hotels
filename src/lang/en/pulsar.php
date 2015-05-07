@@ -16,4 +16,5 @@ return [
     'hotel'                                 => 'Hotel|Hotels',
     'environment'                           => 'Environment|Environments',
     'decoration'                            => 'Decoration|Decorations',
+    'relationship'                          => 'Relationship|Relationships',
 ];

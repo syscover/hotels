@@ -14,6 +14,22 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar']], function() {
 
     /*
     |--------------------------------------------------------------------------
+    | RELATIONSHIPS
+    |--------------------------------------------------------------------------
+    */
+    Route::any(config('pulsar.appName') . '/hotels/relationships/{lang}/{offset?}',                             ['as'=>'HotelsRelationship',                    'uses'=>'Syscover\Hotels\Controllers\Relationships@index',                      'resource' => 'hotels-relationship',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/relationships/json/data/{lang}',                             ['as'=>'jsonDataHotelsRelationship',            'uses'=>'Syscover\Hotels\Controllers\Relationships@jsonData',                   'resource' => 'hotels-relationship',        'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/hotels/relationships/create/{lang}/{offset}/{id?}',                 ['as'=>'createHotelsRelationship',              'uses'=>'Syscover\Hotels\Controllers\Relationships@createRecord',               'resource' => 'hotels-relationship',        'action' => 'create']);
+    Route::post(config('pulsar.appName') . '/hotels/relationships/store/{lang}/{offset}/{id?}',                 ['as'=>'storeHotelsRelationship',               'uses'=>'Syscover\Hotels\Controllers\Relationships@storeRecord',                'resource' => 'hotels-relationship',        'action' => 'create']);
+    Route::get(config('pulsar.appName') . '/hotels/relationships/{id}/edit/{lang}/{offset}',                    ['as'=>'editHotelsRelationship',                'uses'=>'Syscover\Hotels\Controllers\Relationships@editRecord',                 'resource' => 'hotels-relationship',        'action' => 'access']);
+    Route::put(config('pulsar.appName') . '/hotels/relationships/update/{lang}/{id}/{offset}',                  ['as'=>'updateHotelsRelationship',              'uses'=>'Syscover\Hotels\Controllers\Relationships@updateRecord',               'resource' => 'hotels-relationship',        'action' => 'edit']);
+    Route::get(config('pulsar.appName') . '/hotels/relationships/delete/{lang}/{id}/{offset}',                  ['as'=>'deleteHotelsRelationship',              'uses'=>'Syscover\Hotels\Controllers\Relationships@deleteRecord',               'resource' => 'hotels-relationship',        'action' => 'delete']);
+    Route::get(config('pulsar.appName') . '/hotels/relationships/delete/translation/{lang}/{id}/{offset}',      ['as'=>'deleteTranslationHotelsRelationship',   'uses'=>'Syscover\Hotels\Controllers\Relationships@deleteTranslationRecord',    'resource' => 'hotels-relationship',        'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/hotels/relationships/delete/select/records/{lang}',              ['as'=>'deleteSelectHotelsRelationship',        'uses'=>'Syscover\Hotels\Controllers\Relationships@deleteRecordsSelect',        'resource' => 'hotels-relationship',        'action' => 'delete']);
+
+
+    /*
+    |--------------------------------------------------------------------------
     | ENVIROMENTS
     |--------------------------------------------------------------------------
     */

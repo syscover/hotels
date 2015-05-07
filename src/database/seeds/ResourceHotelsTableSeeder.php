@@ -11,7 +11,8 @@ class ResourceHotelsTableSeeder extends Seeder {
             ['id_007' => 'hotels','name_007' => 'Hotels Package','package_007' => '7'],
             ['id_007' => 'hotels-room','name_007' => 'Rooms','package_007' => '7'],
             ['id_007' => 'hotels-environment','name_007' => 'Environments','package_007' => '7'],
-            ['id_007' => 'hotels-decoration','name_007' => 'Decorations','package_007' => '7']
+            ['id_007' => 'hotels-decoration','name_007' => 'Decorations','package_007' => '7'],
+            ['id_007' => 'hotels-relationship','name_007' => 'Relationship','package_007' => '7']
         ]);
     }
 }
