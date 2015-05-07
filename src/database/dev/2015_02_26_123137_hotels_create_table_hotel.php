@@ -16,13 +16,8 @@ class HotelsCreateTableHotel extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id_170')->unsigned();
 
-            $table->string('lang_150',2); // ??
-
             $table->string('name_170', 100);
             $table->string('web_170', 100)->nullable();
-
-            
-            $table->string('environment_description_170', 255);
 
             // datos geolocalizacion
             $table->string('country_170', 2);
@@ -33,21 +28,19 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('locality_170', 100)->nullable();
             $table->string('address_170', 150)->nullable();
 
-
-
             $table->string('contact_170', 100)->nullable();
             $table->string('booking_email_170', 50)->nullable();
             $table->string('email_170', 50)->nullable();
-
 
             $table->string('phone_170', 50)->nullable();
             $table->string('mobile_170', 50)->nullable();
             $table->string('fax_170', 50)->nullable();
 
-
             $table->string('n_rooms_170', 50)->nullable();
             $table->string('n_places_170', 50)->nullable();
 
+            $table->string('latitude_170', 50)->nullable();
+            $table->string('longitude_170', 50)->nullable();
 
             $table->text('data_170')->nullable();
 
