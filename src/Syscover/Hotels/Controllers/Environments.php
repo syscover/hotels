@@ -37,18 +37,6 @@ class Environments extends Controller {
         return $parameters;
     }
 
-    public function createCustomRecord($parameters)
-    {
-        if(isset($parameters['id']))
-        {
-            $parameters['object'] = Environment::getTranslationRecord($parameters['id'], Session::get('baseLang')->id_001);
-        }
-
-        $parameters['lang'] = Lang::find($parameters['lang']);
-
-        return $parameters;
-    }
-
     public function storeCustomRecord()
     {
         // check if there is id
@@ -68,14 +56,6 @@ class Environments extends Controller {
             'name_150'  => Request::input('name'),
             'data_150'  => Environment::addLangDataRecord($id, Request::input('lang'))
         ]);
-    }
-
-    public function editCustomRecord($parameters)
-    {
-        $parameters['object']   = Environment::getTranslationRecord($parameters['id'], $parameters['lang']);
-        $parameters['lang']     = $parameters['object']->lang;
-
-        return $parameters;
     }
 
     public function updateCustomRecord($parameters)

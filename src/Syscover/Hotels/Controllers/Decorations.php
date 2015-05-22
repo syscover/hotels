@@ -37,18 +37,6 @@ class Decorations extends Controller {
         return $parameters;
     }
 
-    public function createCustomRecord($parameters)
-    {
-        if(isset($parameters['id']))
-        {
-            $parameters['object'] = Decoration::getTranslationRecord($parameters['id'], Session::get('baseLang')->id_001);
-        }
-
-        $parameters['lang'] = Lang::find($parameters['lang']);
-
-        return $parameters;
-    }
-
     public function storeCustomRecord()
     {
         // check if there is id
@@ -68,14 +56,6 @@ class Decorations extends Controller {
             'name_151'  => Request::input('name'),
             'data_151'  => Decoration::addLangDataRecord($id, Request::input('lang'))
         ]);
-    }
-
-    public function editCustomRecord($parameters)
-    {
-        $parameters['object']   = Decoration::getTranslationRecord($parameters['id'], $parameters['lang']);
-        $parameters['lang']     = $parameters['object']->lang;
-
-        return $parameters;
     }
 
     public function updateCustomRecord($parameters)
