@@ -17,4 +17,5 @@ return [
     'environment'                           => 'Environment|Environments',
     'decoration'                            => 'Decoration|Decorations',
     'relationship'                          => 'Relationship|Relationships',
+    'service'                               => 'Service|Services',
 ];

@@ -19,6 +19,11 @@ class HotelsCreateTableHotelLang extends Migration {
 
             $table->string('environment_description_171', 255);
             $table->string('construction_171', 255);
+            $table->string('cooking_171', 255);
+            $table->string('special_dish_171', 255);
+            $table->text('indications_171');
+            $table->text('points_interest_171');
+            $table->text('activities_171');
             $table->text('description_171');
 
 
