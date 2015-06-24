@@ -1,7 +1,7 @@
 <?php namespace Syscover\Hotels\Controllers;
 
 /**
- * @package	    Pulsar
+ * @package	    Hotels
  * @author	    Jose Carlos Rodríguez Palacín
  * @copyright   Copyright (c) 2015, SYSCOVER, SL
  * @license
@@ -10,11 +10,9 @@
  * @filesource
  */
 
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\ControllerTrait;
-use Syscover\Pulsar\Models\Lang;
 use Syscover\Hotels\Models\Decoration;
 
 class Decorations extends Controller {
@@ -32,7 +30,7 @@ class Decorations extends Controller {
 
     public function indexCustom($parameters)
     {
-        $parameters['urlParameters']['lang']    = Session::get('baseLang');
+        $parameters['urlParameters']['lang']    = session('baseLang');
 
         return $parameters;
     }
