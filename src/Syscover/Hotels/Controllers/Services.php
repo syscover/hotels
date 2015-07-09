@@ -12,12 +12,12 @@
 
 use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
-use Syscover\Pulsar\Traits\ControllerTrait;
+use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Service;
 
 class Services extends Controller {
 
-    use ControllerTrait;
+    use TraitController;
 
     protected $routeSuffix  = 'HotelsService';
     protected $folder       = 'services';
