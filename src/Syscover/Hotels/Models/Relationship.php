@@ -12,11 +12,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
-use Syscover\Pulsar\Traits\ModelTrait;
+use Syscover\Pulsar\Traits\TraitModel;
 
 class Relationship extends Model {
 
-    use ModelTrait;
+    use TraitModel;
 
 	protected $table        = '007_152_relationship';
     protected $primaryKey   = 'id_152';
