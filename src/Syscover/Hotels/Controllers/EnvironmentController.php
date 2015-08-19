@@ -13,20 +13,20 @@
 use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
-use Syscover\Hotels\Models\Service;
+use Syscover\Hotels\Models\Environment;
 
-class Services extends Controller {
+class EnvironmentController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'HotelsService';
-    protected $folder       = 'services';
+    protected $routeSuffix  = 'HotelsEnvironment';
+    protected $folder       = 'environments';
     protected $package      = 'hotels';
-    protected $aColumns     = ['id_153', 'name_001', 'name_153'];
-    protected $nameM        = 'name_153';
-    protected $model        = '\Syscover\Hotels\Models\Service';
-    protected $icon         = 'icomoon-icon-wand-2';
-    protected $objectTrans  = 'service';
+    protected $aColumns     = ['id_150', 'name_001', 'name_150'];
+    protected $nameM        = 'name_150';
+    protected $model        = '\Syscover\Hotels\Models\Environment';
+    protected $icon         = 'icon-picture';
+    protected $objectTrans  = 'environment';
 
     public function indexCustom($parameters)
     {
@@ -44,22 +44,22 @@ class Services extends Controller {
         }
         else
         {
-            $id = Service::max('id_153');
+            $id = Environment::max('id_150');
             $id++;
         }
 
-        Service::create([
-            'id_153'    => $id,
-            'lang_153'  => Request::input('lang'),
-            'name_153'  => Request::input('name'),
-            'data_153'  => Service::addLangDataRecord($id, Request::input('lang'))
+        Environment::create([
+            'id_150'    => $id,
+            'lang_150'  => Request::input('lang'),
+            'name_150'  => Request::input('name'),
+            'data_150'  => Environment::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
 
     public function updateCustomRecord($parameters)
     {
-        Service::where('id_153', $parameters['id'])->where('lang_153', Request::input('lang'))->update([
-            'name_153'  => Request::input('name')
+        Environment::where('id_150', $parameters['id'])->where('lang_150', Request::input('lang'))->update([
+            'name_150'  => Request::input('name')
         ]);
     }
 }

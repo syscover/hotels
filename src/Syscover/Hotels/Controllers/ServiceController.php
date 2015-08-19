@@ -13,20 +13,20 @@
 use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
-use Syscover\Hotels\Models\Decoration;
+use Syscover\Hotels\Models\Service;
 
-class Decorations extends Controller {
+class ServiceController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'HotelsDecoration';
-    protected $folder       = 'decorations';
+    protected $routeSuffix  = 'HotelsService';
+    protected $folder       = 'services';
     protected $package      = 'hotels';
-    protected $aColumns     = ['id_151', 'name_001', 'name_151'];
-    protected $nameM        = 'name_151';
-    protected $model        = '\Syscover\Hotels\Models\Decoration';
-    protected $icon         = 'icon-lightbulb';
-    protected $objectTrans  = 'decoration';
+    protected $aColumns     = ['id_153', 'name_001', 'name_153'];
+    protected $nameM        = 'name_153';
+    protected $model        = '\Syscover\Hotels\Models\Service';
+    protected $icon         = 'icomoon-icon-wand-2';
+    protected $objectTrans  = 'service';
 
     public function indexCustom($parameters)
     {
@@ -44,22 +44,22 @@ class Decorations extends Controller {
         }
         else
         {
-            $id = Decoration::max('id_151');
+            $id = Service::max('id_153');
             $id++;
         }
 
-        Decoration::create([
-            'id_151'    => $id,
-            'lang_151'  => Request::input('lang'),
-            'name_151'  => Request::input('name'),
-            'data_151'  => Decoration::addLangDataRecord($id, Request::input('lang'))
+        Service::create([
+            'id_153'    => $id,
+            'lang_153'  => Request::input('lang'),
+            'name_153'  => Request::input('name'),
+            'data_153'  => Service::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
 
     public function updateCustomRecord($parameters)
     {
-        Decoration::where('id_151', $parameters['id'])->where('lang_151', Request::input('lang'))->update([
-            'name_151'  => Request::input('name')
+        Service::where('id_153', $parameters['id'])->where('lang_153', Request::input('lang'))->update([
+            'name_153'  => Request::input('name')
         ]);
     }
 }

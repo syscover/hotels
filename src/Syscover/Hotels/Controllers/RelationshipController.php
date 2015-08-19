@@ -15,7 +15,7 @@ use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Relationship;
 
-class Relationships extends Controller {
+class RelationshipController extends Controller {
 
     use TraitController;
 

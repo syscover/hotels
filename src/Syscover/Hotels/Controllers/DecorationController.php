@@ -13,20 +13,20 @@
 use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
-use Syscover\Hotels\Models\Environment;
+use Syscover\Hotels\Models\Decoration;
 
-class Environments extends Controller {
+class DecorationController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'HotelsEnvironment';
-    protected $folder       = 'environments';
+    protected $routeSuffix  = 'HotelsDecoration';
+    protected $folder       = 'decorations';
     protected $package      = 'hotels';
-    protected $aColumns     = ['id_150', 'name_001', 'name_150'];
-    protected $nameM        = 'name_150';
-    protected $model        = '\Syscover\Hotels\Models\Environment';
-    protected $icon         = 'icon-picture';
-    protected $objectTrans  = 'environment';
+    protected $aColumns     = ['id_151', 'name_001', 'name_151'];
+    protected $nameM        = 'name_151';
+    protected $model        = '\Syscover\Hotels\Models\Decoration';
+    protected $icon         = 'icon-lightbulb';
+    protected $objectTrans  = 'decoration';
 
     public function indexCustom($parameters)
     {
@@ -44,22 +44,22 @@ class Environments extends Controller {
         }
         else
         {
-            $id = Environment::max('id_150');
+            $id = Decoration::max('id_151');
             $id++;
         }
 
-        Environment::create([
-            'id_150'    => $id,
-            'lang_150'  => Request::input('lang'),
-            'name_150'  => Request::input('name'),
-            'data_150'  => Environment::addLangDataRecord($id, Request::input('lang'))
+        Decoration::create([
+            'id_151'    => $id,
+            'lang_151'  => Request::input('lang'),
+            'name_151'  => Request::input('name'),
+            'data_151'  => Decoration::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
 
     public function updateCustomRecord($parameters)
     {
-        Environment::where('id_150', $parameters['id'])->where('lang_150', Request::input('lang'))->update([
-            'name_150'  => Request::input('name')
+        Decoration::where('id_151', $parameters['id'])->where('lang_151', Request::input('lang'))->update([
+            'name_151'  => Request::input('name')
         ]);
     }
 }
