@@ -26,8 +26,6 @@ class HotelsCreateTableHotelLang extends Migration {
             $table->text('activities_171');
             $table->text('description_171');
 
-
-
             $table->primary(['id_171', 'lang_171']);
             $table->foreign('id_171')->references('id_170')->on('007_170_hotel')
                 ->onDelete('cascade')->onUpdate('cascade');

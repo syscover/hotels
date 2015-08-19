@@ -20,13 +20,13 @@ class HotelController extends Controller {
     use TraitController;
 
     protected $routeSuffix  = 'Hotel';
-    protected $folder       = 'decorations';
+    protected $folder       = 'hotels';
     protected $package      = 'hotels';
     protected $aColumns     = ['id_151', 'name_001', 'name_151'];
     protected $nameM        = 'name_151';
-    protected $model        = '\Syscover\Hotels\Models\Decoration';
-    protected $icon         = 'icon-lightbulb';
-    protected $objectTrans  = 'decoration';
+    protected $model        = '\Syscover\Hotels\Models\Hotel';
+    protected $icon         = 'icomoon-icon-home-7';
+    protected $objectTrans  = 'hotel';
 
     public function indexCustom($parameters)
     {
