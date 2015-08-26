@@ -27,6 +27,8 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('cp_170', 10)->nullable();
             $table->string('locality_170', 100)->nullable();
             $table->string('address_170', 150)->nullable();
+            $table->string('latitude_170', 50)->nullable();
+            $table->string('longitude_170', 50)->nullable();
 
             $table->string('contact_170', 100)->nullable();
             $table->string('booking_email_170', 50)->nullable();
@@ -40,9 +42,6 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('n_places_170', 50)->nullable();
             $table->string('n_events_rooms_170', 50)->nullable();
             $table->string('n_places_events_rooms_170', 50)->nullable();
-
-            $table->string('latitude_170', 50)->nullable();
-            $table->string('longitude_170', 50)->nullable();
 
             // billing data
             $table->string('billing_name_170', 100);

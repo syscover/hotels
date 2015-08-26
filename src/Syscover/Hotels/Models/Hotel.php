@@ -14,17 +14,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Syscover\Pulsar\Traits\TraitModel;
 
-class Service extends Model {
+class Hotel extends Model {
 
     use TraitModel;
 
-	protected $table        = '007_153_service';
-    protected $primaryKey   = 'id_153';
-    protected $sufix        = '153';
+	protected $table        = '007_170_hotel';
+    protected $tableLang    = '007_171_hotel';
+    protected $primaryKey   = 'id_170';
+    protected $sufix        = '170';
     public $timestamps      = false;
-    protected $fillable     = ['id_153', 'lang_153', 'name_153', 'data_153'];
+    protected $fillable     = ['id_170', 'name_170', 'web_170'];
     private static $rules   = [
-        'name'  => 'required|between:2,50'
+        'name'  => 'required|between:2,100'
     ];
 
     public static function validate($data)
@@ -34,9 +35,9 @@ class Service extends Model {
 
     public function lang()
     {
-        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_153');
+        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_171');
     }
-
+/*
     public static function getCustomRecordsLimit($parameters)
     {
         $query =  Service::join('001_001_lang', '007_153_service.lang_153', '=', '001_001_lang.id_001')->newQuery();
@@ -45,4 +46,5 @@ class Service extends Model {
 
         return $query;
     }
+*/
 }

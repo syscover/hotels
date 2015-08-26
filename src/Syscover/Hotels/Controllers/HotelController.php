@@ -22,8 +22,8 @@ class HotelController extends Controller {
     protected $routeSuffix  = 'Hotel';
     protected $folder       = 'hotels';
     protected $package      = 'hotels';
-    protected $aColumns     = ['id_151', 'name_001', 'name_151'];
-    protected $nameM        = 'name_151';
+    protected $aColumns     = ['id_170', 'name_001', 'name_170'];
+    protected $nameM        = 'name_170';
     protected $model        = '\Syscover\Hotels\Models\Hotel';
     protected $icon         = 'icomoon-icon-home-7';
     protected $objectTrans  = 'hotel';

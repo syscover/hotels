@@ -18,4 +18,7 @@ return [
     'decoration'                            => 'Decoration|Decorations',
     'relationship'                          => 'Relationship|Relationships',
     'service'                               => 'Service|Services',
+    'company_data'                          => 'Company data',
+    'billing_name'                          => 'Administrator name',
+    'billing_surname'                       => 'Administrator surname',
 ];

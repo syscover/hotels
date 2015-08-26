@@ -18,4 +18,7 @@ return [
     'decoration'                            => 'Decoración|Decoraciones',
     'relationship'                          => 'Atención|Atenciones',
     'service'                               => 'Servicio|Servicios',
+    'company_data'                          => 'Datos de empresa',
+    'billing_name'                          => 'Nombre del administrador',
+    'billing_surname'                       => 'Apellidos del administrador',
 ];
