@@ -19,6 +19,9 @@ return [
     'relationship'                          => 'Relationship|Relationships',
     'service'                               => 'Service|Services',
     'company_data'                          => 'Company data',
-    'billing_name'                          => 'Administrator name',
-    'billing_surname'                       => 'Administrator surname',
+    'booking_email'                         => 'Booking email',
+    'booking_data'                          => 'Booking data',
+    'url_booking'                           => 'URL booking',
+    'billing_data'                          => 'Billing data',
+    'activities'                            => 'Activities',
 ];

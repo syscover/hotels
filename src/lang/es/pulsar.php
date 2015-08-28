@@ -19,6 +19,9 @@ return [
     'relationship'                          => 'Atención|Atenciones',
     'service'                               => 'Servicio|Servicios',
     'company_data'                          => 'Datos de empresa',
-    'billing_name'                          => 'Nombre del administrador',
-    'billing_surname'                       => 'Apellidos del administrador',
+    'booking_email'                         => 'Email de reservas',
+    'booking_data'                          => 'Datos de reserva',
+    'url_booking'                           => 'URL de reservas',
+    'billing_data'                          => 'Datos de facturación',
+    'activities'                            => 'Actividades',
 ];

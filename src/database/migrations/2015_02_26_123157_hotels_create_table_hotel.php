@@ -19,17 +19,6 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('name_170', 100);
             $table->string('web_170', 100)->nullable();
 
-            // geolocation data
-            $table->string('country_170', 2);
-            $table->string('territorial_area_1_170', 6)->nullable();
-            $table->string('territorial_area_2_170', 10)->nullable();
-            $table->string('territorial_area_3_170', 10)->nullable();
-            $table->string('cp_170', 10)->nullable();
-            $table->string('locality_170', 100)->nullable();
-            $table->string('address_170', 150)->nullable();
-            $table->string('latitude_170', 50)->nullable();
-            $table->string('longitude_170', 50)->nullable();
-
             $table->string('contact_170', 100)->nullable();
             $table->string('booking_email_170', 50)->nullable();
             $table->string('email_170', 50)->nullable();
@@ -42,6 +31,20 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('n_places_170', 50)->nullable();
             $table->string('n_events_rooms_170', 50)->nullable();
             $table->string('n_places_events_rooms_170', 50)->nullable();
+
+            // geolocation data
+            $table->string('country_170', 2);
+            $table->string('territorial_area_1_170', 6)->nullable();
+            $table->string('territorial_area_2_170', 10)->nullable();
+            $table->string('territorial_area_3_170', 10)->nullable();
+            $table->string('cp_170', 10)->nullable();
+            $table->string('locality_170', 100)->nullable();
+            $table->string('address_170', 150)->nullable();
+            $table->string('latitude_170', 50)->nullable();
+            $table->string('longitude_170', 50)->nullable();
+
+            // booking data
+            $table->string('url_booking_170', 150);
 
             // billing data
             $table->string('billing_name_170', 100);
@@ -61,6 +64,7 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('billing_swift_170', 20);
 
             // restaurant
+            $table->string('country_chef_url_170', 255);
             $table->string('restaurant_name_170', 100);
             $table->boolean('restaurant_terrace_170');
             $table->tinyInteger('restaurant_type_170'); // 1 open public, 2 open with booking, 3 only guest, 4 only guest with booking
