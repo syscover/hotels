@@ -16,12 +16,13 @@ class HotelsCreateTableHotel extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id_170')->unsigned();
 
+            // hotel description
             $table->string('name_170', 100);
             $table->string('web_170', 100)->nullable();
 
             $table->string('contact_170', 100)->nullable();
-            $table->string('booking_email_170', 50)->nullable();
             $table->string('email_170', 50)->nullable();
+            $table->string('booking_email_170', 50)->nullable();
 
             $table->string('phone_170', 50)->nullable();
             $table->string('mobile_170', 50)->nullable();
@@ -44,14 +45,20 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('longitude_170', 50)->nullable();
 
             // booking data
-            $table->string('url_booking_170', 150);
+            $table->string('url_booking_170', 150)->nullable();
+
+            // restaurant
+            $table->string('country_chef_url_170', 255)->nullable();
+            $table->string('restaurant_name_170', 100)->nullable();
+            $table->boolean('restaurant_terrace_170')->nullable();
+            $table->tinyInteger('restaurant_type_170')->nullable(); // 1 open public, 2 open with booking, 3 only guest, 4 only guest with booking
 
             // billing data
-            $table->string('billing_name_170', 100);
-            $table->string('billing_surname_170', 100);
-            $table->string('billing_company_name_170', 100);
+            $table->string('billing_name_170', 100)->nullable();
+            $table->string('billing_surname_170', 100)->nullable();
+            $table->string('billing_company_name_170', 100)->nullable();
             $table->string('billing_tin_170', 50)->nullable();
-            $table->string('billing_country_170', 2);
+            $table->string('billing_country_170', 2)->nullable();
             $table->string('billing_territorial_area_1_170', 6)->nullable();
             $table->string('billing_territorial_area_2_170', 10)->nullable();
             $table->string('billing_territorial_area_3_170', 10)->nullable();
@@ -60,14 +67,8 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('billing_address_170', 150)->nullable();
             $table->string('billing_phone_170', 50)->nullable();
             $table->string('billing_email_170', 100)->nullable();
-            $table->string('billing_iban_170', 50);
-            $table->string('billing_swift_170', 20);
-
-            // restaurant
-            $table->string('country_chef_url_170', 255);
-            $table->string('restaurant_name_170', 100);
-            $table->boolean('restaurant_terrace_170');
-            $table->tinyInteger('restaurant_type_170'); // 1 open public, 2 open with booking, 3 only guest, 4 only guest with booking
+            $table->string('billing_iban_170', 50)->nullable();
+            $table->string('billing_swift_170', 20)->nullable();
 
             $table->text('data_170')->nullable();
 
