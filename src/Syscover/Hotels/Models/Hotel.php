@@ -19,7 +19,6 @@ class Hotel extends Model {
     use TraitModel;
 
 	protected $table        = '007_170_hotel';
-    //protected $tableLang    = '007_171_hotel';
     protected $primaryKey   = 'id_170';
     protected $sufix        = '170';
     public $timestamps      = false;
@@ -33,18 +32,27 @@ class Hotel extends Model {
         return Validator::make($data, static::$rules);
 	}
 
+    // get lang from join with 007_171_hotel_lang
     public function lang()
     {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_171');
     }
-/*
+
     public static function getCustomRecordsLimit($parameters)
     {
-        $query =  Service::join('001_001_lang', '007_153_service.lang_153', '=', '001_001_lang.id_001')->newQuery();
+        $query =  Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
+            ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')->newQuery();
 
-        if(isset($parameters['lang'])) $query->where('lang_153', $parameters['lang']);
+        if(isset($parameters['lang'])) $query->where('lang_171', $parameters['lang']);
 
         return $query;
     }
-*/
+
+    public static function getCustomTranslationRecord($parametes)
+    {
+        return Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
+            ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
+            ->where('id_170', $parametes['id'])->where('lang_171', $parametes['lang'])->first();
+    }
+
 }

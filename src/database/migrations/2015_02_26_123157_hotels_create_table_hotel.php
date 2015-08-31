@@ -19,6 +19,7 @@ class HotelsCreateTableHotel extends Migration {
             // hotel description
             $table->string('name_170', 100);
             $table->string('web_170', 100)->nullable();
+            $table->string('web_url_170', 100)->nullable();
 
             $table->string('contact_170', 100)->nullable();
             $table->string('email_170', 50)->nullable();
@@ -28,10 +29,14 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('mobile_170', 50)->nullable();
             $table->string('fax_170', 50)->nullable();
 
+            $table->integer('environment_170')->unsigned()->nullable();
+            $table->integer('decoration_170')->unsigned()->nullable();
+            $table->integer('relationship_170')->unsigned()->nullable();
+
             $table->string('n_rooms_170', 50)->nullable();
             $table->string('n_places_170', 50)->nullable();
             $table->string('n_events_rooms_170', 50)->nullable();
-            $table->string('n_places_events_rooms_170', 50)->nullable();
+            $table->string('n_events_places_170', 50)->nullable();
 
             // geolocation data
             $table->string('country_170', 2);
@@ -48,10 +53,11 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('url_booking_170', 150)->nullable();
 
             // restaurant
+            $table->boolean('country_chef_restaurant_170')->nullable();
             $table->string('country_chef_url_170', 255)->nullable();
             $table->string('restaurant_name_170', 100)->nullable();
+            $table->tinyInteger('restaurant_type_170')->nullable(); // 0 open public, 1 open by reservation, 2 only guest, 3 only guest with reservation
             $table->boolean('restaurant_terrace_170')->nullable();
-            $table->tinyInteger('restaurant_type_170')->nullable(); // 1 open public, 2 open with booking, 3 only guest, 4 only guest with booking
 
             // billing data
             $table->string('billing_name_170', 100)->nullable();
@@ -67,8 +73,12 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('billing_address_170', 150)->nullable();
             $table->string('billing_phone_170', 50)->nullable();
             $table->string('billing_email_170', 100)->nullable();
-            $table->string('billing_iban_170', 50)->nullable();
-            $table->string('billing_swift_170', 20)->nullable();
+
+            // IBAN and SWIFT
+            $table->string('billing_iban_country_170', 2)->nullable();
+            $table->string('billing_iban_check_digits_170', 2)->nullable();
+            $table->string('billing_iban_basic_bank_account_number_170', 30)->nullable();
+            $table->string('billing_bic_170', 11)->nullable();
 
             $table->text('data_170')->nullable();
 
