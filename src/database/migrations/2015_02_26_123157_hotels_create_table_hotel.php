@@ -23,7 +23,7 @@ class HotelsCreateTableHotel extends Migration {
 
             $table->string('contact_170', 100)->nullable();
             $table->string('email_170', 50)->nullable();
-            $table->string('booking_email_170', 50)->nullable();
+
 
             $table->string('phone_170', 50)->nullable();
             $table->string('mobile_170', 50)->nullable();
@@ -36,7 +36,7 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('n_rooms_170', 50)->nullable();
             $table->string('n_places_170', 50)->nullable();
             $table->string('n_events_rooms_170', 50)->nullable();
-            $table->string('n_events_places_170', 50)->nullable();
+            $table->string('n_events_rooms_places_170', 50)->nullable();
 
             // geolocation data
             $table->string('country_170', 2);
@@ -50,7 +50,8 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('longitude_170', 50)->nullable();
 
             // booking data
-            $table->string('url_booking_170', 150)->nullable();
+            $table->string('booking_url_170', 150)->nullable();
+            $table->string('booking_email_170', 50)->nullable();
 
             // restaurant
             $table->boolean('country_chef_restaurant_170')->nullable();

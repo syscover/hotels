@@ -22,7 +22,7 @@ class HotelLang extends Model {
     protected $primaryKey   = 'id_171';
     protected $sufix        = '171';
     public $timestamps      = false;
-    protected $fillable     = ['id_171', 'lang_171', 'environment_description_171', 'construction_171', 'cooking_171', 'special_dish_171', 'indications_171', 'points_interest_171', 'activities_171', 'description_171', 'data_171'];
+    protected $fillable     = ['id_171', 'lang_171', 'cuisine_171', 'special_dish_171', 'indications_171', 'interest_points_171', 'environment_description_171', 'construction_171', 'activities_171', 'description_title_171', 'description_171', 'data_171'];
     private static $rules   = [];
 
     public static function validate($data)

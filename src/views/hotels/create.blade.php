@@ -175,13 +175,13 @@
     @include('pulsar::includes.html.form_text_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans('pulsar::pulsar.name'), 'name' => 'name', 'value' => Input::old('name', isset($object->name_170)? $object->name_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100', 'required' => true])
     <div class="row">
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.web'), 'name' => 'web', 'value' => Input::old('web', isset($object->web_170)? $object->web_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.web'), 'name' => 'web', 'value' => Input::old('web', isset($object->web_170)? $object->web_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100', 'placeholder' => 'mydomain.com'])
             @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('pulsar::pulsar.contact', 1), 'name' => 'contact', 'value' => Input::old('contact', isset($object->contact_170)? $object->contact_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100'])
             @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('pulsar::pulsar.phone', 1), 'name' => 'phone', 'value' => Input::old('phone', isset($object->phone_170)? $object->phone_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.fax'), 'name' => 'fax', 'value' => Input::old('fax', isset($object->fax_170)? $object->fax_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
         </div>
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_text_group', ['label' => trans('hotels::pulsar.web_url'), 'name' => 'webUrl', 'value' => Input::old('web', isset($object->web_url_170)? $object->web_url_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('hotels::pulsar.web_url'), 'name' => 'webUrl', 'value' => Input::old('webUrl', isset($object->web_url_170)? $object->web_url_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100', 'placeholder' => 'http://www.mydomain.com'])
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.email'), 'name' => 'email', 'value' => Input::old('email', isset($object->email_170)? $object->email_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50', 'type' => 'email'])
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.mobile'), 'name' => 'mobile', 'value' => Input::old('mobile', isset($object->mobile_170)? $object->mobile_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
         </div>
@@ -195,18 +195,18 @@
             @include('pulsar::includes.html.form_select_group', ['label' => trans_choice('hotels::pulsar.relationship', 1), 'name' => 'relationship', 'value' => Input::old('relationship', isset($object->relationship_170)? $object->relationship_170 : null), 'objects' => $relationships, 'idSelect' => 'id_152', 'nameSelect' => 'name_152', 'class' => 'form-control select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
         </div>
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_rooms', 1), 'name' => 'nRoms', 'value' => Input::old('nRoms', isset($object->n_rooms_170)? $object->n_rooms_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_places', 1), 'name' => 'nPlaces', 'value' => Input::old('nPlaces', isset($object->n_places_170)? $object->n_places_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_rooms', 1), 'name' => 'nRoms', 'value' => Input::old('nRoms', isset($object->n_rooms_170)? $object->n_rooms_170 : null), 'maxLength' => '50', 'rangeLength' => '1,50'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_places', 1), 'name' => 'nPlaces', 'value' => Input::old('nPlaces', isset($object->n_places_170)? $object->n_places_170 : null), 'maxLength' => '50', 'rangeLength' => '1,50'])
         </div>
     </div>
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.company', 2), 'icon' => 'fa fa-building'])
     <div class="row">
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_rooms', 1), 'name' => 'nEventsRoms', 'value' => Input::old('nEventsRoms', isset($object->n_events_rooms_170)? $object->n_events_rooms_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_rooms', 1), 'name' => 'nEventsRoms', 'value' => Input::old('nEventsRoms', isset($object->n_events_rooms_170)? $object->n_events_rooms_170 : null), 'maxLength' => '50', 'rangeLength' => '1,50'])
         </div>
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_places', 1), 'name' => 'nEventsPlaces', 'value' => Input::old('nEventsPlaces', isset($object->n_events_places_170)? $object->n_events_places_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_places', 1), 'name' => 'nEventsRoomsPlaces', 'value' => Input::old('nEventsRoomsPlaces', isset($object->n_events_rooms_places_170)? $object->n_events_rooms_places_170 : null), 'maxLength' => '50', 'rangeLength' => '1,50'])
         </div>
     </div>
 
@@ -227,7 +227,7 @@
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans('hotels::pulsar.booking_data'), 'icon' => 'fa fa-bed'])
     @include('pulsar::includes.html.form_text_group', ['labelSize' => 1, 'fieldSize' => 5, 'label' => trans('hotels::pulsar.booking_email'), 'name' => 'bookingEmail', 'value' => Input::old('bookingEmail', isset($object->booking_email_170)? $object->booking_email_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50', 'type' => 'email'])
-    @include('pulsar::includes.html.form_text_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans('hotels::pulsar.booking_url'), 'name' => 'web', 'value' => Input::old('web', isset($object->web_170)? $object->web_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100'])
+    @include('pulsar::includes.html.form_text_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans('hotels::pulsar.booking_url'), 'name' => 'web', 'value' => Input::old('bookingUrl', isset($object->booking_url_170)? $object->booking_url_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100'])
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.geolocation', 1), 'icon' => 'fa fa-map-signs'])
     @include('pulsar::includes.html.form_text_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans_choice('pulsar::pulsar.address', 1), 'name' => 'address', 'value' => Input::old('address', isset($object->address_170)? $object->address_170 : null), 'maxLength' => '150', 'rangeLength' => '2,150'])
