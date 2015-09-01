@@ -39,5 +39,6 @@ return [
     'open_public'                           => 'Abierto al público',
     'open_by_reservation'                   => 'Abierto al público previa reserva',
     'only_guest'                            => 'Solo para huéspedes',
-    'only_guest_reservation'                => 'Solo para huéspedes previa reserva'
+    'only_guest_reservation'                => 'Solo para huéspedes previa reserva',
+    'description_title'                     => 'Título de la descripción'
 ];

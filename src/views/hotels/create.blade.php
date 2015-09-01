@@ -133,10 +133,6 @@
             @elseif($tab == 4)
             $('.tabbable li:eq(4) a').tab('show');
             @endif
-
-            // TODO: Comprar licencia FROALA
-            // Licencia froala
-            $('.froala-box').children('div:eq(2)').hide();
         });
     </script>
 @stop
@@ -237,6 +233,7 @@
 
 @section('box_tab2')
     @include('pulsar::includes.html.form_text_group', ['label' => trans('hotels::pulsar.construction'), 'name' => 'construction', 'value' => Input::old('construction', isset($object->construction_171)? $object->construction_171 : null), 'maxLength' => '255', 'rangeLength' => '2,255'])
+    @include('pulsar::includes.html.form_text_group', ['label' => trans('hotels::pulsar.description_title'), 'name' => 'descriptionTitle', 'value' => Input::old('descriptionTitle', isset($object->description_title_171)? $object->description_title_171 : null), 'maxLength' => '100', 'rangeLength' => '2,100'])
     @include('pulsar::includes.html.form_wysiwyg_group', ['label' => trans_choice('pulsar::pulsar.description', 1), 'name' => 'description', 'value' => Input::old('description', isset($object->description_171)? $object->description_171 : null), 'maxLength' => '100', 'rangeLength' => '2,100'])
     @include('pulsar::includes.html.form_wysiwyg_group', ['label' => trans('hotels::pulsar.activities'), 'name' => 'activities'])
     @include('pulsar::includes.html.form_wysiwyg_group', ['label' => trans('hotels::pulsar.indications'), 'name' => 'indications'])

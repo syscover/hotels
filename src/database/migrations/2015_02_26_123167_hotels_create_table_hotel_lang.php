@@ -30,6 +30,7 @@ class HotelsCreateTableHotelLang extends Migration {
             $table->string('environment_description_171', 255)->nullable();
             $table->string('construction_171', 255)->nullable();
             $table->text('activities_171')->nullable();
+            $table->string('description_title_171', 100)->nullable();
             $table->text('description_171')->nullable();
 
             $table->primary(['id_171', 'lang_171']);

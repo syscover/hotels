@@ -40,4 +40,5 @@ return [
     'open_by_reservation'                   => 'Open to the public by reservation',
     'only_guest'                            => 'Only to guest',
     'only_guest_reservation'                => 'Only for guests upon reservation',
+    'description_title'                     => 'Description title'
 ];
