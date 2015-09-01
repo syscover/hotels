@@ -11,13 +11,13 @@
                             <li{!! Miscellaneous::setCurrentPage('hotels-service') !!}><a href="{{ route('HotelsService', [session('baseLang')]) }}"><i class="icomoon-icon-wand-2"></i>{{ trans_choice('hotels::pulsar.service', 2) }}</a></li>
                         @endif
                         @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-decoration', 'access'))
-                            <li{!! Miscellaneous::setCurrentPage('hotels-decoration') !!}><a href="{{ route('HotelsDecoration', [session('baseLang')]) }}"><i class="icon-lightbulb"></i>{{ trans_choice('hotels::pulsar.decoration', 2) }}</a></li>
+                            <li{!! Miscellaneous::setCurrentPage('hotels-decoration') !!}><a href="{{ route('HotelsDecoration', [session('baseLang')]) }}"><i class="fa fa-lightbulb-o"></i>{{ trans_choice('hotels::pulsar.decoration', 2) }}</a></li>
                         @endif
                         @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-environment', 'access'))
-                            <li{!! Miscellaneous::setCurrentPage('hotels-environment') !!}><a href="{{ route('HotelsEnvironment', [session('baseLang')]) }}"><i class="icon-picture"></i>{{ trans_choice('hotels::pulsar.environment', 2) }}</a></li>
+                            <li{!! Miscellaneous::setCurrentPage('hotels-environment') !!}><a href="{{ route('HotelsEnvironment', [session('baseLang')]) }}"><i class="fa fa-picture-o"></i>{{ trans_choice('hotels::pulsar.environment', 2) }}</a></li>
                         @endif
                         @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-relationship', 'access'))
-                            <li{!! Miscellaneous::setCurrentPage('hotels-relationship') !!}><a href="{{ route('HotelsRelationship', [session('baseLang')]) }}"><i class="icon-group"></i>{{ trans_choice('hotels::pulsar.relationship', 2) }}</a></li>
+                            <li{!! Miscellaneous::setCurrentPage('hotels-relationship') !!}><a href="{{ route('HotelsRelationship', [session('baseLang')]) }}"><i class="fa fa-group"></i>{{ trans_choice('hotels::pulsar.relationship', 2) }}</a></li>
                         @endif
                     </ul>
                 </li>
