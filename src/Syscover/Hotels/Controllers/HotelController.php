@@ -102,7 +102,7 @@ class HotelController extends Controller {
             'billing_company_name_170'                      => Request::input('billingCompanyName'),
             'billing_tin_170'                               => Request::input('billingTin'),
             'billing_country_170'                           => Request::has('billingCountry')? Request::input('billingCountry') : null,
-            'billing_territorial_area_1_170'                => Request::has('billingterritorialArea1')? Request::input('billingTerritorialArea1') : null,
+            'billing_territorial_area_1_170'                => Request::has('billingTerritorialArea1')? Request::input('billingTerritorialArea1') : null,
             'billing_territorial_area_2_170'                => Request::has('billingTerritorialArea2')? Request::input('billingTerritorialArea2') : null,
             'billing_territorial_area_3_170'                => Request::has('billingTerritorialArea3')? Request::input('billingTerritorialArea3') : null,
             'billing_cp_170'                                => Request::input('billingCp'),
@@ -137,9 +137,9 @@ class HotelController extends Controller {
 
     public function editCustomRecord($parameters)
     {
-        $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']);
-        $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']);
-        $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']);
+        $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['restaurantTypes']  = [
             (object)['id' => 0, 'name' => trans('hotels::pulsar.open_public')],
             (object)['id' => 1, 'name' => trans('hotels::pulsar.open_by_reservation')],
@@ -152,7 +152,6 @@ class HotelController extends Controller {
 
     public function updateCustomRecord($parameters)
     {
-        dd(Request::input('web'));
         Hotel::where('id_170', $parameters['id'])->update([
             'name_170'                                      => Request::input('name'),
             'web_170'                                       => Request::input('web'),
@@ -190,7 +189,7 @@ class HotelController extends Controller {
             'billing_company_name_170'                      => Request::input('billingCompanyName'),
             'billing_tin_170'                               => Request::input('billingTin'),
             'billing_country_170'                           => Request::has('billingCountry')? Request::input('billingCountry') : null,
-            'billing_territorial_area_1_170'                => Request::has('billingterritorialArea1')? Request::input('billingTerritorialArea1') : null,
+            'billing_territorial_area_1_170'                => Request::has('billingTerritorialArea1')? Request::input('billingTerritorialArea1') : null,
             'billing_territorial_area_2_170'                => Request::has('billingTerritorialArea2')? Request::input('billingTerritorialArea2') : null,
             'billing_territorial_area_3_170'                => Request::has('billingTerritorialArea3')? Request::input('billingTerritorialArea3') : null,
             'billing_cp_170'                                => Request::input('billingCp'),
