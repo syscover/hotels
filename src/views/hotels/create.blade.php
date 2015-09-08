@@ -268,9 +268,9 @@
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.phone'), 'name' => 'billingPhone', 'value' => Input::old('billingPhone', isset($object->billing_phone_170)? $object->billing_phone_170 : null), 'maxLength' => '50', 'rangeLength' => '2,50'])
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.email'), 'name' => 'billingEmail', 'value' => Input::old('billingEmail', isset($object->billing_email_170)? $object->billing_email_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100', 'type' => 'email'])
             @include('pulsar::includes.html.form_text_group',
-                ['fieldSize' => 2, 'label' => trans('pulsar::pulsar.iban'), 'name' => 'billingIbanCountry', 'value' => Input::old('billingIbanCountry', isset($object->billing_email_170)? $object->billing_email_170 : null), 'maxLength' => '2', 'rangeLength' => '2,2', 'inputs' => [
-                ['fieldSize' => 2, 'name' => 'billingIbanCheckDigits', 'value' => Input::old('billingIbanCheckDigits'), 'maxLength' => '2', 'rangeLength' => '2,2'],
-                ['fieldSize' => 6, 'name' => 'billingIbanBasicBankAccountNumber', 'value' => Input::old('billingIbanBasicBankAccountNumber'), 'maxLength' => '30', 'rangeLength' => '15,30']
+                ['fieldSize' => 2, 'label' => trans('pulsar::pulsar.iban'), 'name' => 'billingIbanCountry', 'value' => Input::old('billingIbanCountry', isset($object->billing_iban_country_170)? $object->billing_iban_country_170 : null), 'maxLength' => '2', 'rangeLength' => '2,2', 'inputs' => [
+                ['fieldSize' => 2, 'name' => 'billingIbanCheckDigits', 'value' => Input::old('billingIbanCheckDigits', isset($object->billing_iban_check_digits_170)? $object->billing_iban_check_digits_170 : null), 'maxLength' => '2', 'rangeLength' => '2,2'],
+                ['fieldSize' => 6, 'name' => 'billingIbanBasicBankAccountNumber', 'value' => Input::old('billingIbanBasicBankAccountNumber', isset($object->billing_iban_basic_bank_account_number_170)? $object->billing_iban_basic_bank_account_number_170 : null), 'maxLength' => '30', 'rangeLength' => '15,30']
             ]])
             @include('pulsar::includes.html.form_text_group', ['fieldSize' => 4, 'label' => trans('pulsar::pulsar.bic'), 'name' => 'billingBic', 'value' => Input::old('billingBic', isset($object->billing_bic_170)? $object->billing_bic_170 : null), 'maxLength' => '11', 'rangeLength' => '8,11'])
         </div>
@@ -280,8 +280,8 @@
             @include('pulsar::includes.html.form_select_group', ['containerId' => 'billingTerritorialArea1Wrapper', 'labelId' => 'billingTerritorialArea1Label', 'name' => 'billingTerritorialArea1', 'class' => 'col-md-12 select2', 'style' => 'width:100%', 'data' => ['language' => config('app.locale')]])
             @include('pulsar::includes.html.form_select_group', ['containerId' => 'billingTerritorialArea2Wrapper', 'labelId' => 'billingTerritorialArea2Label', 'name' => 'billingTerritorialArea2', 'class' => 'col-md-12 select2', 'style' => 'width:100%', 'data' => ['language' => config('app.locale')]])
             @include('pulsar::includes.html.form_select_group', ['containerId' => 'billingTerritorialArea3Wrapper', 'labelId' => 'billingTerritorialArea3Label', 'name' => 'billingTerritorialArea3', 'class' => 'col-md-12 select2', 'style' => 'width:100%', 'data' => ['language' => config('app.locale')]])
-            @include('pulsar::includes.html.form_text_group', ['fieldSize' => 4, 'label' => trans('pulsar::pulsar.cp'), 'name' => 'billingCp', 'value' => Input::old('billingCp'), 'maxLength' => '10', 'rangeLength' => '2,10'])
-            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.locality'), 'name' => 'billingLocality', 'value' => Input::old('billingLocality'), 'maxLength' => '100', 'rangeLength' => '2,100', 'fieldSize' => 6])
+            @include('pulsar::includes.html.form_text_group', ['fieldSize' => 4, 'label' => trans('pulsar::pulsar.cp'), 'name' => 'billingCp', 'value' => Input::old('billingCp', isset($object->billing_cp_170)? $object->billing_cp_170 : null), 'maxLength' => '10', 'rangeLength' => '2,10'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.locality'), 'name' => 'billingLocality', 'value' => Input::old('billingLocality', isset($object->billing_locality_170)? $object->billing_locality_170 : null), 'maxLength' => '100', 'rangeLength' => '2,100', 'fieldSize' => 6])
         </div>
     </div>
 @stop
