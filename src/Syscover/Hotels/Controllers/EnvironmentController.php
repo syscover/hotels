@@ -25,7 +25,7 @@ class EnvironmentController extends Controller {
     protected $aColumns     = ['id_150', 'name_001', 'name_150'];
     protected $nameM        = 'name_150';
     protected $model        = '\Syscover\Hotels\Models\Environment';
-    protected $icon         = 'icon-picture';
+    protected $icon         = 'fa fa-picture-o';
     protected $objectTrans  = 'environment';
 
     public function indexCustom($parameters)
@@ -49,10 +49,10 @@ class EnvironmentController extends Controller {
         }
 
         Environment::create([
-            'id_150'    => $id,
-            'lang_150'  => Request::input('lang'),
-            'name_150'  => Request::input('name'),
-            'data_150'  => Environment::addLangDataRecord($id, Request::input('lang'))
+            'id_150'        => $id,
+            'lang_150'      => Request::input('lang'),
+            'name_150'      => Request::input('name'),
+            'data_lang_150' => Environment::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
 

@@ -22,7 +22,7 @@ class Decoration extends Model {
     protected $primaryKey   = 'id_151';
     protected $sufix        = '151';
     public $timestamps      = false;
-    protected $fillable     = ['id_151', 'lang_151', 'name_151', 'data_151'];
+    protected $fillable     = ['id_151', 'lang_151', 'name_151', 'data_lang_151', 'data_151'];
     private static $rules   = [
         'name'  => 'required|between:2,50'
     ];

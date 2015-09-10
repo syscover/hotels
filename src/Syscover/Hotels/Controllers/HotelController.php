@@ -117,7 +117,7 @@ class HotelController extends Controller {
         ]);
 
         Hotel::where('id_170', $hotel->id_170)->update([
-            'data_170'                 => HotelLang::addLangDataRecord($hotel->id_170, Request::input('lang'))
+            'data_lang_170'                 => HotelLang::addLangDataRecord($hotel->id_170, Request::input('lang'))
         ]);
 
         HotelLang::create([

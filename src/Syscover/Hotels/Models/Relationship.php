@@ -22,7 +22,7 @@ class Relationship extends Model {
     protected $primaryKey   = 'id_152';
     protected $sufix        = '152';
     public $timestamps      = false;
-    protected $fillable     = ['id_152', 'lang_152', 'name_152', 'data_152'];
+    protected $fillable     = ['id_152', 'lang_152', 'name_152', 'data_lang_152', 'data_152'];
     private static $rules   = [
         'name'  => 'required|between:2,50'
     ];

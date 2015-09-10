@@ -17,6 +17,8 @@ class HotelsCreateTableEnvironment extends Migration {
             $table->integer('id_150')->unsigned();
             $table->string('lang_150',2);
             $table->string('name_150', 50);
+
+            $table->string('data_lang_150',255)->nullable();
             $table->text('data_150')->nullable();
 
             $table->primary(['id_150', 'lang_150']);

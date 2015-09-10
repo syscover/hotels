@@ -22,7 +22,7 @@ class Service extends Model {
     protected $primaryKey   = 'id_153';
     protected $sufix        = '153';
     public $timestamps      = false;
-    protected $fillable     = ['id_153', 'lang_153', 'name_153', 'data_153'];
+    protected $fillable     = ['id_153', 'lang_153', 'name_153', 'data_lang_153', 'data_153'];
     private static $rules   = [
         'name'  => 'required|between:2,50'
     ];

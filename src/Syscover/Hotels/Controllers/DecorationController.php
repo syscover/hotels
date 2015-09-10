@@ -49,10 +49,10 @@ class DecorationController extends Controller {
         }
 
         Decoration::create([
-            'id_151'    => $id,
-            'lang_151'  => Request::input('lang'),
-            'name_151'  => Request::input('name'),
-            'data_151'  => Decoration::addLangDataRecord($id, Request::input('lang'))
+            'id_151'        => $id,
+            'lang_151'      => Request::input('lang'),
+            'name_151'      => Request::input('name'),
+            'data_lang_151' => Decoration::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
 

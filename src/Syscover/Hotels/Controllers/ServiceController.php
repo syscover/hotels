@@ -49,10 +49,10 @@ class ServiceController extends Controller {
         }
 
         Service::create([
-            'id_153'    => $id,
-            'lang_153'  => Request::input('lang'),
-            'name_153'  => Request::input('name'),
-            'data_153'  => Service::addLangDataRecord($id, Request::input('lang'))
+            'id_153'        => $id,
+            'lang_153'      => Request::input('lang'),
+            'name_153'      => Request::input('name'),
+            'data_lang_153' => Service::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
 

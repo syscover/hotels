@@ -17,6 +17,8 @@ class HotelsCreateTableDecoration extends Migration {
             $table->integer('id_151')->unsigned();
             $table->string('lang_151',2);
             $table->string('name_151', 50);
+
+            $table->string('data_lang_151',255)->nullable();
             $table->text('data_151')->nullable();
 
             $table->primary(['id_151', 'lang_151']);

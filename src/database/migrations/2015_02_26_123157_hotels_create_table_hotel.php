@@ -81,6 +81,7 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('billing_iban_basic_bank_account_number_170', 30)->nullable();
             $table->string('billing_bic_170', 11)->nullable();
 
+            $table->string('data_lang_170',255)->nullable();
             $table->text('data_170')->nullable();
 
             $table->foreign('country_170')->references('id_002')->on('001_002_country')

@@ -25,7 +25,7 @@ class RelationshipController extends Controller {
     protected $aColumns     = ['id_152', 'name_001', 'name_152'];
     protected $nameM        = 'name_152';
     protected $model        = '\Syscover\Hotels\Models\Relationship';
-    protected $icon         = 'icon-group';
+    protected $icon         = 'fa fa-group';
     protected $objectTrans  = 'relationship';
 
     public function indexCustom($parameters)
@@ -49,10 +49,10 @@ class RelationshipController extends Controller {
         }
 
         Relationship::create([
-            'id_152'    => $id,
-            'lang_152'  => Request::input('lang'),
-            'name_152'  => Request::input('name'),
-            'data_152'  => Relationship::addLangDataRecord($id, Request::input('lang'))
+            'id_152'        => $id,
+            'lang_152'      => Request::input('lang'),
+            'name_152'      => Request::input('name'),
+            'data_lang_152' => Relationship::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
 
