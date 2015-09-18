@@ -34,14 +34,4 @@ class HotelLang extends Model {
     {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_171');
     }
-/*
-    public static function getCustomRecordsLimit($parameters)
-    {
-        $query =  Service::join('001_001_lang', '007_153_service.lang_153', '=', '001_001_lang.id_001')->newQuery();
-
-        if(isset($parameters['lang'])) $query->where('lang_153', $parameters['lang']);
-
-        return $query;
-    }
-*/
 }
