@@ -38,6 +38,10 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('n_events_rooms_170', 50)->nullable();
             $table->string('n_events_rooms_places_170', 50)->nullable();
 
+            // access
+            $table->boolean('active_170');
+            $table->string('password_170', 255);
+
             // geolocation data
             $table->string('country_170', 2);
             $table->string('territorial_area_1_170', 6)->nullable();
