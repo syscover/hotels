@@ -19,6 +19,7 @@ return [
     'relationship'                          => 'Relationship|Relationships',
     'service'                               => 'Service|Services',
     'place'                                 => 'Place|Places',
+    'publication'                           => 'Publication|Publications',
     'room'                                  => 'Room|Rooms',
     'company_data'                          => 'Company data',
     'booking_data'                          => 'Booking data',

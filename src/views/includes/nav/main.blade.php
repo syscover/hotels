@@ -8,6 +8,9 @@
                     <a href="javascript:void(0);"><i class="icomoon-icon-grid"></i>{{ trans('pulsar::pulsar.master_tables') }}</a>
                     <ul class="sub-menu" >
                         @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-service', 'access'))
+                            <li{!! Miscellaneous::setCurrentPage('hotels-service') !!}><a href="{{ route('HotelsService', [session('baseLang')]) }}"><i class="fa fa-object-ungroup"></i>{{ trans_choice('hotels::pulsar.publication', 2) }}</a></li>
+                        @endif
+                        @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-service', 'access'))
                             <li{!! Miscellaneous::setCurrentPage('hotels-service') !!}><a href="{{ route('HotelsService', [session('baseLang')]) }}"><i class="icomoon-icon-wand-2"></i>{{ trans_choice('hotels::pulsar.service', 2) }}</a></li>
                         @endif
                         @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-decoration', 'access'))

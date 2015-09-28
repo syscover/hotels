@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CmsCreateTableHotelsPublications extends Migration {
+class HotelsCreateTableHotelsPublications extends Migration {
 
 	/**
 	 * Run the migrations.

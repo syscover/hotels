@@ -19,6 +19,7 @@ return [
     'relationship'                          => 'Atención|Atenciones',
     'service'                               => 'Servicio|Servicios',
     'place'                                 => 'Plaza|Plazas',
+    'publication'                           => 'Publicación|Publicaciones',
     'room'                                  => 'Habitación|Habitaciones',
     'company_data'                          => 'Datos de empresa',
     'booking_data'                          => 'Datos de reserva',
