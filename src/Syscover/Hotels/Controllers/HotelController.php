@@ -88,6 +88,7 @@ class HotelController extends Controller {
                 'n_events_rooms_170' => Request::input('nEventsRooms'),
                 'n_events_rooms_places_170' => Request::input('nEventsRoomsPlaces'),
                 'active_170' => Request::has('active') ? Request::input('active') : null,
+                'user_170' => Hash::make(Request::input('user')),
                 'password_170' => Hash::make(Request::input('password')),
                 'country_170' => Request::input('country'),
                 'territorial_area_1_170' => Request::has('territorialArea1') ? Request::input('territorialArea1') : null,
