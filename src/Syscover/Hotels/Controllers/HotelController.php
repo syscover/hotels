@@ -13,6 +13,7 @@
 use Illuminate\Support\Facades\Request;
 use Syscover\Hotels\Models\Decoration;
 use Syscover\Hotels\Models\Environment;
+use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
@@ -54,6 +55,7 @@ class HotelController extends Controller {
         $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']);
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']);
         $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']);
+        $parameters['publications']     = Publication::all();
         $parameters['restaurantTypes']  = [
             (object)['id' => 0, 'name' => trans('hotels::pulsar.open_public')],
             (object)['id' => 1, 'name' => trans('hotels::pulsar.open_by_reservation')],
@@ -85,6 +87,8 @@ class HotelController extends Controller {
                 'n_places_170' => Request::input('nPlaces'),
                 'n_events_rooms_170' => Request::input('nEventsRooms'),
                 'n_events_rooms_places_170' => Request::input('nEventsRoomsPlaces'),
+                'active_170' => Request::has('active') ? Request::input('active') : null,
+                'password_170' => Hash::make(Request::input('password')),
                 'country_170' => Request::input('country'),
                 'territorial_area_1_170' => Request::has('territorialArea1') ? Request::input('territorialArea1') : null,
                 'territorial_area_2_170' => Request::has('territorialArea2') ? Request::input('territorialArea2') : null,
@@ -98,16 +102,16 @@ class HotelController extends Controller {
                 'country_chef_restaurant_170' => Request::has('countryChefRestaurant'),
                 'country_chef_url_170' => Request::input('countryChefUrl'),
                 'restaurant_name_170' => Request::input('restaurantName'),
-                'restaurant_type_170' => Request::has('restaurantType') ? Request::input('restaurantType') : null,
+                'restaurant_type_170' => Request::has('restaurantType')? Request::input('restaurantType') : null,
                 'restaurant_terrace_170' => Request::has('restaurantTerrace'),
                 'billing_name_170' => Request::input('billingName'),
                 'billing_surname_170' => Request::input('billingSurname'),
                 'billing_company_name_170' => Request::input('billingCompanyName'),
                 'billing_tin_170' => Request::input('billingTin'),
-                'billing_country_170' => Request::has('billingCountry') ? Request::input('billingCountry') : null,
-                'billing_territorial_area_1_170' => Request::has('billingTerritorialArea1') ? Request::input('billingTerritorialArea1') : null,
-                'billing_territorial_area_2_170' => Request::has('billingTerritorialArea2') ? Request::input('billingTerritorialArea2') : null,
-                'billing_territorial_area_3_170' => Request::has('billingTerritorialArea3') ? Request::input('billingTerritorialArea3') : null,
+                'billing_country_170' => Request::has('billingCountry')? Request::input('billingCountry') : null,
+                'billing_territorial_area_1_170' => Request::has('billingTerritorialArea1')? Request::input('billingTerritorialArea1') : null,
+                'billing_territorial_area_2_170' => Request::has('billingTerritorialArea2')? Request::input('billingTerritorialArea2') : null,
+                'billing_territorial_area_3_170' => Request::has('billingTerritorialArea3')? Request::input('billingTerritorialArea3') : null,
                 'billing_cp_170' => Request::input('billingCp'),
                 'billing_locality_170' => Request::input('billingLocality'),
                 'billing_address_170' => Request::input('billingAddress'),
@@ -161,6 +165,17 @@ class HotelController extends Controller {
         return $parameters;
     }
 
+    public function checkSpecialRulesToUpdate($parameters)
+    {
+        $user = User::find($parameters['id']);
+
+        $parameters['specialRules']['emailRule']    = Request::input('email') == $user->email_010? true : false;
+        $parameters['specialRules']['userRule']     = Request::input('user') == $user->user_010? true : false;
+        $parameters['specialRules']['passRule']     = Request::input('password') == ""? true : false;
+
+        return $parameters;
+    }
+
     public function updateCustomRecord($parameters)
     {
         Hotel::where('id_170', $parameters['id'])->update([
@@ -180,6 +195,7 @@ class HotelController extends Controller {
             'n_places_170'                                  => Request::input('nPlaces'),
             'n_events_rooms_170'                            => Request::input('nEventsRooms'),
             'n_events_rooms_places_170'                     => Request::input('nEventsRoomsPlaces'),
+            'active_170'                                    => Request::has('active')? Request::input('active') : null,
             'country_170'                                   => Request::input('country'),
             'territorial_area_1_170'                        => Request::has('territorialArea1')? Request::input('territorialArea1') : null,
             'territorial_area_2_170'                        => Request::has('territorialArea2')? Request::input('territorialArea2') : null,

@@ -30,6 +30,21 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
 
     /*
     |--------------------------------------------------------------------------
+    | PUBLICATIONS
+    |--------------------------------------------------------------------------
+    */
+    Route::any(config('pulsar.appName') . '/hotels/publications/{offset?}',                                     ['as'=>'HotelsPublication',                 'uses'=>'Syscover\Hotels\Controllers\PublicationController@index',                  'resource' => 'hotels-publication',         'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/publications/json/data',                                     ['as'=>'jsonDataHotelsPublication',         'uses'=>'Syscover\Hotels\Controllers\PublicationController@jsonData',               'resource' => 'hotels-publication',         'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/hotels/publications/create/{offset}',                               ['as'=>'createHotelsPublication',           'uses'=>'Syscover\Hotels\Controllers\PublicationController@createRecord',           'resource' => 'hotels-publication',         'action' => 'create']);
+    Route::post(config('pulsar.appName') . '/hotels/publications/store/{offset}',                               ['as'=>'storeHotelsPublication',            'uses'=>'Syscover\Hotels\Controllers\PublicationController@storeRecord',            'resource' => 'hotels-publication',         'action' => 'create']);
+    Route::get(config('pulsar.appName') . '/hotels/publications/{id}/edit/{offset}',                            ['as'=>'editHotelsPublication',             'uses'=>'Syscover\Hotels\Controllers\PublicationController@editRecord',             'resource' => 'hotels-publication',         'action' => 'access']);
+    Route::put(config('pulsar.appName') . '/hotels/publications/update/{id}/{offset}',                          ['as'=>'updateHotelsPublication',           'uses'=>'Syscover\Hotels\Controllers\PublicationController@updateRecord',           'resource' => 'hotels-publication',         'action' => 'edit']);
+    Route::get(config('pulsar.appName') . '/hotels/publications/delete/{id}/{offset}',                          ['as'=>'deleteHotelsPublication',           'uses'=>'Syscover\Hotels\Controllers\PublicationController@deleteRecord',           'resource' => 'hotels-publication',         'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/hotels/publications/delete/select/records',                      ['as'=>'deleteSelectHotelsPublication',     'uses'=>'Syscover\Hotels\Controllers\PublicationController@deleteRecordsSelect',    'resource' => 'hotels-publication',         'action' => 'delete']);
+
+
+    /*
+    |--------------------------------------------------------------------------
     | SERVICES
     |--------------------------------------------------------------------------
     */
