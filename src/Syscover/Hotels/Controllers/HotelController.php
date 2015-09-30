@@ -87,9 +87,9 @@ class HotelController extends Controller {
                 'n_places_170' => Request::input('nPlaces'),
                 'n_events_rooms_170' => Request::input('nEventsRooms'),
                 'n_events_rooms_places_170' => Request::input('nEventsRoomsPlaces'),
-                'active_170' => Request::has('active') ? Request::input('active') : null,
                 'user_170' => Hash::make(Request::input('user')),
                 'password_170' => Hash::make(Request::input('password')),
+                'active_170' => Request::has('active') ? Request::input('active') : null,
                 'country_170' => Request::input('country'),
                 'territorial_area_1_170' => Request::has('territorialArea1') ? Request::input('territorialArea1') : null,
                 'territorial_area_2_170' => Request::has('territorialArea2') ? Request::input('territorialArea2') : null,
@@ -179,12 +179,11 @@ class HotelController extends Controller {
 
     public function updateCustomRecord($parameters)
     {
-        Hotel::where('id_170', $parameters['id'])->update([
+        $hotel = [
             'name_170'                                      => Request::input('name'),
             'web_170'                                       => Request::input('web'),
             'web_url_170'                                   => Request::input('webUrl'),
             'contact_170'                                   => Request::input('contact'),
-            'email_170'                                     => Request::input('email'),
             'booking_email_170'                             => Request::input('bookingEmail'),
             'phone_170'                                     => Request::input('phone'),
             'mobile_170'                                    => Request::input('mobile'),
@@ -229,7 +228,13 @@ class HotelController extends Controller {
             'billing_iban_check_digits_170'                 => Request::input('billingIbanCheckDigits'),
             'billing_iban_basic_bank_account_number_170'    => Request::input('billingIbanBasicBankAccountNumber'),
             'billing_bic_170'                               => Request::input('billingBic')
-        ]);
+        ];
+
+        Hotel::where('id_170', $parameters['id'])->update($hotel);
+
+        if($parameters['specialRules']['emailRule'])  $hotel['email_170']       = Request::input('email');
+        if($parameters['specialRules']['userRule'])   $hotel['user_170']        = Request::input('user');
+        if(!$parameters['specialRules']['passRule'])  $hotel['password_170']    = Hash::make(Request::input('password'));
 
         HotelLang::where('id_171', $parameters['id'])->where('lang_171', Request::input('lang'))->update([
             'cuisine_171'                   => Request::input('cuisine'),
