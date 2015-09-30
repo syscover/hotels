@@ -159,7 +159,7 @@
 @stop
 
 @section('box_tab1')
-    <!-- hotels::services.create -->
+    <!-- hotels::hotels.create -->
     <div class="row">
         <div class="col-md-6">
             @include('pulsar::includes.html.form_text_group', ['label' => 'ID', 'fieldSize' => 4, 'name' => 'id',  'value' => Input::old('name', isset($object->id_170)? $object->id_170 : null), 'readOnly' => true])
