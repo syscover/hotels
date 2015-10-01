@@ -114,8 +114,8 @@
             $.mapPoint({
                 id:                 '01',
                 urlPlugin:          '/packages/syscover/pulsar/vendor',
-                lat:                {{ $object->latitude_170 }},
-                lng:                {{ $object->longitude_170 }},
+                @if(!empty($object->latitude_170))lat:                {{ $object->latitude_170 }},@endif
+                @if(!empty($object->longitude_170))lng:                {{ $object->longitude_170 }},@endif
                 zoom:               12,
                 showMarker:         true,
                 customIcon:         {
@@ -183,8 +183,21 @@
         </div>
         <div class="col-md-6">
             @include('pulsar::includes.html.form_text_group', ['label' => trans('hotels::pulsar.web_url'), 'name' => 'webUrl', 'value' => $object->web_url_170, 'maxLength' => '100', 'rangeLength' => '2,100', 'placeholder' => 'http://www.mydomain.com'])
-            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.email'), 'name' => 'email', 'value' => $object->email_170, 'maxLength' => '50', 'rangeLength' => '2,50', 'type' => 'email'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.email'), 'name' => 'email', 'value' => $object->email_170, 'maxLength' => '50', 'rangeLength' => '2,50', 'type' => 'email', 'required' => true])
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.mobile'), 'name' => 'mobile', 'value' => $object->mobile_170, 'maxLength' => '50', 'rangeLength' => '2,50'])
+        </div>
+    </div>
+
+    @include('pulsar::includes.html.form_section_header', ['label' => trans('pulsar::pulsar.access'), 'icon' => 'fa fa-check-circle-o'])
+    <div class="row">
+        <div class="col-md-6">
+            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('pulsar::pulsar.user', 1), 'name' => 'user', 'value' => $object->user_170, 'maxLength' => '50', 'rangeLength' => '2,50', 'fieldSize' => 6, 'required' => true])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.password'), 'type' => 'password' ,'name' => 'password', 'maxLength' => '50', 'rangeLength' => '4,50', 'fieldSize' => 8])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.repeat_password'), 'type' => 'password' , 'name' => 'repassword', 'maxLength' => '50', 'rangeLength' => '4,50', 'fieldSize' => 8])
+        </div>
+        <div class="col-md-6">
+            @include('pulsar::includes.html.form_select_group', ['label' => trans('hotels::pulsar.published'), 'name' => 'published[]', 'value' => $object->publications, 'objects' => $publications, 'idSelect' => 'id_174', 'nameSelect' => 'name_174', 'multiple' => true, 'class' => 'form-control select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
+            @include('pulsar::includes.html.form_checkbox_group', ['label' => trans('pulsar::pulsar.active'), 'name' => 'active', 'value' => 1, 'isChecked' => $object->active_170])
         </div>
     </div>
 

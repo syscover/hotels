@@ -10,6 +10,7 @@
  * @filesource
  */
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Syscover\Hotels\Models\Decoration;
 use Syscover\Hotels\Models\Environment;
@@ -66,6 +67,20 @@ class HotelController extends Controller {
         return $parameters;
     }
 
+    public function checkSpecialRulesToStore($parameters)
+    {
+        if(isset($parameters['id']))
+        {
+            $hotel = Hotel::find($parameters['id']);
+
+            $parameters['specialRules']['emailRule']    = Request::input('email') == $hotel->email_170? true : false;
+            $parameters['specialRules']['userRule']     = Request::input('user') == $hotel->user_170? true : false;
+            $parameters['specialRules']['passRule']     = Request::input('password') == ""? true : false;
+        }
+
+        return $parameters;
+    }
+
     public function storeCustomRecord()
     {
         if(!Request::has('id'))
@@ -87,9 +102,9 @@ class HotelController extends Controller {
                 'n_places_170' => Request::input('nPlaces'),
                 'n_events_rooms_170' => Request::input('nEventsRooms'),
                 'n_events_rooms_places_170' => Request::input('nEventsRoomsPlaces'),
-                'user_170' => Hash::make(Request::input('user')),
+                'user_170' => Request::input('user'),
                 'password_170' => Hash::make(Request::input('password')),
-                'active_170' => Request::has('active') ? Request::input('active') : null,
+                'active_170' => Request::has('active'),
                 'country_170' => Request::input('country'),
                 'territorial_area_1_170' => Request::has('territorialArea1') ? Request::input('territorialArea1') : null,
                 'territorial_area_2_170' => Request::has('territorialArea2') ? Request::input('territorialArea2') : null,
@@ -125,10 +140,15 @@ class HotelController extends Controller {
             ]);
 
             $id = $hotel->id_170;
+
+            // publications
+            if(is_array(Request::input('published')))
+            {
+                $hotel->publications()->sync(Request::input('published'));
+            }
         }
         else
         {
-
             $id = Request::input('id');
         }
 
@@ -156,6 +176,7 @@ class HotelController extends Controller {
         $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['publications']     = Publication::all();
         $parameters['restaurantTypes']  = [
             (object)['id' => 0, 'name' => trans('hotels::pulsar.open_public')],
             (object)['id' => 1, 'name' => trans('hotels::pulsar.open_by_reservation')],
@@ -168,10 +189,10 @@ class HotelController extends Controller {
 
     public function checkSpecialRulesToUpdate($parameters)
     {
-        $user = User::find($parameters['id']);
+        $hotel = Hotel::find($parameters['id']);
 
-        $parameters['specialRules']['emailRule']    = Request::input('email') == $user->email_010? true : false;
-        $parameters['specialRules']['userRule']     = Request::input('user') == $user->user_010? true : false;
+        $parameters['specialRules']['emailRule']    = Request::input('email') == $hotel->email_170? true : false;
+        $parameters['specialRules']['userRule']     = Request::input('user') == $hotel->user_170? true : false;
         $parameters['specialRules']['passRule']     = Request::input('password') == ""? true : false;
 
         return $parameters;
@@ -195,7 +216,7 @@ class HotelController extends Controller {
             'n_places_170'                                  => Request::input('nPlaces'),
             'n_events_rooms_170'                            => Request::input('nEventsRooms'),
             'n_events_rooms_places_170'                     => Request::input('nEventsRoomsPlaces'),
-            'active_170'                                    => Request::has('active')? Request::input('active') : null,
+            'active_170'                                    => Request::has('active'),
             'country_170'                                   => Request::input('country'),
             'territorial_area_1_170'                        => Request::has('territorialArea1')? Request::input('territorialArea1') : null,
             'territorial_area_2_170'                        => Request::has('territorialArea2')? Request::input('territorialArea2') : null,
@@ -230,11 +251,23 @@ class HotelController extends Controller {
             'billing_bic_170'                               => Request::input('billingBic')
         ];
 
-        Hotel::where('id_170', $parameters['id'])->update($hotel);
-
         if($parameters['specialRules']['emailRule'])  $hotel['email_170']       = Request::input('email');
         if($parameters['specialRules']['userRule'])   $hotel['user_170']        = Request::input('user');
         if(!$parameters['specialRules']['passRule'])  $hotel['password_170']    = Hash::make(Request::input('password'));
+
+        Hotel::where('id_170', $parameters['id'])->update($hotel);
+
+        $hotel = Hotel::find($parameters['id']);
+
+        // publications
+        if(is_array(Request::input('published')))
+        {
+            $hotel->publications()->sync(Request::input('published'));
+        }
+        else
+        {
+            $hotel->publications()->detach();
+        }
 
         HotelLang::where('id_171', $parameters['id'])->where('lang_171', Request::input('lang'))->update([
             'cuisine_171'                   => Request::input('cuisine'),

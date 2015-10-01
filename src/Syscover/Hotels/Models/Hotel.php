@@ -25,11 +25,12 @@ class Hotel extends Model {
     protected $fillable     = ['id_170', 'name_170', 'web_170', 'web_url_170', 'contact_170', 'email_170', 'phone_170', 'mobile_170', 'fax_170', 'environment_170', 'decoration_170', 'relationship_170', 'n_rooms_170', 'n_places_170', 'n_events_rooms_170', 'n_events_rooms_places_170', 'user_170', 'password_170', 'active_170', 'country_170', 'territorial_area_1_170', 'territorial_area_2_170', 'territorial_area_3_170', 'cp_170', 'locality_170', 'address_170', 'latitude_170', 'longitude_170', 'booking_url_170', 'booking_email_170', 'country_chef_restaurant_170', 'country_chef_url_170', 'restaurant_name_170', 'restaurant_terrace_170', 'restaurant_type_170', 'billing_name_170', 'billing_surname_170', 'billing_company_name_170', 'billing_tin_170', 'billing_country_170', 'billing_territorial_area_1_170', 'billing_territorial_area_2_170', 'billing_territorial_area_3_170', 'billing_cp_170', 'billing_locality_170', 'billing_address_170', 'billing_phone_170', 'billing_email_170', 'billing_iban_country_170', 'billing_iban_check_digits_170', 'billing_iban_basic_bank_account_number_170', 'billing_bic_170', 'data_lang_170', 'data_170'];
     private static $rules   = [
         'name'      => 'required|between:2,100',
+        'email'     => 'required|between:2,50|email|unique:007_170_hotel,email_170',
         'user'      => 'required|between:2,50|unique:007_170_hotel,user_170',
         'password'  => 'required|between:4,50|same:repassword'
     ];
 
-    public static function validate($data)
+    public static function validate($data, $specialRules = [])
     {
         if(isset($specialRules['emailRule']) && $specialRules['emailRule']) static::$rules['email'] = 'required|between:2,50|email';
         if(isset($specialRules['userRule']) && $specialRules['userRule']) static::$rules['user'] = 'required|between:2,50';
@@ -41,6 +42,11 @@ class Hotel extends Model {
     public function lang()
     {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_171');
+    }
+
+    public function publications()
+    {
+        return $this->belongsToMany('Syscover\Hotels\Models\Publication','007_175_hotels_publications','hotel_175','publication_175');
     }
 
     public static function getCustomRecordsLimit($parameters)
