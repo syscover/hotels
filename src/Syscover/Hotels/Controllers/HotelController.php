@@ -26,7 +26,7 @@ class HotelController extends Controller {
     use TraitController;
 
     protected $routeSuffix  = 'Hotel';
-    protected $folder       = 'hotels';
+    protected $folder       = 'hotel';
     protected $package      = 'hotels';
     protected $aColumns     = ['id_170', 'name_001', 'name_170'];
     protected $nameM        = 'name_170';

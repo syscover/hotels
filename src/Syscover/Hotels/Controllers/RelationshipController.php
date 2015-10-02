@@ -20,7 +20,7 @@ class RelationshipController extends Controller {
     use TraitController;
 
     protected $routeSuffix  = 'HotelsRelationship';
-    protected $folder       = 'relationships';
+    protected $folder       = 'relationship';
     protected $package      = 'hotels';
     protected $aColumns     = ['id_152', 'name_001', 'name_152'];
     protected $nameM        = 'name_152';
