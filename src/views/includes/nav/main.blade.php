@@ -23,7 +23,7 @@
                             <li{!! Miscellaneous::setCurrentPage('hotels-relationship') !!}><a href="{{ route('HotelsRelationship', [session('baseLang')]) }}"><i class="fa fa-group"></i>{{ trans_choice('hotels::pulsar.relationship', 2) }}</a></li>
                         @endif
                         @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-attachment-family', 'access'))
-                            <li{!! Miscellaneous::setCurrentPage('hotels-attachment-family') !!}><a href="{{ route('CmsAttachmentFamily') }}"><i class="fa fa-picture-o"></i>{{ trans_choice('cms::pulsar.attachment_family', 2) }}</a></li>
+                            <li{!! Miscellaneous::setCurrentPage('hotels-attachment-family') !!}><a href="{{ route('HotelsAttachmentFamily') }}"><i class="fa fa-picture-o"></i>{{ trans_choice('pulsar::pulsar.attachment_family', 2) }}</a></li>
                         @endif
                     </ul>
                 </li>
