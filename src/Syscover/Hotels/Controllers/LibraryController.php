@@ -1,7 +1,7 @@
 <?php namespace Syscover\Hotels\Controllers;
 
 /**
- * @package	    Cms
+ * @package	    Hotels
  * @author	    Jose Carlos Rodríguez Palacín
  * @copyright   Copyright (c) 2015, SYSCOVER, SL
  * @license
@@ -14,18 +14,18 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request as HttpRequest;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
-use Syscover\Cms\Models\Library;
+use Syscover\Hotels\Models\Library;
 
 class LibraryController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'CmsLibrary';
+    protected $routeSuffix  = 'HotelsLibrary';
     protected $folder       = 'library';
-    protected $package      = 'cms';
+    protected $package      = 'hotels';
     protected $aColumns     = ['id_154', ['type' => 'library_img', 'data' => 'file_name_154'], 'file_name_154', ['type' => 'size', 'data' => 'size_154'], 'mime_154', 'type_text_154'];
     protected $nameM        = 'file_154';
-    protected $model        = '\Syscover\Cms\Models\Library';
+    protected $model        = '\Syscover\Hotels\Models\Library';
     protected $icon         = 'fa fa-book';
     protected $objectTrans  = 'library';
     protected $jsonParam    = ['edit' => false];
@@ -37,12 +37,12 @@ class LibraryController extends Controller {
             case 'library_img':
                 if($aObject['type_154'] == 1)
                 {
-                    $row[] = '<img src="' . asset(config('cms.libraryFolder') . '/' . $aObject['file_name_154']) . '" class="image-index-list">';
+                    $row[] = '<img src="' . asset(config('hotels.libraryFolder') . '/' . $aObject['file_name_154']) . '" class="image-index-list">';
                 }
                 else
                 {
                     $data = json_decode($aObject['data_154']);
-                    $row[] = '<img src="' . asset(config('cms.iconsFolder') . '/' . $data->icon) . '" class="image-index-list">';
+                    $row[] = '<img src="' . asset(config('hotels.iconsFolder') . '/' . $data->icon) . '" class="image-index-list">';
                 }
 
                 break;
@@ -65,12 +65,12 @@ class LibraryController extends Controller {
 
         foreach($files as $file)
         {
-            File::copy(public_path() . config('cms.libraryFolder') . '/' . $file['name'], public_path() . config('cms.tmpFolder') . '/' . $file['name']);
+            File::copy(public_path() . config('hotels.libraryFolder') . '/' . $file['name'], public_path() . config('hotels.tmpFolder') . '/' . $file['name']);
 
             $width = null; $height= null;
             if($file['isImage'] == 'true')
             {
-                list($width, $height) = getimagesize(public_path() . config('cms.libraryFolder') . '/' . $file['name']);
+                list($width, $height) = getimagesize(public_path() . config('hotels.libraryFolder') . '/' . $file['name']);
             }
 
             $type = $this->getType($file['mime']);
@@ -91,14 +91,14 @@ class LibraryController extends Controller {
                 $filesNames[] = $file['name'];
             }
 
-            // convert format getFile to format cms application
+            // convert format getFile to format hotels application
             $objectsResponse[] = [
                 'id'        => null,
                 'family'    => null,
                 'type'      => $type,
                 'mime'      => $file['mime'],
                 'name'      => null,
-                'folder'    => config('cms.tmpFolder'),
+                'folder'    => config('hotels.tmpFolder'),
                 'fileName'  => $file['name'],
                 'width'     => $width,
                 'height'    => $height
@@ -131,7 +131,7 @@ class LibraryController extends Controller {
 
     public function deleteCustomRecord($object)
     {
-        File::delete(public_path() . config('cms.libraryFolder') . '/' . $object->file_name_154);
+        File::delete(public_path() . config('hotels.libraryFolder') . '/' . $object->file_name_154);
     }
 
     public function deleteCustomRecords($ids)
@@ -141,7 +141,7 @@ class LibraryController extends Controller {
 
         foreach($files as $file)
         {
-            $fileNames[] = public_path() . config('cms.libraryFolder') . '/' . $file->file_name_154;
+            $fileNames[] = public_path() . config('hotels.libraryFolder') . '/' . $file->file_name_154;
         }
 
         File::delete($fileNames);

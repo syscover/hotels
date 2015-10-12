@@ -25,6 +25,11 @@ class HotelsServiceProvider extends ServiceProvider
             realpath(__DIR__ . '/../../../public') => public_path('/packages/syscover/hotels')
         ]);
 
+        // register config files
+        $this->publishes([
+            realpath(__DIR__ . '/../../config/hotels.php') => config_path('hotels.php')
+        ]);
+
         // register migrations
         $this->publishes([
             __DIR__.'/../../database/migrations/' => base_path('/database/migrations')

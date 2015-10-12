@@ -296,7 +296,12 @@
 @stop
 
 @section('box_tab4')
-    Imágenes
+    <!--TODO: Implementar botón para añadir fotografías desde la librería-->
+    <div id="attachment-library-mask">
+        <div id="attachment-library-content">
+            {{ trans('cms::pulsar.drag_files') }}
+        </div>
+    </div>
 @stop
 
 @section('box_tab5')
