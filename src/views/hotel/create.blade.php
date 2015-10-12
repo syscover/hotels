@@ -26,10 +26,19 @@
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/css/plugins/table.css') }}">
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/css/plugins/video.css') }}">
     <!-- /Froala -->
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/attachment/css/attachment-library.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/cropper/cropper.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/filedrop/filedrop.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/css/getfile.css') }}">
 
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.select2.custom/js/select2.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/jquery.select2/js/i18n/' . config('app.locale') . '.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getaddress/js/jquery.getaddress.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/cropper/cropper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/cssloader/js/jquery.cssloader.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/mobiledetect/mdetect.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/filedrop/filedrop.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/js/jquery.getfile.js') }}"></script>
     <!-- Froala -->
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/froala_editor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/plugins/char_counter.min.js') }}"></script>
@@ -63,6 +72,8 @@
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/attachment/js/attachment-library.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/mappoint/js/jquery.mappoint.js') }}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9L1dPys2N9iuQYoNXtZr8i_wxYiynswE&libraries=places"></script>
+
+    @include('hotels::hotel.includes.common_script', ['action' => 'create'])
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -296,14 +307,74 @@
 @stop
 
 @section('box_tab4')
+    <!-- hotels::hotel.create -->
+    <div id="attachment-library" class="widget box">
+        <div class="widget-content no-padding">
+            <div class="row" id="attachment-wrapper">
+                <div id="library-placeholder">
+                    <p>{{ trans('cms::pulsar.drag_files') }}</p>
+                </div>
+                <ul class="sortable">
+                    @if(isset($attachments))
+                        @foreach($attachments as $attachment)
+                            <li data-id="{{$attachment->id_156}}">
+                                <div class="attachment-item">
+                                    <div class="attachment-img">
+                                        <img{!! $attachment->type_156 == 1? ' class="is-image"' : ' class="no-image"' !!} src="{{ $attachment->type_156 == 1? config('cms.attachmentFolder') . '/' . $attachment->article_156 . '/' . $attachment->lang_156 . '/' . $attachment->file_name_156 : config('cms.iconsFolder') . '/' . $data->icon }}" />
+                                    </div>
+                                    <div class="attachment-over">
+                                        <div class="col-md-10 col-sm-10 col-xs-10 uncovered">
+                                            <h4 class="attachment-title family-name">{{ $attachment->name_155 }}</h4>
+                                            <p class="attachment-sub file-name">{{ $attachment->file_name_156 }}</p>
+                                        </div>
+                                        <div class="col-md-2 col-sm-2 col-xs-2 uncovered">
+                                            <h4 class="attachment-action"><span class="glyphicon glyphicon-pencil"></span></h4>
+                                        </div>
+                                        <form>
+                                            <div class="close-icon covered"><span class="glyphicon glyphicon-remove"></span></div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 covered">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control image-name" placeholder="{{ trans('pulsar::pulsar.image_name') }}" data-previous="{{ $attachment->name_156 }}" value="{{ $attachment->name_156 }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <select class="form-control attachment-family" name="attachmentFamily" data-previous="{{ $attachment->family_156 }}">
+                                                        <option value="">{{ trans('cms::pulsar.select_family') }}</option>
+                                                        @foreach($attachmentFamilies as $attachmentFamily)
+                                                            <option value="{{ $attachmentFamily->id_155 }}"{{ $attachment->family_156 == $attachmentFamily->id_155? ' selected' : null }}>{{ $attachmentFamily->name_155 }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 covered">
+                                                <div class="form-group">
+                                                    <button type="button" class="close-ov form-control save-attachment">{{ trans('pulsar::pulsar.save') }}</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="remove-img">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </div>
+                            </li>
+                        @endforeach
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /hotels::hotel.create -->
+@stop
+
+@section('box_tab5')
+    Videos
+@stop
+
+@section('endBody')
     <!--TODO: Implementar botón para añadir fotografías desde la librería-->
     <div id="attachment-library-mask">
         <div id="attachment-library-content">
             {{ trans('cms::pulsar.drag_files') }}
         </div>
     </div>
-@stop
-
-@section('box_tab5')
-    Videos
 @stop

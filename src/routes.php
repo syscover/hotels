@@ -27,6 +27,44 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     Route::get(config('pulsar.appName') . '/hotels/hotels/delete/translation/{lang}/{id}/{offset}',           ['as'=>'deleteTranslationHotel',   'uses'=>'Syscover\Hotels\Controllers\HotelController@deleteTranslationRecord',    'resource' => 'hotels-hotel',        'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/hotels/hotels/delete/select/records/{lang}',                   ['as'=>'deleteSelectHotel',        'uses'=>'Syscover\Hotels\Controllers\HotelController@deleteRecordsSelect',        'resource' => 'hotels-hotel',        'action' => 'delete']);
 
+    /*
+    |--------------------------------------------------------------------------
+    | ATTACHMENT
+    |--------------------------------------------------------------------------
+    */
+    Route::post(config('pulsar.appName') . '/hotels/attachment/store/{article}/{lang}',        ['as'=>'storeHotelAttachment',        'uses'=>'Syscover\Hotels\Controllers\AttachmentController@storeAttachment',        'resource' => 'hotels-hotel',    'action' => 'create']);
+    Route::put(config('pulsar.appName') . '/hotels/attachment/update/{article}/{lang}/{id}',   ['as'=>'updateHotelAttachment',       'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiUpdateAttachment',    'resource' => 'hotels-hotel',    'action' => 'edit']);
+    Route::put(config('pulsar.appName') . '/hotels/attachment/update/{article}/{lang}',        ['as'=>'updatesHotelAttachment',      'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiUpdatesAttachment',   'resource' => 'hotels-hotel',    'action' => 'edit']);
+    Route::delete(config('pulsar.appName') . '/hotels/attachment/delete/{lang}/{id}',          ['as'=>'deleteHotelAttachment',       'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiDeleteAttachment',    'resource' => 'hotels-hotel',    'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/hotels/attachment/delete/tmp',                  ['as'=>'deleteTmpHotelAttachment',    'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiDeleteTmpAttachment', 'resource' => 'hotels-hotel',    'action' => 'delete']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | LIBRARY
+    |--------------------------------------------------------------------------
+    */
+    Route::any(config('pulsar.appName') . '/hotels/library/{offset?}',                 ['as'=>'HotelLibrary',                   'uses'=>'Syscover\Hotels\Controllers\LibraryController@index',                  'resource' => 'hotels-library',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/library/json/data',                 ['as'=>'jsonDataHotelLibrary',           'uses'=>'Syscover\Hotels\Controllers\LibraryController@jsonData',               'resource' => 'hotels-library',        'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/hotels/library/create/{offset}',           ['as'=>'createHotelLibrary',             'uses'=>'Syscover\Hotels\Controllers\LibraryController@createRecord',           'resource' => 'hotels-library',        'action' => 'create']);
+    Route::post(config('pulsar.appName') . '/hotels/library/store/api',                ['as'=>'storeHotelLibrary',              'uses'=>'Syscover\Hotels\Controllers\LibraryController@storeLibrary',           'resource' => 'hotels-library',        'action' => 'create']);
+    Route::get(config('pulsar.appName') . '/hotels/library/{id}/edit/{offset}',        ['as'=>'editHotelLibrary',               'uses'=>'Syscover\Hotels\Controllers\LibraryController@editRecord',             'resource' => 'hotels-library',        'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/hotels/library/delete/{id}/{offset}',      ['as'=>'deleteHotelLibrary',             'uses'=>'Syscover\Hotels\Controllers\LibraryController@deleteRecord',           'resource' => 'hotels-library',        'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/hotels/library/delete/select/records',  ['as'=>'deleteSelectHotelLibrary',       'uses'=>'Syscover\Hotels\Controllers\LibraryController@deleteRecordsSelect',    'resource' => 'hotels-library',        'action' => 'delete']);
+
+    /*
+    |--------------------------------------------------------------------------
+    | ATTACHMENT FAMILY
+    |--------------------------------------------------------------------------
+    */
+    Route::any(config('pulsar.appName') . '/hotels/attachment/families/{offset?}',                              ['as'=>'HotelsAttachmentFamily',                'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@index',                     'resource' => 'hotels-attachment-family',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/attachment/families/json/data',                              ['as'=>'jsonDataHotelsAttachmentFamily',        'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@jsonData',                  'resource' => 'hotels-attachment-family',        'action' => 'access']);
+    Route::get(config('pulsar.appName') . '/hotels/attachment/families/create/{offset}',                        ['as'=>'createHotelsAttachmentFamily',          'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@createRecord',              'resource' => 'hotels-attachment-family',        'action' => 'create']);
+    Route::post(config('pulsar.appName') . '/hotels/attachment/families/store/{offset}',                        ['as'=>'storeHotelsAttachmentFamily',           'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@storeRecord',               'resource' => 'hotels-attachment-family',        'action' => 'create']);
+    Route::get(config('pulsar.appName') . '/hotels/attachment/families/{id}/edit/{offset}',                     ['as'=>'editHotelsAttachmentFamily',            'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@editRecord',                'resource' => 'hotels-attachment-family',        'action' => 'access']);
+    Route::put(config('pulsar.appName') . '/hotels/attachment/families/update/{id}/{offset}',                   ['as'=>'updateHotelsAttachmentFamily',          'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@updateRecord',              'resource' => 'hotels-attachment-family',        'action' => 'edit']);
+    Route::get(config('pulsar.appName') . '/hotels/attachment/families/delete/{id}/{offset}',                   ['as'=>'deleteHotelsAttachmentFamily',          'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@deleteRecord',              'resource' => 'hotels-attachment-family',        'action' => 'delete']);
+    Route::delete(config('pulsar.appName') . '/hotels/attachment/families/delete/select/records',               ['as'=>'deleteSelectHotelsAttachmentFamily',    'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@deleteRecordsSelect',       'resource' => 'hotels-attachment-family',        'action' => 'delete']);
+    Route::any(config('pulsar.appName') . '/hotels/attachment/families/{id}/show/{api}',                        ['as'=>'apiShowHotelsAttachmentFamily',         'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@showRecord',                'resource' => 'hotels-attachment-family',        'action' => 'access']);
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +79,6 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     Route::put(config('pulsar.appName') . '/hotels/publications/update/{id}/{offset}',                          ['as'=>'updateHotelsPublication',           'uses'=>'Syscover\Hotels\Controllers\PublicationController@updateRecord',           'resource' => 'hotels-publication',         'action' => 'edit']);
     Route::get(config('pulsar.appName') . '/hotels/publications/delete/{id}/{offset}',                          ['as'=>'deleteHotelsPublication',           'uses'=>'Syscover\Hotels\Controllers\PublicationController@deleteRecord',           'resource' => 'hotels-publication',         'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/hotels/publications/delete/select/records',                      ['as'=>'deleteSelectHotelsPublication',     'uses'=>'Syscover\Hotels\Controllers\PublicationController@deleteRecordsSelect',    'resource' => 'hotels-publication',         'action' => 'delete']);
-
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +95,6 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     Route::get(config('pulsar.appName') . '/hotels/services/delete/translation/{lang}/{id}/{offset}',           ['as'=>'deleteTranslationHotelsService',   'uses'=>'Syscover\Hotels\Controllers\ServiceController@deleteTranslationRecord',    'resource' => 'hotels-service',        'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/hotels/services/delete/select/records/{lang}',                   ['as'=>'deleteSelectHotelsService',        'uses'=>'Syscover\Hotels\Controllers\ServiceController@deleteRecordsSelect',        'resource' => 'hotels-service',        'action' => 'delete']);
 
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONSHIPS
@@ -73,7 +109,6 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     Route::get(config('pulsar.appName') . '/hotels/relationships/delete/{lang}/{id}/{offset}',                  ['as'=>'deleteHotelsRelationship',              'uses'=>'Syscover\Hotels\Controllers\RelationshipController@deleteRecord',               'resource' => 'hotels-relationship',        'action' => 'delete']);
     Route::get(config('pulsar.appName') . '/hotels/relationships/delete/translation/{lang}/{id}/{offset}',      ['as'=>'deleteTranslationHotelsRelationship',   'uses'=>'Syscover\Hotels\Controllers\RelationshipController@deleteTranslationRecord',    'resource' => 'hotels-relationship',        'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/hotels/relationships/delete/select/records/{lang}',              ['as'=>'deleteSelectHotelsRelationship',        'uses'=>'Syscover\Hotels\Controllers\RelationshipController@deleteRecordsSelect',        'resource' => 'hotels-relationship',        'action' => 'delete']);
-
 
     /*
     |--------------------------------------------------------------------------
@@ -104,20 +139,5 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     Route::get(config('pulsar.appName') . '/hotels/decorations/delete/{lang}/{id}/{offset}',                    ['as'=>'deleteHotelsDecoration',                'uses'=>'Syscover\Hotels\Controllers\DecorationController@deleteRecord',                 'resource' => 'hotels-decoration',        'action' => 'delete']);
     Route::get(config('pulsar.appName') . '/hotels/decorations/delete/translation/{lang}/{id}/{offset}',        ['as'=>'deleteTranslationHotelsDecoration',     'uses'=>'Syscover\Hotels\Controllers\DecorationController@deleteTranslationRecord',      'resource' => 'hotels-decoration',        'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/hotels/decorations/delete/select/records/{lang}',                ['as'=>'deleteSelectHotelsDecoration',          'uses'=>'Syscover\Hotels\Controllers\DecorationController@deleteRecordsSelect',          'resource' => 'hotels-decoration',        'action' => 'delete']);
-
-    /*
-    |--------------------------------------------------------------------------
-    | ATTACHMENT FAM
-    |--------------------------------------------------------------------------
-    */
-    Route::any(config('pulsar.appName') . '/hotels/attachment/families/{offset?}',                              ['as'=>'HotelsAttachmentFamily',                'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@index',                     'resource' => 'hotels-attachment-family',        'action' => 'access']);
-    Route::any(config('pulsar.appName') . '/hotels/attachment/families/json/data',                              ['as'=>'jsonDataHotelsAttachmentFamily',        'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@jsonData',                  'resource' => 'hotels-attachment-family',        'action' => 'access']);
-    Route::get(config('pulsar.appName') . '/hotels/attachment/families/create/{offset}',                        ['as'=>'createHotelsAttachmentFamily',          'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@createRecord',              'resource' => 'hotels-attachment-family',        'action' => 'create']);
-    Route::post(config('pulsar.appName') . '/hotels/attachment/families/store/{offset}',                        ['as'=>'storeHotelsAttachmentFamily',           'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@storeRecord',               'resource' => 'hotels-attachment-family',        'action' => 'create']);
-    Route::get(config('pulsar.appName') . '/hotels/attachment/families/{id}/edit/{offset}',                     ['as'=>'editHotelsAttachmentFamily',            'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@editRecord',                'resource' => 'hotels-attachment-family',        'action' => 'access']);
-    Route::put(config('pulsar.appName') . '/hotels/attachment/families/update/{id}/{offset}',                   ['as'=>'updateHotelsAttachmentFamily',          'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@updateRecord',              'resource' => 'hotels-attachment-family',        'action' => 'edit']);
-    Route::get(config('pulsar.appName') . '/hotels/attachment/families/delete/{id}/{offset}',                   ['as'=>'deleteHotelsAttachmentFamily',          'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@deleteRecord',              'resource' => 'hotels-attachment-family',        'action' => 'delete']);
-    Route::delete(config('pulsar.appName') . '/hotels/attachment/families/delete/select/records',               ['as'=>'deleteSelectHotelsAttachmentFamily',    'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@deleteRecordsSelect',       'resource' => 'hotels-attachment-family',        'action' => 'delete']);
-    Route::any(config('pulsar.appName') . '/hotels/attachment/families/{id}/show/{api}',                        ['as'=>'apiShowHotelsAttachmentFamily',         'uses'=>'Syscover\Hotels\Controllers\AttachmentFamilyController@showRecord',                'resource' => 'hotels-attachment-family',        'action' => 'access']);
 
 });
