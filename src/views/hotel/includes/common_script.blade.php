@@ -35,7 +35,7 @@
     // store files in library database
     $.storeLibrary = function(files) {
         $.ajax({
-            url: '{{ route('storeCmsLibrary') }}',
+            url: '{{ route('storeHotelLibrary') }}',
             data:       {
                 files: files
             },
@@ -86,11 +86,11 @@
 
     $.storeAttachment = function(files) {
         $.ajax({
-            url: '{{ route('storeCmsAttachment', ['article'=> isset($object->id_355)? $object->id_355 : null , 'lang'=> $lang->id_001]) }}',
+            url: '{{ route('storeHotelAttachment', ['hotel'=> isset($object->id_355)? $object->id_355 : null , 'lang'=> $lang->id_001]) }}',
             data:       {
                 attachments:    files,
                 lang:           $('[name=lang]').val(),
-                article:        $('[name=id]').val()
+                hotel:        $('[name=id]').val()
             },
             headers:  {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -114,7 +114,7 @@
                             type:               {id: attachment.type_357, name: attachment.type_text_357},
                             mime:               attachment.mime_357,
                             family:             null,
-                            folder:             '{{ config('cms.attachmentFolder') }}/' + attachment.article_357 + '/' + attachment.lang_357,
+                            folder:             '{{ config('cms.attachmentFolder') }}/' + attachment.hotel_357 + '/' + attachment.lang_357,
                             fileName:           attachment.file_name_357,
                             library:            attachment.library_357,
                             libraryFileName:    attachment.library_file_name_357,
@@ -123,7 +123,7 @@
 
                         $('.sortable').loadTemplate('#file', {
                             id:                 attachment.id_357,
-                            image:              attachment.type_357 == 1? '{{ config('cms.attachmentFolder') }}/' + attachment.article_357 + '/' + attachment.lang_357 + '/' + attachment.file_name_357 : '{{ config('cms.iconsFolder') }}/' + attachmentData.icon,
+                            image:              attachment.type_357 == 1? '{{ config('cms.attachmentFolder') }}/' + attachment.hotel_357 + '/' + attachment.lang_357 + '/' + attachment.file_name_357 : '{{ config('cms.iconsFolder') }}/' + attachmentData.icon,
                             fileName:           attachment.file_name_357,
                             isImage:            attachment.type_357 == 1? 'is-image' : 'no-image'
                         }, { prepend:true });
@@ -158,7 +158,7 @@
             // comprovamos que hay una familia elegida y que ha cambiado algún valor del attachemnt
             if($(this).closest('li').find('select').val() != '' && $(this).closest('li').find('.attachment-family').hasClass('changed'))
             {
-                var url = '{{ route('apiShowCmsAttachmentFamily', ['id' => 'id', 'api' => 1]) }}';
+                var url = '{{ route('apiShowHotelAttachmentFamily', ['id' => 'id', 'api' => 1]) }}';
                 var that = this;
 
                 $.ajax({
@@ -249,7 +249,7 @@
                     attachmentToUpdate = attachment;
                 }
             });
-            var url = '{{ route('updateCmsAttachment', ['article'=> isset($object->id_355)? $object->id_355 : null , 'lang'=> $lang->id_001, 'id' => 'id']) }}';
+            var url = '{{ route('updateHotelAttachment', ['hotel'=> isset($object->id_355)? $object->id_355 : null , 'lang'=> $lang->id_001, 'id' => 'id']) }}';
 
             // update attachment across ajax
             $.ajax({
@@ -309,7 +309,7 @@
                 if($(this).data('id') != undefined)
                 {
                     // delete file from attachment folder
-                    var url = '{{ route('deleteCmsAttachment', ['lang'=> $lang->id_001, 'id' => 'id']) }}';
+                    var url = '{{ route('deleteHotelAttachment', ['lang'=> $lang->id_001, 'id' => 'id']) }}';
                     $.ajax({
                         url:    url.replace('id', $(this).data('id')),
                         headers:  {
@@ -331,7 +331,7 @@
                 {
                     // delete file from tmp folder
                     $.ajax({
-                        url:    '{{ route('deleteTmpCmsAttachment') }}',
+                        url:    '{{ route('deleteTmpHotelAttachment') }}',
                         headers:  {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
@@ -377,7 +377,7 @@
         {
             // update attachment across ajax
             $.ajax({
-                url:    '{{ route('updatesCmsAttachment', ['article'=> isset($object->id_355)? $object->id_355 : null ,'lang'=> $lang->id_001]) }}',
+                url:    '{{ route('updatesHotelAttachment', ['hotel'=> isset($object->id_355)? $object->id_355 : null ,'lang'=> $lang->id_001]) }}',
                 headers:  {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },

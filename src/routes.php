@@ -32,9 +32,9 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     | ATTACHMENT
     |--------------------------------------------------------------------------
     */
-    Route::post(config('pulsar.appName') . '/hotels/attachment/store/{article}/{lang}',        ['as'=>'storeHotelAttachment',        'uses'=>'Syscover\Hotels\Controllers\AttachmentController@storeAttachment',        'resource' => 'hotels-hotel',    'action' => 'create']);
-    Route::put(config('pulsar.appName') . '/hotels/attachment/update/{article}/{lang}/{id}',   ['as'=>'updateHotelAttachment',       'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiUpdateAttachment',    'resource' => 'hotels-hotel',    'action' => 'edit']);
-    Route::put(config('pulsar.appName') . '/hotels/attachment/update/{article}/{lang}',        ['as'=>'updatesHotelAttachment',      'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiUpdatesAttachment',   'resource' => 'hotels-hotel',    'action' => 'edit']);
+    Route::post(config('pulsar.appName') . '/hotels/attachment/store/{hotel}/{lang}',        ['as'=>'storeHotelAttachment',        'uses'=>'Syscover\Hotels\Controllers\AttachmentController@storeAttachment',        'resource' => 'hotels-hotel',    'action' => 'create']);
+    Route::put(config('pulsar.appName') . '/hotels/attachment/update/{hotel}/{lang}/{id}',   ['as'=>'updateHotelAttachment',       'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiUpdateAttachment',    'resource' => 'hotels-hotel',    'action' => 'edit']);
+    Route::put(config('pulsar.appName') . '/hotels/attachment/update/{hotel}/{lang}',        ['as'=>'updatesHotelAttachment',      'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiUpdatesAttachment',   'resource' => 'hotels-hotel',    'action' => 'edit']);
     Route::delete(config('pulsar.appName') . '/hotels/attachment/delete/{lang}/{id}',          ['as'=>'deleteHotelAttachment',       'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiDeleteAttachment',    'resource' => 'hotels-hotel',    'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/hotels/attachment/delete/tmp',                  ['as'=>'deleteTmpHotelAttachment',    'uses'=>'Syscover\Hotels\Controllers\AttachmentController@apiDeleteTmpAttachment', 'resource' => 'hotels-hotel',    'action' => 'delete']);
 
