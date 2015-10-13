@@ -2,7 +2,7 @@
         ['id' => 'box_tab1', 'name' => trans_choice('hotels::pulsar.hotel', 1)],
         ['id' => 'box_tab2', 'name' => trans_choice('pulsar::pulsar.description', 2)],
         ['id' => 'box_tab3', 'name' => trans('hotels::pulsar.billing_data')],
-        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.image', 2)],
+        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.attachment', 2)],
         ['id' => 'box_tab5', 'name' => trans_choice('pulsar::pulsar.video', 2)]
     ]])
 
@@ -311,7 +311,7 @@
         <div class="widget-content no-padding">
             <div class="row" id="attachment-wrapper">
                 <div id="library-placeholder">
-                    <p>{{ trans('cms::pulsar.drag_files') }}</p>
+                    <p>{{ trans('pulsar::pulsar.drag_files') }}</p>
                 </div>
                 <ul class="sortable">
                     @if(isset($attachments))
@@ -373,7 +373,7 @@
     <!--TODO: Implementar botón para añadir fotografías desde la librería-->
     <div id="attachment-library-mask">
         <div id="attachment-library-content">
-            {{ trans('cms::pulsar.drag_files') }}
+            {{ trans('pulsar::pulsar.drag_files') }}
         </div>
     </div>
 @stop
