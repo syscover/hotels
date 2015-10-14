@@ -17,6 +17,9 @@ use Syscover\Hotels\Models\Environment;
 use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
 use Syscover\Pulsar\Controllers\Controller;
+use Syscover\Pulsar\Libraries\AttachmentLibrary;
+use Syscover\Pulsar\Models\Attachment;
+use Syscover\Pulsar\Models\AttachmentFamily;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Hotel;
 use Syscover\Hotels\Models\HotelLang;
@@ -39,14 +42,14 @@ class HotelController extends Controller {
     {
         $parameters['urlParameters']['lang']    = session('baseLang');
         // init record on tap 1
-        $parameters['urlParameters']['tab']     = 4;
+        $parameters['urlParameters']['tab']     = 3;
 
         return $parameters;
     }
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
     {
-        $actionUrlParameters['tab'] = 4;
+        $actionUrlParameters['tab'] = 3;
 
         return $actionUrlParameters;
     }
@@ -63,6 +66,13 @@ class HotelController extends Controller {
             (object)['id' => 2, 'name' => trans('hotels::pulsar.only_guest')],
             (object)['id' => 3, 'name' => trans('hotels::pulsar.only_guest_reservation')]
         ];
+        $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
+        $parameters['attachmentsInput']     = json_encode([]);
+
+        if(isset($parameters['id']))
+        {
+            // cuando es un nuevo idioma
+        }
 
         return $parameters;
     }
@@ -86,57 +96,57 @@ class HotelController extends Controller {
         if(!Request::has('id'))
         {
             $hotel = Hotel::create([
-                'name_170' => Request::input('name'),
-                'web_170' => Request::input('web'),
-                'web_url_170' => Request::input('webUrl'),
-                'contact_170' => Request::input('contact'),
-                'email_170' => Request::input('email'),
-                'booking_email_170' => Request::input('bookingEmail'),
-                'phone_170' => Request::input('phone'),
-                'mobile_170' => Request::input('mobile'),
-                'fax_170' => Request::input('fax'),
-                'environment_170' => Request::has('environment') ? Request::input('environment') : null,
-                'decoration_170' => Request::has('decoration') ? Request::input('decoration') : null,
-                'relationship_170' => Request::has('relationship') ? Request::input('relationship') : null,
-                'n_rooms_170' => Request::input('nRooms'),
-                'n_places_170' => Request::input('nPlaces'),
-                'n_events_rooms_170' => Request::input('nEventsRooms'),
-                'n_events_rooms_places_170' => Request::input('nEventsRoomsPlaces'),
-                'user_170' => Request::input('user'),
-                'password_170' => Hash::make(Request::input('password')),
-                'active_170' => Request::has('active'),
-                'country_170' => Request::input('country'),
-                'territorial_area_1_170' => Request::has('territorialArea1') ? Request::input('territorialArea1') : null,
-                'territorial_area_2_170' => Request::has('territorialArea2') ? Request::input('territorialArea2') : null,
-                'territorial_area_3_170' => Request::has('territorialArea3') ? Request::input('territorialArea3') : null,
-                'cp_170' => Request::input('cp'),
-                'locality_170' => Request::input('locality'),
-                'address_170' => Request::input('address'),
-                'latitude_170' => Request::input('latitude'),
-                'longitude_170' => Request::input('longitude'),
-                'booking_url_170' => Request::input('bookingUrl'),
-                'country_chef_restaurant_170' => Request::has('countryChefRestaurant'),
-                'country_chef_url_170' => Request::input('countryChefUrl'),
-                'restaurant_name_170' => Request::input('restaurantName'),
-                'restaurant_type_170' => Request::has('restaurantType')? Request::input('restaurantType') : null,
-                'restaurant_terrace_170' => Request::has('restaurantTerrace'),
-                'billing_name_170' => Request::input('billingName'),
-                'billing_surname_170' => Request::input('billingSurname'),
-                'billing_company_name_170' => Request::input('billingCompanyName'),
-                'billing_tin_170' => Request::input('billingTin'),
-                'billing_country_170' => Request::has('billingCountry')? Request::input('billingCountry') : null,
-                'billing_territorial_area_1_170' => Request::has('billingTerritorialArea1')? Request::input('billingTerritorialArea1') : null,
-                'billing_territorial_area_2_170' => Request::has('billingTerritorialArea2')? Request::input('billingTerritorialArea2') : null,
-                'billing_territorial_area_3_170' => Request::has('billingTerritorialArea3')? Request::input('billingTerritorialArea3') : null,
-                'billing_cp_170' => Request::input('billingCp'),
-                'billing_locality_170' => Request::input('billingLocality'),
-                'billing_address_170' => Request::input('billingAddress'),
-                'billing_phone_170' => Request::input('billingPhone'),
-                'billing_email_170' => Request::input('billingEmail'),
-                'billing_iban_country_170' => Request::input('billingIbanCountry'),
-                'billing_iban_check_digits_170' => Request::input('billingIbanCheckDigits'),
-                'billing_iban_basic_bank_account_number_170' => Request::input('billingIbanBasicBankAccountNumber'),
-                'billing_bic_170' => Request::input('billingBic')
+                'name_170'                                      => Request::input('name'),
+                'web_170'                                       => Request::input('web'),
+                'web_url_170'                                   => Request::input('webUrl'),
+                'contact_170'                                   => Request::input('contact'),
+                'email_170'                                     => Request::input('email'),
+                'booking_email_170'                             => Request::input('bookingEmail'),
+                'phone_170'                                     => Request::input('phone'),
+                'mobile_170'                                    => Request::input('mobile'),
+                'fax_170'                                       => Request::input('fax'),
+                'environment_170'                               => Request::has('environment') ? Request::input('environment') : null,
+                'decoration_170'                                => Request::has('decoration') ? Request::input('decoration') : null,
+                'relationship_170'                              => Request::has('relationship') ? Request::input('relationship') : null,
+                'n_rooms_170'                                   => Request::input('nRooms'),
+                'n_places_170'                                  => Request::input('nPlaces'),
+                'n_events_rooms_170'                            => Request::input('nEventsRooms'),
+                'n_events_rooms_places_170'                     => Request::input('nEventsRoomsPlaces'),
+                'user_170'                                      => Request::input('user'),
+                'password_170'                                  => Hash::make(Request::input('password')),
+                'active_170'                                    => Request::has('active'),
+                'country_170'                                   => Request::input('country'),
+                'territorial_area_1_170'                        => Request::has('territorialArea1') ? Request::input('territorialArea1') : null,
+                'territorial_area_2_170'                        => Request::has('territorialArea2') ? Request::input('territorialArea2') : null,
+                'territorial_area_3_170'                        => Request::has('territorialArea3') ? Request::input('territorialArea3') : null,
+                'cp_170'                                        => Request::input('cp'),
+                'locality_170'                                  => Request::input('locality'),
+                'address_170'                                   => Request::input('address'),
+                'latitude_170'                                  => Request::input('latitude'),
+                'longitude_170'                                 => Request::input('longitude'),
+                'booking_url_170'                               => Request::input('bookingUrl'),
+                'country_chef_restaurant_170'                   => Request::has('countryChefRestaurant'),
+                'country_chef_url_170'                          => Request::input('countryChefUrl'),
+                'restaurant_name_170'                           => Request::input('restaurantName'),
+                'restaurant_type_170'                           => Request::has('restaurantType')? Request::input('restaurantType') : null,
+                'restaurant_terrace_170'                        => Request::has('restaurantTerrace'),
+                'billing_name_170'                              => Request::input('billingName'),
+                'billing_surname_170'                           => Request::input('billingSurname'),
+                'billing_company_name_170'                      => Request::input('billingCompanyName'),
+                'billing_tin_170'                               => Request::input('billingTin'),
+                'billing_country_170'                           => Request::has('billingCountry')? Request::input('billingCountry') : null,
+                'billing_territorial_area_1_170'                => Request::has('billingTerritorialArea1')? Request::input('billingTerritorialArea1') : null,
+                'billing_territorial_area_2_170'                => Request::has('billingTerritorialArea2')? Request::input('billingTerritorialArea2') : null,
+                'billing_territorial_area_3_170'                => Request::has('billingTerritorialArea3')? Request::input('billingTerritorialArea3') : null,
+                'billing_cp_170'                                => Request::input('billingCp'),
+                'billing_locality_170'                          => Request::input('billingLocality'),
+                'billing_address_170'                           => Request::input('billingAddress'),
+                'billing_phone_170'                             => Request::input('billingPhone'),
+                'billing_email_170'                             => Request::input('billingEmail'),
+                'billing_iban_country_170'                      => Request::input('billingIbanCountry'),
+                'billing_iban_check_digits_170'                 => Request::input('billingIbanCheckDigits'),
+                'billing_iban_basic_bank_account_number_170'    => Request::input('billingIbanBasicBankAccountNumber'),
+                'billing_bic_170'                               => Request::input('billingBic')
             ]);
 
             $id = $hotel->id_170;
@@ -169,6 +179,11 @@ class HotelController extends Controller {
             'description_title_171'         => Request::input('descriptionTitle'),
             'description_171'               => Request::input('description')
         ]);
+
+        // set attachments
+        $attachments = json_decode(Request::input('attachments'));
+
+        AttachmentLibrary::storeAttachments($attachments, Request::input('lang'), 'hotels', 'hotels-hotel', $id);
     }
 
     public function editCustomRecord($parameters)
@@ -183,6 +198,13 @@ class HotelController extends Controller {
             (object)['id' => 2, 'name' => trans('hotels::pulsar.only_guest')],
             (object)['id' => 3, 'name' => trans('hotels::pulsar.only_guest_reservation')]
         ];
+
+        // get attachments elements
+        $attachments = AttachmentLibrary::getAttachments($parameters['lang']->id_001, 'hotels', 'hotels-hotel', $parameters['object']->id_170);
+
+        // merge parameters and attachments array
+        $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
+        $parameters                         = array_merge($parameters, $attachments);
 
         return $parameters;
     }

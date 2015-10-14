@@ -2,8 +2,7 @@
         ['id' => 'box_tab1', 'name' => trans_choice('hotels::pulsar.hotel', 1)],
         ['id' => 'box_tab2', 'name' => trans_choice('pulsar::pulsar.description', 2)],
         ['id' => 'box_tab3', 'name' => trans('hotels::pulsar.billing_data')],
-        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.attachment', 2)],
-        ['id' => 'box_tab5', 'name' => trans_choice('pulsar::pulsar.video', 2)]
+        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.attachment', 2)]
     ]])
 
 @section('script')
@@ -154,8 +153,6 @@
             $('.tabbable li:eq(2) a').tab('show');
             @elseif($tab == 3)
             $('.tabbable li:eq(3) a').tab('show');
-            @elseif($tab == 4)
-            $('.tabbable li:eq(4) a').tab('show');
             @endif
         });
     </script>
@@ -306,67 +303,9 @@
 @stop
 
 @section('box_tab4')
-    <!-- hotels::hotel.create -->
-    <div id="attachment-library" class="widget box">
-        <div class="widget-content no-padding">
-            <div class="row" id="attachment-wrapper">
-                <div id="library-placeholder">
-                    <p>{{ trans('pulsar::pulsar.drag_files') }}</p>
-                </div>
-                <ul class="sortable">
-                    @if(isset($attachments))
-                        @foreach($attachments as $attachment)
-                            <li data-id="{{$attachment->id_156}}">
-                                <div class="attachment-item">
-                                    <div class="attachment-img">
-                                        <img{!! $attachment->type_156 == 1? ' class="is-image"' : ' class="no-image"' !!} src="{{ $attachment->type_156 == 1? config('cms.attachmentFolder') . '/' . $attachment->article_156 . '/' . $attachment->lang_156 . '/' . $attachment->file_name_156 : config('cms.iconsFolder') . '/' . $data->icon }}" />
-                                    </div>
-                                    <div class="attachment-over">
-                                        <div class="col-md-10 col-sm-10 col-xs-10 uncovered">
-                                            <h4 class="attachment-title family-name">{{ $attachment->name_155 }}</h4>
-                                            <p class="attachment-sub file-name">{{ $attachment->file_name_156 }}</p>
-                                        </div>
-                                        <div class="col-md-2 col-sm-2 col-xs-2 uncovered">
-                                            <h4 class="attachment-action"><span class="glyphicon glyphicon-pencil"></span></h4>
-                                        </div>
-                                        <form>
-                                            <div class="close-icon covered"><span class="glyphicon glyphicon-remove"></span></div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 covered">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control image-name" placeholder="{{ trans('pulsar::pulsar.image_name') }}" data-previous="{{ $attachment->name_156 }}" value="{{ $attachment->name_156 }}">
-                                                </div>
-                                                <div class="form-group">
-                                                    <select class="form-control attachment-family" name="attachmentFamily" data-previous="{{ $attachment->family_156 }}">
-                                                        <option value="">{{ trans('cms::pulsar.select_family') }}</option>
-                                                        @foreach($attachmentFamilies as $attachmentFamily)
-                                                            <option value="{{ $attachmentFamily->id_155 }}"{{ $attachment->family_156 == $attachmentFamily->id_155? ' selected' : null }}>{{ $attachmentFamily->name_155 }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-12 col-xs-12 covered">
-                                                <div class="form-group">
-                                                    <button type="button" class="close-ov form-control save-attachment">{{ trans('pulsar::pulsar.save') }}</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="remove-img">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </div>
-                            </li>
-                        @endforeach
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /hotels::hotel.create -->
-@stop
-
-@section('box_tab5')
-    Videos
+    @include('pulsar::includes.html.form_hidden', ['name' => 'attachments', 'value' => $attachmentsInput])
+    @include('pulsar::includes.html.attachment', [
+         'routesConfigFile'  => 'hotels'])
 @stop
 
 @section('endBody')

@@ -2,8 +2,7 @@
         ['id' => 'box_tab1', 'name' => trans_choice('hotels::pulsar.hotel', 1)],
         ['id' => 'box_tab2', 'name' => trans_choice('pulsar::pulsar.description', 2)],
         ['id' => 'box_tab3', 'name' => trans('hotels::pulsar.billing_data')],
-        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.image', 2)],
-        ['id' => 'box_tab5', 'name' => trans_choice('pulsar::pulsar.video', 2)]
+        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.attachment', 2)]
     ]])
 
 @section('script')
@@ -24,8 +23,17 @@
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/css/plugins/table.css') }}">
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/css/plugins/video.css') }}">
     <!-- /Froala -->
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/attachment/css/attachment-library.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/cropper/cropper.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/filedrop/filedrop.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/css/getfile.css') }}">
 
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getaddress/js/jquery.getaddress.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/cropper/cropper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/cssloader/js/jquery.cssloader.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/mobiledetect/mdetect.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/filedrop/filedrop.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/js/jquery.getfile.js') }}"></script>
     <!-- Froala -->
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/froala_editor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/plugins/char_counter.min.js') }}"></script>
@@ -116,8 +124,8 @@
             $.mapPoint({
                 id:                 '01',
                 urlPlugin:          '/packages/syscover/pulsar/vendor',
-                @if(!empty($object->latitude_170))lat:                {{ $object->latitude_170 }},@endif
-                @if(!empty($object->longitude_170))lng:                {{ $object->longitude_170 }},@endif
+                @if(!empty($object->latitude_170))lat: {{ $object->latitude_170 }},@endif
+                @if(!empty($object->longitude_170))lng: {{ $object->longitude_170 }},@endif
                 zoom:               12,
                 showMarker:         true,
                 customIcon:         {
@@ -150,8 +158,6 @@
             $('.tabbable li:eq(2) a').tab('show');
             @elseif($tab == 3)
             $('.tabbable li:eq(3) a').tab('show');
-            @elseif($tab == 4)
-            $('.tabbable li:eq(4) a').tab('show');
             @endif
         });
     </script>
@@ -303,9 +309,15 @@
 @stop
 
 @section('box_tab4')
-    Imágenes
+    @include('pulsar::includes.html.attachment', [
+         'routesConfigFile'  => 'hotels'])
 @stop
 
-@section('box_tab5')
-    Videos
+@section('endBody')
+        <!--TODO: Implementar botón para añadir fotografías desde la librería-->
+    <div id="attachment-library-mask">
+        <div id="attachment-library-content">
+            {{ trans('pulsar::pulsar.drag_files') }}
+        </div>
+    </div>
 @stop

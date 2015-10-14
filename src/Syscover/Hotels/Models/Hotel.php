@@ -65,5 +65,4 @@ class Hotel extends Model {
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
             ->where('id_170', $parametes['id'])->where('lang_171', $parametes['lang'])->first();
     }
-
 }
