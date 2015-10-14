@@ -303,7 +303,6 @@
 @stop
 
 @section('box_tab4')
-    @include('pulsar::includes.html.form_hidden', ['name' => 'attachments', 'value' => $attachmentsInput])
     @include('pulsar::includes.html.attachment', [
          'routesConfigFile'  => 'hotels'])
 @stop

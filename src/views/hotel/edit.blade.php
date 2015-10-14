@@ -314,7 +314,7 @@
 @stop
 
 @section('endBody')
-        <!--TODO: Implementar botón para añadir fotografías desde la librería-->
+    <!--TODO: Implementar botón para añadir fotografías desde la librería-->
     <div id="attachment-library-mask">
         <div id="attachment-library-content">
             {{ trans('pulsar::pulsar.drag_files') }}
