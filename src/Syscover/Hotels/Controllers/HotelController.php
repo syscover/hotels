@@ -71,7 +71,12 @@ class HotelController extends Controller {
 
         if(isset($parameters['id']))
         {
-            // cuando es un nuevo idioma
+            // get attachments from base lang
+            $attachments = AttachmentLibrary::getAttachments(session('baseLang')->id_001, 'hotels', 'hotels-hotel', $parameters['id']);
+
+            // merge parameters and attachments array
+            $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
+            $parameters                         = array_merge($parameters, $attachments);
         }
 
         return $parameters;
