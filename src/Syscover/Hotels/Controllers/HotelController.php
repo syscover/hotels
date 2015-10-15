@@ -72,7 +72,7 @@ class HotelController extends Controller {
         if(isset($parameters['id']))
         {
             // get attachments from base lang
-            $attachments = AttachmentLibrary::getAttachments(session('baseLang')->id_001, 'hotels', 'hotels-hotel', $parameters['id']);
+            $attachments = AttachmentLibrary::getAttachments('hotels', 'hotels-hotel', $parameters['id'], session('baseLang')->id_001, true);
 
             // merge parameters and attachments array
             $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
@@ -188,7 +188,7 @@ class HotelController extends Controller {
         // set attachments
         $attachments = json_decode(Request::input('attachments'));
 
-        AttachmentLibrary::storeAttachments($attachments, Request::input('lang'), 'hotels', 'hotels-hotel', $id);
+        AttachmentLibrary::storeAttachments($attachments, 'hotels', 'hotels-hotel', $id, Request::input('lang'));
     }
 
     public function editCustomRecord($parameters)
@@ -205,7 +205,7 @@ class HotelController extends Controller {
         ];
 
         // get attachments elements
-        $attachments = AttachmentLibrary::getAttachments($parameters['lang']->id_001, 'hotels', 'hotels-hotel', $parameters['object']->id_170);
+        $attachments = AttachmentLibrary::getAttachments('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
 
         // merge parameters and attachments array
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
@@ -307,5 +307,25 @@ class HotelController extends Controller {
             'description_title_171'         => Request::input('descriptionTitle'),
             'description_171'               => Request::input('description')
         ]);
+    }
+
+    public function deleteCustomRecord($object)
+    {
+        // delete all attachments
+        AttachmentLibrary::deleteAttachment('hotels', 'hotels-hotel', $object->id_170);
+    }
+
+    public function deleteCustomTranslationRecord($object)
+    {
+        // delete all attachments from lang object
+        AttachmentLibrary::deleteAttachment('hotels', 'hotels-hotel', $object->id_171, $object->lang_171);
+    }
+
+    public function deleteCustomRecords($ids)
+    {
+        foreach($ids as $id)
+        {
+            AttachmentLibrary::deleteAttachment('hotels', 'hotels-hotel', $id);
+        }
     }
 }
