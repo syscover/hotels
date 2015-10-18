@@ -18,7 +18,6 @@ use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
-use Syscover\Pulsar\Models\Attachment;
 use Syscover\Pulsar\Models\AttachmentFamily;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Hotel;
@@ -66,7 +65,7 @@ class HotelController extends Controller {
             (object)['id' => 2, 'name' => trans('hotels::pulsar.only_guest')],
             (object)['id' => 3, 'name' => trans('hotels::pulsar.only_guest_reservation')]
         ];
-        $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
+        $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters['attachmentsInput']     = json_encode([]);
 
         if(isset($parameters['id']))
@@ -75,7 +74,6 @@ class HotelController extends Controller {
             $attachments = AttachmentLibrary::getAttachments('hotels', 'hotels-hotel', $parameters['id'], session('baseLang')->id_001, true);
 
             // merge parameters and attachments array
-            $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
             $parameters                         = array_merge($parameters, $attachments);
         }
 
@@ -208,7 +206,7 @@ class HotelController extends Controller {
         $attachments = AttachmentLibrary::getAttachments('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
 
         // merge parameters and attachments array
-        $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource' => 'hotels-hotel']);
+        $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters                         = array_merge($parameters, $attachments);
 
         return $parameters;
