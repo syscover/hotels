@@ -304,7 +304,8 @@
 
 @section('box_tab4')
     @include('pulsar::includes.html.attachment', [
-         'routesConfigFile'  => 'hotels'])
+        'action'            => 'create',
+        'routesConfigFile'  => 'hotels'])
 @stop
 
 @section('endBody')
