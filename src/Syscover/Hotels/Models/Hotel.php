@@ -81,7 +81,8 @@ class Hotel extends Model {
         if(isset($parameters['lang_171'])) $query->where('lang_171', $parameters['lang_171']);
 
         if(isset($parameters['publication_175'])) $query->whereIn('id_170', function($query) use ($parameters) {
-            $query->select('007_175_hotels_publications')
+            $query->select('hotel_175')
+                ->from('007_175_hotels_publications')
                 ->whereIn('publication_175', $parameters['publication_175']);
         });
 
@@ -89,5 +90,4 @@ class Hotel extends Model {
 
         return $query->get();
     }
-
 }
