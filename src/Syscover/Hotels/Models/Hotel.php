@@ -74,9 +74,10 @@ class Hotel extends Model {
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
             ->newQuery();
 
-        if(isset($parameters['publications'])) $query->whereIn('id_170', function($query) use ($parameters) {
+        if(isset($parameters['lang_171'])) $query->where('lang_171', $parameters['lang_171']);
+        if(isset($parameters['publication_175'])) $query->whereIn('id_170', function($query) use ($parameters) {
                 $query->select('007_175_hotels_publications')
-                    ->whereIn('publication_175', $parameters['publications']);
+                    ->whereIn('publication_175', $parameters['publication_175']);
             });
 
         if(isset($parameters['active_170'])) $query->where('active_170', true);
