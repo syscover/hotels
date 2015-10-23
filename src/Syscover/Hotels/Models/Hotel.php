@@ -72,6 +72,8 @@ class Hotel extends Model {
     {
         $query = Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
+            ->join('001_002_country', '007_170_hotel.country_170', '=', '001_002_country.id_002')
+            ->where('001_002_country.lang_002', '007_171_hotel_lang.lang_171')
             ->newQuery();
 
         if(isset($parameters['lang_171'])) $query->where('lang_171', $parameters['lang_171']);
