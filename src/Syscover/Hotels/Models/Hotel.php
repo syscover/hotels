@@ -52,17 +52,36 @@ class Hotel extends Model {
     public static function getCustomRecordsLimit($parameters)
     {
         $query =  Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
-            ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')->newQuery();
+            ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
+            ->newQuery();
 
         if(isset($parameters['lang'])) $query->where('lang_171', $parameters['lang']);
 
         return $query;
     }
 
-    public static function getCustomTranslationRecord($parametes)
+    public static function getCustomTranslationRecord($parameters)
     {
         return Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
-            ->where('id_170', $parametes['id'])->where('lang_171', $parametes['lang'])->first();
+            ->where('id_170', $parameters['id'])->where('lang_171', $parameters['lang'])
+            ->first();
     }
+
+    public static function getHotels($parameters)
+    {
+        $query = Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
+            ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
+            ->newQuery();
+
+        if(isset($parameters['publications'])) $query->whereIn('id_170', function($query) use ($parameters) {
+                $query->select('007_175_hotels_publications')
+                    ->whereIn('publication_175', $parameters['publications']);
+            });
+
+        if(isset($parameters['active_170'])) $query->where('active_170', true);
+
+        return $query->get();
+    }
+
 }
