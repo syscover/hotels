@@ -38,5 +38,5 @@ php artisan migrate
 **9 - Run seed database**
 
 ```
-php artisan db:seed --class="ResourceHotelsTableSeeder"
+php artisan db:seed --class="HotelsTableSeeder"
 ```
