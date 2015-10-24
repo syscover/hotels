@@ -217,15 +217,15 @@
             @include('pulsar::includes.html.form_select_group', ['label' => trans_choice('hotels::pulsar.relationship', 1), 'name' => 'relationship', 'value' => $object->relationship_170, 'objects' => $relationships, 'idSelect' => 'id_152', 'nameSelect' => 'name_152', 'class' => 'form-control select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
         </div>
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_rooms', 1), 'name' => 'nRooms', 'value' => $object->n_rooms_170, 'maxLength' => '50', 'rangeLength' => '1,50'])
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_places', 1), 'name' => 'nPlaces', 'value' => $object->n_places_170, 'maxLength' => '50', 'rangeLength' => '1,50'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('hotels::pulsar.number_rooms'), 'name' => 'nRooms', 'value' => $object->n_rooms_170, 'maxLength' => '50', 'rangeLength' => '1,50'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans('hotels::pulsar.number_places'), 'name' => 'nPlaces', 'value' => $object->n_places_170, 'maxLength' => '50', 'rangeLength' => '1,50'])
         </div>
     </div>
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.company', 2), 'icon' => 'fa fa-building'])
     <div class="row">
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_rooms', 1), 'name' => 'nEventsRooms', 'value' => $object->n_events_rooms_170, 'maxLength' => '50', 'rangeLength' => '1,50'])
+            @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.meeting_rooms', 1), 'name' => 'nEventsRooms', 'value' => $object->n_events_rooms_170, 'maxLength' => '50', 'rangeLength' => '1,50'])
         </div>
         <div class="col-md-6">
             @include('pulsar::includes.html.form_text_group', ['label' => trans_choice('hotels::pulsar.number_places', 1), 'name' => 'nEventsRoomsPlaces', 'value' => $object->n_events_rooms_places_170, 'maxLength' => '50', 'rangeLength' => '1,50'])

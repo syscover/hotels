@@ -43,4 +43,6 @@ return [
     'only_guest_reservation'                => 'Only for guests upon reservation',
     'description_title'                     => 'Description title',
     'published'                             => 'Published on',
+    'meeting_rooms'                         => 'Meeting rooms',
+    'capacity'                              => 'Capacity',
 ];

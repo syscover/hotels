@@ -42,5 +42,8 @@ return [
     'only_guest'                            => 'Solo para huéspedes',
     'only_guest_reservation'                => 'Solo para huéspedes previa reserva',
     'description_title'                     => 'Título de la descripción',
-    'published'                             => 'Publicado en'
+    'published'                             => 'Publicado en',
+    'meeting_rooms'                         => 'Salas de reuniones',
+    'meeting_rooms'                         => 'Salas de reuniones',
+    'capacity'                              => 'Capacidad',
 ];
