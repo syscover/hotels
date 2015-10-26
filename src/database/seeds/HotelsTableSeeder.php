@@ -10,6 +10,7 @@ class HotelsTableSeeder extends Seeder
         Model::unguard();
 
         $this->call(ResourceHotelsTableSeeder::class);
+        $this->call(PublicationHotelsTableSeeder::class);
     }
 }
 
