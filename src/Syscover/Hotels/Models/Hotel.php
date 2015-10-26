@@ -79,6 +79,7 @@ class Hotel extends Model {
             ->newQuery();
 
         if(isset($parameters['lang_171'])) $query->where('lang_171', $parameters['lang_171']);
+        if(isset($parameters['territorial_area_1_170'])) $query->where('territorial_area_1_170', $parameters['territorial_area_1_170']);
 
         if(isset($parameters['publication_175'])) $query->whereIn('id_170', function($query) use ($parameters) {
             $query->select('hotel_175')
