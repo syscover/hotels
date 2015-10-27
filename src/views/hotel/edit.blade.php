@@ -34,6 +34,7 @@
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/mobiledetect/mdetect.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/filedrop/filedrop.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/js/jquery.getfile.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/speakingurl/speakingurl.min.js') }}"></script>
     <!-- Froala -->
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/froala_editor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/plugins/char_counter.min.js') }}"></script>
@@ -149,6 +150,15 @@
                 key: '{{ config('pulsar.froalaEditorKey') }}'
             });
 
+            // launch slug function when change name and slug
+            $("[name=name], [name=slug]").on('change', function(){
+                $("[name=slug]").val(getSlug($(this).val(),{
+                    separator: '-',
+                    lang: '{{ $lang->id_001 }}'
+                }));
+                $.checkSlug();
+            });
+
             // set tab active
             @if($tab == 0)
             $('.tabbable li:eq(0) a').tab('show');
@@ -160,6 +170,25 @@
             $('.tabbable li:eq(3) a').tab('show');
             @endif
         });
+
+        $.checkSlug = function() {
+            $.ajax({
+                dataType:   'json',
+                type:       'POST',
+                url:        '{{ route('apiCheckSlugHotel') }}',
+                data:       {
+                    slug:   $('[name=slug]').val(),
+                    id:     $('[name=id]').val()
+                },
+                headers:  {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                success:  function(data)
+                {
+                    $("[name=slug]").val(data.slug);
+                }
+            });
+        }
     </script>
     @include('pulsar::includes.js.delete_translation_record')
 @stop
@@ -182,6 +211,7 @@
         </div>
     </div>
     @include('pulsar::includes.html.form_text_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans('pulsar::pulsar.name'), 'name' => 'name', 'value' => $object->name_170, 'maxLength' => '100', 'rangeLength' => '2,100', 'required' => true])
+    @include('pulsar::includes.html.form_text_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans('pulsar::pulsar.slug'), 'name' => 'slug', 'value' => $object->slug_170, 'maxLength' => '255', 'rangeLength' => '2,255', 'required' => true])
     <div class="row">
         <div class="col-md-6">
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.web'), 'name' => 'web', 'value' => $object->web_170, 'maxLength' => '100', 'rangeLength' => '2,100', 'placeholder' => 'mydomain.com'])

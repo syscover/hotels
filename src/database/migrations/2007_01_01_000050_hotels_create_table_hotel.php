@@ -18,6 +18,7 @@ class HotelsCreateTableHotel extends Migration {
 
             // hotel description
             $table->string('name_170', 100);
+            $table->string('slug_170', 255)->nullable();
             $table->string('web_170', 100)->nullable();
             $table->string('web_url_170', 100)->nullable();
 
@@ -88,6 +89,9 @@ class HotelsCreateTableHotel extends Migration {
 
             $table->string('data_lang_170',255)->nullable();
             $table->text('data_170')->nullable();
+
+            // INDEX
+            $table->index('slug_170');
 
             $table->foreign('country_170')->references('id_002')->on('001_002_country')
                 ->onDelete('restrict')->onUpdate('cascade');
