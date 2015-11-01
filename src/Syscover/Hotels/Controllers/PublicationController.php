@@ -28,14 +28,14 @@ class PublicationController extends Controller {
     protected $icon         = 'fa fa-object-ungroup';
     protected $objectTrans  = 'publication';
 
-    public function storeCustomRecord($parameters)
+    public function storeCustomRecord($request, $parameters)
     {
         Publication::create([
             'name_174'      => Request::input('name')
         ]);
     }
 
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         Publication::where('id_174', $parameters['id'])->update([
             'name_174'      => Request::input('name')

@@ -35,7 +35,7 @@ class ServiceController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord()
+    public function storeCustomRecord($request, $parameters)
     {
         // check if there is id
         if(Request::has('id'))
@@ -56,7 +56,7 @@ class ServiceController extends Controller {
         ]);
     }
 
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         Service::where('id_153', $parameters['id'])->where('lang_153', Request::input('lang'))->update([
             'name_153'  => Request::input('name')

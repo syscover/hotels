@@ -35,7 +35,7 @@ class EnvironmentController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord()
+    public function storeCustomRecord($request, $parameters)
     {
         // check if there is id
         if(Request::has('id'))
@@ -56,7 +56,7 @@ class EnvironmentController extends Controller {
         ]);
     }
 
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         Environment::where('id_150', $parameters['id'])->where('lang_150', Request::input('lang'))->update([
             'name_150'  => Request::input('name')

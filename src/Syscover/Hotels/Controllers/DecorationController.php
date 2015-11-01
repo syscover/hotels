@@ -35,7 +35,7 @@ class DecorationController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord()
+    public function storeCustomRecord($request, $parameters)
     {
         // check if there is id
         if(Request::has('id'))
@@ -56,7 +56,7 @@ class DecorationController extends Controller {
         ]);
     }
 
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         Decoration::where('id_151', $parameters['id'])->where('lang_151', Request::input('lang'))->update([
             'name_151'  => Request::input('name')

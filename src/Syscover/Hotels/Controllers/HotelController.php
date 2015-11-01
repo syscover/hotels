@@ -54,7 +54,7 @@ class HotelController extends Controller {
         return $actionUrlParameters;
     }
 
-    public function createCustomRecord($parameters)
+    public function createCustomRecord($request, $parameters)
     {
         $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']);
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']);
@@ -95,7 +95,7 @@ class HotelController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord()
+    public function storeCustomRecord($request, $parameters)
     {
         if(!Request::has('id'))
         {
@@ -191,7 +191,7 @@ class HotelController extends Controller {
         AttachmentLibrary::storeAttachments($attachments, 'hotels', 'hotels-hotel', $id, Request::input('lang'));
     }
 
-    public function editCustomRecord($parameters)
+    public function editCustomRecord($request, $parameters)
     {
         $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']->id_001);
@@ -214,7 +214,7 @@ class HotelController extends Controller {
         return $parameters;
     }
 
-    public function checkSpecialRulesToUpdate($parameters)
+    public function checkSpecialRulesToUpdate($request, $parameters)
     {
         $hotel = Hotel::find($parameters['id']);
 
@@ -225,7 +225,7 @@ class HotelController extends Controller {
         return $parameters;
     }
 
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         $hotel = [
             'name_170'                                      => Request::input('name'),

@@ -35,7 +35,7 @@ class RelationshipController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord()
+    public function storeCustomRecord($request, $parameters)
     {
         // check if there is id
         if(Request::has('id'))
@@ -56,7 +56,7 @@ class RelationshipController extends Controller {
         ]);
     }
 
-    public function updateCustomRecord($parameters)
+    public function updateCustomRecord($request, $parameters)
     {
         Relationship::where('id_152', $parameters['id'])->where('lang_152', Request::input('lang'))->update([
             'name_152'  => Request::input('name')
