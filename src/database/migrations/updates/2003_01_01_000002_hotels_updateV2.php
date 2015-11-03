@@ -12,7 +12,7 @@ class HotelsUpdateV2 extends Migration
 	 */
 	public function up()
 	{
-		if(!Schema::hasColumn('007_153_service', 'ico_153'))
+		if(!Schema::hasColumn('007_153_service', 'icon_153'))
 		{
 			Schema::table('007_153_service', function ($table) {
 				$table->string('icon_153', 50)->nullable()->after('name_153');
