@@ -17,6 +17,7 @@ class HotelsCreateTableService extends Migration {
             $table->integer('id_153')->unsigned();
             $table->string('lang_153',2);
             $table->string('name_153', 50);
+            $table->string('icon_153', 50)->nullable();
 
             $table->string('data_lang_153',255)->nullable();
             $table->text('data_153')->nullable();

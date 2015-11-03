@@ -22,7 +22,7 @@ class ServiceController extends Controller {
     protected $routeSuffix  = 'HotelsService';
     protected $folder       = 'service';
     protected $package      = 'hotels';
-    protected $aColumns     = ['id_153', 'name_001', 'name_153'];
+    protected $aColumns     = ['id_153', 'name_001', 'name_153', 'icon_153'];
     protected $nameM        = 'name_153';
     protected $model        = '\Syscover\Hotels\Models\Service';
     protected $icon         = 'icomoon-icon-wand-2';
@@ -52,6 +52,7 @@ class ServiceController extends Controller {
             'id_153'        => $id,
             'lang_153'      => Request::input('lang'),
             'name_153'      => Request::input('name'),
+            'icon_153'      => Request::input('icon'),
             'data_lang_153' => Service::addLangDataRecord($id, Request::input('lang'))
         ]);
     }
@@ -59,7 +60,8 @@ class ServiceController extends Controller {
     public function updateCustomRecord($request, $parameters)
     {
         Service::where('id_153', $parameters['id'])->where('lang_153', Request::input('lang'))->update([
-            'name_153'  => Request::input('name')
+            'name_153'  => Request::input('name'),
+            'icon_153'  => Request::input('icon')
         ]);
     }
 }

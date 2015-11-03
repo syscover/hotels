@@ -17,6 +17,7 @@ use Syscover\Hotels\Models\Decoration;
 use Syscover\Hotels\Models\Environment;
 use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
+use Syscover\Hotels\Models\Service;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
 use Syscover\Pulsar\Models\AttachmentFamily;
@@ -56,6 +57,7 @@ class HotelController extends Controller {
 
     public function createCustomRecord($request, $parameters)
     {
+        $parameters['services']         = Service::getTranslationsRecords($parameters['lang']);
         $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']);
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']);
         $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']);
@@ -97,102 +99,105 @@ class HotelController extends Controller {
 
     public function storeCustomRecord($request, $parameters)
     {
-        if(!Request::has('id'))
+        if(!$request->has('id'))
         {
             $hotel = Hotel::create([
-                'name_170'                                      => Request::input('name'),
-                'slug_170'                                      => Request::input('slug'),
-                'web_170'                                       => Request::input('web'),
-                'web_url_170'                                   => Request::input('webUrl'),
-                'contact_170'                                   => Request::input('contact'),
-                'email_170'                                     => Request::input('email'),
-                'booking_email_170'                             => Request::input('bookingEmail'),
-                'phone_170'                                     => Request::input('phone'),
-                'mobile_170'                                    => Request::input('mobile'),
-                'fax_170'                                       => Request::input('fax'),
-                'environment_170'                               => Request::has('environment') ? Request::input('environment') : null,
-                'decoration_170'                                => Request::has('decoration') ? Request::input('decoration') : null,
-                'relationship_170'                              => Request::has('relationship') ? Request::input('relationship') : null,
-                'n_rooms_170'                                   => Request::input('nRooms'),
-                'n_places_170'                                  => Request::input('nPlaces'),
-                'n_events_rooms_170'                            => Request::input('nEventsRooms'),
-                'n_events_rooms_places_170'                     => Request::input('nEventsRoomsPlaces'),
-                'user_170'                                      => Request::input('user'),
-                'password_170'                                  => Hash::make(Request::input('password')),
-                'active_170'                                    => Request::has('active'),
-                'country_170'                                   => Request::input('country'),
-                'territorial_area_1_170'                        => Request::has('territorialArea1') ? Request::input('territorialArea1') : null,
-                'territorial_area_2_170'                        => Request::has('territorialArea2') ? Request::input('territorialArea2') : null,
-                'territorial_area_3_170'                        => Request::has('territorialArea3') ? Request::input('territorialArea3') : null,
-                'cp_170'                                        => Request::input('cp'),
-                'locality_170'                                  => Request::input('locality'),
-                'address_170'                                   => Request::input('address'),
-                'latitude_170'                                  => Request::input('latitude'),
-                'longitude_170'                                 => Request::input('longitude'),
-                'booking_url_170'                               => Request::input('bookingUrl'),
-                'country_chef_restaurant_170'                   => Request::has('countryChefRestaurant'),
-                'country_chef_url_170'                          => Request::input('countryChefUrl'),
-                'restaurant_name_170'                           => Request::input('restaurantName'),
-                'restaurant_type_170'                           => Request::has('restaurantType')? Request::input('restaurantType') : null,
-                'restaurant_terrace_170'                        => Request::has('restaurantTerrace'),
-                'billing_name_170'                              => Request::input('billingName'),
-                'billing_surname_170'                           => Request::input('billingSurname'),
-                'billing_company_name_170'                      => Request::input('billingCompanyName'),
-                'billing_tin_170'                               => Request::input('billingTin'),
-                'billing_country_170'                           => Request::has('billingCountry')? Request::input('billingCountry') : null,
-                'billing_territorial_area_1_170'                => Request::has('billingTerritorialArea1')? Request::input('billingTerritorialArea1') : null,
-                'billing_territorial_area_2_170'                => Request::has('billingTerritorialArea2')? Request::input('billingTerritorialArea2') : null,
-                'billing_territorial_area_3_170'                => Request::has('billingTerritorialArea3')? Request::input('billingTerritorialArea3') : null,
-                'billing_cp_170'                                => Request::input('billingCp'),
-                'billing_locality_170'                          => Request::input('billingLocality'),
-                'billing_address_170'                           => Request::input('billingAddress'),
-                'billing_phone_170'                             => Request::input('billingPhone'),
-                'billing_email_170'                             => Request::input('billingEmail'),
-                'billing_iban_country_170'                      => Request::input('billingIbanCountry'),
-                'billing_iban_check_digits_170'                 => Request::input('billingIbanCheckDigits'),
-                'billing_iban_basic_bank_account_number_170'    => Request::input('billingIbanBasicBankAccountNumber'),
-                'billing_bic_170'                               => Request::input('billingBic')
+                'name_170'                                      => $request->input('name'),
+                'slug_170'                                      => $request->input('slug'),
+                'web_170'                                       => $request->input('web'),
+                'web_url_170'                                   => $request->input('webUrl'),
+                'contact_170'                                   => $request->input('contact'),
+                'email_170'                                     => $request->input('email'),
+                'booking_email_170'                             => $request->input('bookingEmail'),
+                'phone_170'                                     => $request->input('phone'),
+                'mobile_170'                                    => $request->input('mobile'),
+                'fax_170'                                       => $request->input('fax'),
+                'environment_170'                               => $request->has('environment') ? $request->input('environment') : null,
+                'decoration_170'                                => $request->has('decoration') ? $request->input('decoration') : null,
+                'relationship_170'                              => $request->has('relationship') ? $request->input('relationship') : null,
+                'n_rooms_170'                                   => $request->input('nRooms'),
+                'n_places_170'                                  => $request->input('nPlaces'),
+                'n_events_rooms_170'                            => $request->input('nEventsRooms'),
+                'n_events_rooms_places_170'                     => $request->input('nEventsRoomsPlaces'),
+                'user_170'                                      => $request->input('user'),
+                'password_170'                                  => Hash::make($request->input('password')),
+                'active_170'                                    => $request->has('active'),
+                'country_170'                                   => $request->input('country'),
+                'territorial_area_1_170'                        => $request->has('territorialArea1') ? $request->input('territorialArea1') : null,
+                'territorial_area_2_170'                        => $request->has('territorialArea2') ? $request->input('territorialArea2') : null,
+                'territorial_area_3_170'                        => $request->has('territorialArea3') ? $request->input('territorialArea3') : null,
+                'cp_170'                                        => $request->input('cp'),
+                'locality_170'                                  => $request->input('locality'),
+                'address_170'                                   => $request->input('address'),
+                'latitude_170'                                  => $request->input('latitude'),
+                'longitude_170'                                 => $request->input('longitude'),
+                'booking_url_170'                               => $request->input('bookingUrl'),
+                'country_chef_restaurant_170'                   => $request->has('countryChefRestaurant'),
+                'country_chef_url_170'                          => $request->input('countryChefUrl'),
+                'restaurant_name_170'                           => $request->input('restaurantName'),
+                'restaurant_type_170'                           => $request->has('restaurantType')? $request->input('restaurantType') : null,
+                'restaurant_terrace_170'                        => $request->has('restaurantTerrace'),
+                'billing_name_170'                              => $request->input('billingName'),
+                'billing_surname_170'                           => $request->input('billingSurname'),
+                'billing_company_name_170'                      => $request->input('billingCompanyName'),
+                'billing_tin_170'                               => $request->input('billingTin'),
+                'billing_country_170'                           => $request->has('billingCountry')? $request->input('billingCountry') : null,
+                'billing_territorial_area_1_170'                => $request->has('billingTerritorialArea1')? $request->input('billingTerritorialArea1') : null,
+                'billing_territorial_area_2_170'                => $request->has('billingTerritorialArea2')? $request->input('billingTerritorialArea2') : null,
+                'billing_territorial_area_3_170'                => $request->has('billingTerritorialArea3')? $request->input('billingTerritorialArea3') : null,
+                'billing_cp_170'                                => $request->input('billingCp'),
+                'billing_locality_170'                          => $request->input('billingLocality'),
+                'billing_address_170'                           => $request->input('billingAddress'),
+                'billing_phone_170'                             => $request->input('billingPhone'),
+                'billing_email_170'                             => $request->input('billingEmail'),
+                'billing_iban_country_170'                      => $request->input('billingIbanCountry'),
+                'billing_iban_check_digits_170'                 => $request->input('billingIbanCheckDigits'),
+                'billing_iban_basic_bank_account_number_170'    => $request->input('billingIbanBasicBankAccountNumber'),
+                'billing_bic_170'                               => $request->input('billingBic')
             ]);
 
             $id = $hotel->id_170;
 
             // publications
-            if(is_array(Request::input('published')))
-            {
-                $hotel->publications()->sync(Request::input('published'));
-            }
+            if(is_array($request->input('published')))
+                $hotel->publications()->sync($request->input('published'));
+
+            // services
+            if(is_array($request->input('services')))
+                $hotel->services()->sync($request->input('services'));
         }
         else
         {
-            $id = Request::input('id');
+            $id = $request->input('id');
         }
 
         Hotel::where('id_170', $id)->update([
-            'data_lang_170'                 => Hotel::addLangDataRecord($id, Request::input('lang'))
+            'data_lang_170'                 => Hotel::addLangDataRecord($id, $request->input('lang'))
         ]);
 
         HotelLang::create([
             'id_171'                        => $id,
-            'lang_171'                      => Request::input('lang'),
-            'cuisine_171'                   => Request::input('cuisine'),
-            'special_dish_171'              => Request::input('specialDish'),
-            'indications_171'               => Request::input('indications'),
-            'interest_points_171'           => Request::input('interestPoints'),
-            'environment_description_171'   => Request::input('environmentDescription'),
-            'construction_171'              => Request::input('construction'),
-            'activities_171'                => Request::input('activities'),
-            'description_title_171'         => Request::input('descriptionTitle'),
-            'description_171'               => Request::input('description')
+            'lang_171'                      => $request->input('lang'),
+            'cuisine_171'                   => $request->input('cuisine'),
+            'special_dish_171'              => $request->input('specialDish'),
+            'indications_171'               => $request->input('indications'),
+            'interest_points_171'           => $request->input('interestPoints'),
+            'environment_description_171'   => $request->input('environmentDescription'),
+            'construction_171'              => $request->input('construction'),
+            'activities_171'                => $request->input('activities'),
+            'description_title_171'         => $request->input('descriptionTitle'),
+            'description_171'               => $request->input('description')
         ]);
 
         // set attachments
-        $attachments = json_decode(Request::input('attachments'));
+        $attachments = json_decode($request->input('attachments'));
 
-        AttachmentLibrary::storeAttachments($attachments, 'hotels', 'hotels-hotel', $id, Request::input('lang'));
+        AttachmentLibrary::storeAttachments($attachments, 'hotels', 'hotels-hotel', $id, $request->input('lang'));
     }
 
     public function editCustomRecord($request, $parameters)
     {
+        $parameters['services']         = Service::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']->id_001);
@@ -218,9 +223,9 @@ class HotelController extends Controller {
     {
         $hotel = Hotel::find($parameters['id']);
 
-        $parameters['specialRules']['emailRule']    = Request::input('email') == $hotel->email_170? true : false;
-        $parameters['specialRules']['userRule']     = Request::input('user') == $hotel->user_170? true : false;
-        $parameters['specialRules']['passRule']     = Request::input('password') == ""? true : false;
+        $parameters['specialRules']['emailRule']    = $request->input('email') == $hotel->email_170? true : false;
+        $parameters['specialRules']['userRule']     = $request->input('user') == $hotel->user_170? true : false;
+        $parameters['specialRules']['passRule']     = $request->input('password') == ""? true : false;
 
         return $parameters;
     }
@@ -228,85 +233,95 @@ class HotelController extends Controller {
     public function updateCustomRecord($request, $parameters)
     {
         $hotel = [
-            'name_170'                                      => Request::input('name'),
-            'slug_170'                                      => Request::input('slug'),
-            'web_170'                                       => Request::input('web'),
-            'web_url_170'                                   => Request::input('webUrl'),
-            'contact_170'                                   => Request::input('contact'),
-            'booking_email_170'                             => Request::input('bookingEmail'),
-            'phone_170'                                     => Request::input('phone'),
-            'mobile_170'                                    => Request::input('mobile'),
-            'fax_170'                                       => Request::input('fax'),
-            'environment_170'                               => Request::has('environment')? Request::input('environment') : null,
-            'decoration_170'                                => Request::has('decoration')? Request::input('decoration') : null,
-            'relationship_170'                              => Request::has('relationship')? Request::input('relationship') : null,
-            'n_rooms_170'                                   => Request::input('nRooms'),
-            'n_places_170'                                  => Request::input('nPlaces'),
-            'n_events_rooms_170'                            => Request::input('nEventsRooms'),
-            'n_events_rooms_places_170'                     => Request::input('nEventsRoomsPlaces'),
-            'active_170'                                    => Request::has('active'),
-            'country_170'                                   => Request::input('country'),
-            'territorial_area_1_170'                        => Request::has('territorialArea1')? Request::input('territorialArea1') : null,
-            'territorial_area_2_170'                        => Request::has('territorialArea2')? Request::input('territorialArea2') : null,
-            'territorial_area_3_170'                        => Request::has('territorialArea3')? Request::input('territorialArea3') : null,
-            'cp_170'                                        => Request::input('cp'),
-            'locality_170'                                  => Request::input('locality'),
-            'address_170'                                   => Request::input('address'),
-            'latitude_170'                                  => Request::input('latitude'),
-            'longitude_170'                                 => Request::input('longitude'),
-            'booking_url_170'                               => Request::input('bookingUrl'),
-            'country_chef_restaurant_170'                   => Request::has('countryChefRestaurant'),
-            'country_chef_url_170'                          => Request::input('countryChefUrl'),
-            'restaurant_name_170'                           => Request::input('restaurantName'),
-            'restaurant_type_170'                           => Request::has('restaurantType')? Request::input('restaurantType') : null,
-            'restaurant_terrace_170'                        => Request::has('restaurantTerrace'),
-            'billing_name_170'                              => Request::input('billingName'),
-            'billing_surname_170'                           => Request::input('billingSurname'),
-            'billing_company_name_170'                      => Request::input('billingCompanyName'),
-            'billing_tin_170'                               => Request::input('billingTin'),
-            'billing_country_170'                           => Request::has('billingCountry')? Request::input('billingCountry') : null,
-            'billing_territorial_area_1_170'                => Request::has('billingTerritorialArea1')? Request::input('billingTerritorialArea1') : null,
-            'billing_territorial_area_2_170'                => Request::has('billingTerritorialArea2')? Request::input('billingTerritorialArea2') : null,
-            'billing_territorial_area_3_170'                => Request::has('billingTerritorialArea3')? Request::input('billingTerritorialArea3') : null,
-            'billing_cp_170'                                => Request::input('billingCp'),
-            'billing_locality_170'                          => Request::input('billingLocality'),
-            'billing_address_170'                           => Request::input('billingAddress'),
-            'billing_phone_170'                             => Request::input('billingPhone'),
-            'billing_email_170'                             => Request::input('billingEmail'),
-            'billing_iban_country_170'                      => Request::input('billingIbanCountry'),
-            'billing_iban_check_digits_170'                 => Request::input('billingIbanCheckDigits'),
-            'billing_iban_basic_bank_account_number_170'    => Request::input('billingIbanBasicBankAccountNumber'),
-            'billing_bic_170'                               => Request::input('billingBic')
+            'name_170'                                      => $request->input('name'),
+            'slug_170'                                      => $request->input('slug'),
+            'web_170'                                       => $request->input('web'),
+            'web_url_170'                                   => $request->input('webUrl'),
+            'contact_170'                                   => $request->input('contact'),
+            'booking_email_170'                             => $request->input('bookingEmail'),
+            'phone_170'                                     => $request->input('phone'),
+            'mobile_170'                                    => $request->input('mobile'),
+            'fax_170'                                       => $request->input('fax'),
+            'environment_170'                               => $request->has('environment')? $request->input('environment') : null,
+            'decoration_170'                                => $request->has('decoration')? $request->input('decoration') : null,
+            'relationship_170'                              => $request->has('relationship')? $request->input('relationship') : null,
+            'n_rooms_170'                                   => $request->input('nRooms'),
+            'n_places_170'                                  => $request->input('nPlaces'),
+            'n_events_rooms_170'                            => $request->input('nEventsRooms'),
+            'n_events_rooms_places_170'                     => $request->input('nEventsRoomsPlaces'),
+            'active_170'                                    => $request->has('active'),
+            'country_170'                                   => $request->input('country'),
+            'territorial_area_1_170'                        => $request->has('territorialArea1')? $request->input('territorialArea1') : null,
+            'territorial_area_2_170'                        => $request->has('territorialArea2')? $request->input('territorialArea2') : null,
+            'territorial_area_3_170'                        => $request->has('territorialArea3')? $request->input('territorialArea3') : null,
+            'cp_170'                                        => $request->input('cp'),
+            'locality_170'                                  => $request->input('locality'),
+            'address_170'                                   => $request->input('address'),
+            'latitude_170'                                  => $request->input('latitude'),
+            'longitude_170'                                 => $request->input('longitude'),
+            'booking_url_170'                               => $request->input('bookingUrl'),
+            'country_chef_restaurant_170'                   => $request->has('countryChefRestaurant'),
+            'country_chef_url_170'                          => $request->input('countryChefUrl'),
+            'restaurant_name_170'                           => $request->input('restaurantName'),
+            'restaurant_type_170'                           => $request->has('restaurantType')? $request->input('restaurantType') : null,
+            'restaurant_terrace_170'                        => $request->has('restaurantTerrace'),
+            'billing_name_170'                              => $request->input('billingName'),
+            'billing_surname_170'                           => $request->input('billingSurname'),
+            'billing_company_name_170'                      => $request->input('billingCompanyName'),
+            'billing_tin_170'                               => $request->input('billingTin'),
+            'billing_country_170'                           => $request->has('billingCountry')? $request->input('billingCountry') : null,
+            'billing_territorial_area_1_170'                => $request->has('billingTerritorialArea1')? $request->input('billingTerritorialArea1') : null,
+            'billing_territorial_area_2_170'                => $request->has('billingTerritorialArea2')? $request->input('billingTerritorialArea2') : null,
+            'billing_territorial_area_3_170'                => $request->has('billingTerritorialArea3')? $request->input('billingTerritorialArea3') : null,
+            'billing_cp_170'                                => $request->input('billingCp'),
+            'billing_locality_170'                          => $request->input('billingLocality'),
+            'billing_address_170'                           => $request->input('billingAddress'),
+            'billing_phone_170'                             => $request->input('billingPhone'),
+            'billing_email_170'                             => $request->input('billingEmail'),
+            'billing_iban_country_170'                      => $request->input('billingIbanCountry'),
+            'billing_iban_check_digits_170'                 => $request->input('billingIbanCheckDigits'),
+            'billing_iban_basic_bank_account_number_170'    => $request->input('billingIbanBasicBankAccountNumber'),
+            'billing_bic_170'                               => $request->input('billingBic')
         ];
 
-        if($parameters['specialRules']['emailRule'])  $hotel['email_170']       = Request::input('email');
-        if($parameters['specialRules']['userRule'])   $hotel['user_170']        = Request::input('user');
-        if(!$parameters['specialRules']['passRule'])  $hotel['password_170']    = Hash::make(Request::input('password'));
+        if($parameters['specialRules']['emailRule'])  $hotel['email_170']       = $request->input('email');
+        if($parameters['specialRules']['userRule'])   $hotel['user_170']        = $request->input('user');
+        if(!$parameters['specialRules']['passRule'])  $hotel['password_170']    = Hash::make($request->input('password'));
 
         Hotel::where('id_170', $parameters['id'])->update($hotel);
 
         $hotel = Hotel::find($parameters['id']);
 
         // publications
-        if(is_array(Request::input('published')))
+        if(is_array($request->input('published')))
         {
-            $hotel->publications()->sync(Request::input('published'));
+            $hotel->publications()->sync($request->input('published'));
         }
         else
         {
             $hotel->publications()->detach();
         }
 
-        HotelLang::where('id_171', $parameters['id'])->where('lang_171', Request::input('lang'))->update([
-            'cuisine_171'                   => Request::input('cuisine'),
-            'special_dish_171'              => Request::input('specialDish'),
-            'indications_171'               => Request::input('indications'),
-            'interest_points_171'           => Request::input('interestPoints'),
-            'environment_description_171'   => Request::input('environmentDescription'),
-            'construction_171'              => Request::input('construction'),
-            'activities_171'                => Request::input('activities'),
-            'description_title_171'         => Request::input('descriptionTitle'),
-            'description_171'               => Request::input('description')
+        // services
+        if(is_array($request->input('services')))
+        {
+            $hotel->services()->sync($request->input('services'));
+        }
+        else
+        {
+            $hotel->services()->detach();
+        }
+
+        HotelLang::where('id_171', $parameters['id'])->where('lang_171', $request->input('lang'))->update([
+            'cuisine_171'                   => $request->input('cuisine'),
+            'special_dish_171'              => $request->input('specialDish'),
+            'indications_171'               => $request->input('indications'),
+            'interest_points_171'           => $request->input('interestPoints'),
+            'environment_description_171'   => $request->input('environmentDescription'),
+            'construction_171'              => $request->input('construction'),
+            'activities_171'                => $request->input('activities'),
+            'description_title_171'         => $request->input('descriptionTitle'),
+            'description_171'               => $request->input('description')
         ]);
     }
 

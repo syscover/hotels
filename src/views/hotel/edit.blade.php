@@ -240,6 +240,7 @@
     </div>
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.feature', 2), 'icon' => 'fa fa-bookmark'])
+    @include('pulsar::includes.html.form_select_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans_choice('hotels::pulsar.service', 2), 'name' => 'services[]', 'value' => $object->services, 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'multiple' => true, 'class' => 'form-control select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
     <div class="row">
         <div class="col-md-6">
             @include('pulsar::includes.html.form_select_group', ['label' => trans_choice('hotels::pulsar.environment', 1), 'name' => 'environment', 'value' => $object->environment_170, 'objects' => $environments, 'idSelect' => 'id_150', 'nameSelect' => 'name_150', 'class' => 'form-control select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
