@@ -21,7 +21,7 @@ class HotelsCreateTableHotelsServices extends Migration {
 
 			$table->foreign('hotel_176')->references('id_170')->on('007_170_hotel')
 				->onDelete('cascade')->onUpdate('cascade');
-			$table->foreign('service_176')->references('id_176')->on('007_153_service')
+			$table->foreign('service_176')->references('id_153')->on('007_153_service')
 				->onDelete('cascade')->onUpdate('cascade');
         });
 	}
