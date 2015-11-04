@@ -81,6 +81,18 @@ class Hotel extends Model {
                 $join->on('007_170_hotel.country_170', '=', '001_002_country.id_002')
                     ->on('001_002_country.lang_002', '=', '007_171_hotel_lang.lang_171');
             })
+            ->leftJoin('007_150_environment', function($join){
+                $join->on('007_170_hotel.environment_170', '=', '007_150_environment.id_150')
+                    ->on('007_150_environment.lang_150', '=', '007_171_hotel_lang.lang_171');
+            })
+            ->leftJoin('007_151_decoration', function($join){
+                $join->on('007_170_hotel.decoration_170', '=', '007_151_decoration.id_151')
+                    ->on('007_151_decoration.lang_151', '=', '007_171_hotel_lang.lang_171');
+            })
+            ->leftJoin('007_152_relationship', function($join){
+                $join->on('007_170_hotel.relationship_170', '=', '007_152_relationship.id_152')
+                    ->on('007_152_relationship.lang_152', '=', '007_171_hotel_lang.lang_171');
+            })
             ->newQuery();
 
         if(isset($parameters['slug_170'])) $query->where('slug_170', $parameters['slug_170']);
