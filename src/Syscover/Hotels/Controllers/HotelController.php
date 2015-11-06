@@ -32,7 +32,7 @@ class HotelController extends Controller {
     protected $routeSuffix  = 'Hotel';
     protected $folder       = 'hotel';
     protected $package      = 'hotels';
-    protected $aColumns     = ['id_170', 'name_001', 'name_170'];
+    protected $aColumns     = ['id_170', 'name_001', 'name_002', 'name_003', 'name_170'];
     protected $nameM        = 'name_170';
     protected $model        = '\Syscover\Hotels\Models\Hotel';
     protected $langModel    = '\Syscover\Hotels\Models\HotelLang';

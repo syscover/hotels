@@ -58,6 +58,11 @@ class Hotel extends Model {
     {
         $query =  Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
+            ->join('001_002_country', function ($join) {
+                $join->on('007_170_hotel.country_170', '=', '001_002_country.id_002')
+                ->on('001_002_country.lang_002', '=', '001_001_lang.id_001');
+            })
+            ->leftJoin('001_003_territorial_area_1', '007_170_hotel.territorial_area_1_170', '=', '001_003_territorial_area_1.id_003')
             ->newQuery();
 
         if(isset($parameters['lang'])) $query->where('lang_171', $parameters['lang']);
