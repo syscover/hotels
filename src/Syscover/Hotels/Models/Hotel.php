@@ -78,7 +78,7 @@ class Hotel extends Model {
             ->first();
     }
 
-    public static function getHotels($parameters)
+    public static function getRecords($parameters)
     {
         $query = Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
