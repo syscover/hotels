@@ -35,6 +35,7 @@
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/filedrop/filedrop.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/getfile/js/jquery.getfile.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/speakingurl/speakingurl.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/duallistbox/jquery.duallistbox.1.3.1.js') }}"></script>
     <!-- Froala -->
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/froala_editor.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/wysiwyg.froala/js/plugins/char_counter.min.js') }}"></script>
@@ -150,6 +151,12 @@
                 key: '{{ config('pulsar.froalaEditorKey') }}'
             });
 
+            // custom Dual multi select
+            $.configureBoxes({
+                textShowing: '{{ trans('pulsar::pulsar.showing') }}',
+                textOf: '{{ trans('pulsar::pulsar.of') }}'
+            });
+
             // launch slug function when change name and slug
             $("[name=name], [name=slug]").on('change', function(){
                 $("[name=slug]").val(getSlug($(this).val(),{
@@ -239,8 +246,10 @@
         </div>
     </div>
 
+    @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('hotels::pulsar.service', 2), 'icon' => 'fa fa-star'])
+    @include('pulsar::includes.html.form_dual_list_group', ['name' => 'services', 'value' => Input::old('countries'), 'objectsSelect' => $object->services->where('lang_153', $lang->id_001), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'idList1' => 1, 'idList2' => 2, 'required' => true])
+
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.feature', 2), 'icon' => 'fa fa-bookmark'])
-    @include('pulsar::includes.html.form_select_group', ['labelSize' => 1, 'fieldSize' => 11, 'label' => trans_choice('hotels::pulsar.service', 2), 'name' => 'services[]', 'value' => $object->services->where('lang_153', $lang->id_001), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'multiple' => true, 'class' => 'form-control select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
     <div class="row">
         <div class="col-md-6">
             @include('pulsar::includes.html.form_select_group', ['label' => trans_choice('hotels::pulsar.environment', 1), 'name' => 'environment', 'value' => $object->environment_170, 'objects' => $environments, 'idSelect' => 'id_150', 'nameSelect' => 'name_150', 'class' => 'form-control select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
