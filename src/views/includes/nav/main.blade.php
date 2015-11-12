@@ -1,11 +1,11 @@
         <li{!! Miscellaneous::setCurrentOpenPage(['hotels-environment','hotels-decoration','hotels-service', 'hotels-relationship', 'hotels-hotel','hotels-publication','hotels-attachment-family']) !!}>
-            <a href="javascript:void(0);"><i class="fa fa-h-square"></i>Hotels</a>
+            <a href="javascript:void(0)"><i class="fa fa-h-square"></i>Hotels</a>
             <ul class="sub-menu">
                 @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-hotel', 'access'))
                     <li{!! Miscellaneous::setCurrentPage('hotels-hotel') !!}><a href="{{ route('Hotel', [session('baseLang')]) }}"><i class="fa fa-h-square"></i>{{ trans_choice('hotels::pulsar.hotel', 2) }}</a></li>
                 @endif
                 <li{!! Miscellaneous::setCurrentOpenPage(['hotels-environment','hotels-decoration','hotels-relationship','hotels-service','hotels-publication','hotels-attachment-family']) !!}>
-                    <a href="javascript:void(0);"><i class="icomoon-icon-grid"></i>{{ trans('pulsar::pulsar.master_tables') }}</a>
+                    <a href="javascript:void(0)"><i class="icomoon-icon-grid"></i>{{ trans('pulsar::pulsar.master_tables') }}</a>
                     <ul class="sub-menu" >
                         @if(session('userAcl')->isAllowed(Auth::user()->profile_010, 'hotels-publication', 'access'))
                             <li{!! Miscellaneous::setCurrentPage('hotels-publication') !!}><a href="{{ route('HotelsPublication') }}"><i class="fa fa-object-ungroup"></i>{{ trans_choice('hotels::pulsar.publication', 2) }}</a></li>

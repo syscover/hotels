@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Pulsar\Models\Resource;
 
-class ResourceHotelsTableSeeder extends Seeder {
+class HotelsResourceTableSeeder extends Seeder {
 
     public function run()
     {
@@ -22,5 +22,5 @@ class ResourceHotelsTableSeeder extends Seeder {
 
 /*
  * Command to run:
- * php artisan db:seed --class="ResourceHotelsTableSeeder"
+ * php artisan db:seed --class="HotelsResourceTableSeeder"
  */

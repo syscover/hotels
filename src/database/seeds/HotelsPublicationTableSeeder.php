@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Syscover\Hotels\Models\Publication;
 
-class PublicationHotelsTableSeeder extends Seeder {
+class HotelsPublicationTableSeeder extends Seeder {
 
     public function run()
     {
@@ -17,5 +17,5 @@ class PublicationHotelsTableSeeder extends Seeder {
 
 /*
  * Command to run:
- * php artisan db:seed --class="PublicationHotelsTableSeeder"
+ * php artisan db:seed --class="HotelsPublicationTableSeeder"
  */
