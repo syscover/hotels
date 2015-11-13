@@ -39,19 +39,14 @@ class Hotel extends Model {
         return Validator::make($data, static::$rules);
 	}
 
-    public function lang()
-    {
-        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_171');
-    }
-
     public function publications()
     {
-        return $this->belongsToMany('Syscover\Hotels\Models\Publication','007_175_hotels_publications','hotel_175','publication_175');
+        return $this->belongsToMany('Syscover\Hotels\Models\Publication', '007_175_hotels_publications', 'hotel_175', 'publication_175');
     }
 
     public function services()
     {
-        return $this->belongsToMany('Syscover\Hotels\Models\Service','007_176_hotels_services','hotel_176','service_176');
+        return $this->belongsToMany('Syscover\Hotels\Models\Service', '007_176_hotels_services', 'hotel_176', 'service_176');
     }
 
     public static function getCustomRecordsLimit($parameters)
