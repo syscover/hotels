@@ -74,10 +74,10 @@ class HotelController extends Controller {
         if(isset($parameters['id']))
         {
             // get attachments from base lang
-            $attachments = AttachmentLibrary::getAttachments('hotels', 'hotels-hotel', $parameters['id'], session('baseLang')->id_001, true);
+            $attachments = AttachmentLibrary::getAttachments($this->package, 'hotels-hotel', $parameters['id'], session('baseLang')->id_001, true);
 
             // merge parameters and attachments array
-            $parameters                         = array_merge($parameters, $attachments);
+            $parameters  = array_merge($parameters, $attachments);
         }
 
         return $parameters;
@@ -101,6 +101,7 @@ class HotelController extends Controller {
     {
         if(!$request->has('id'))
         {
+            // create new hotel
             $hotel = Hotel::create([
                 'name_170'                                      => $request->input('name'),
                 'slug_170'                                      => $request->input('slug'),
@@ -168,6 +169,7 @@ class HotelController extends Controller {
         }
         else
         {
+            // create hotel language
             $id = $request->input('id');
         }
 
@@ -325,23 +327,23 @@ class HotelController extends Controller {
         ]);
     }
 
-    public function deleteCustomRecord($object)
+    public function deleteCustomRecord($request, $object)
     {
         // delete all attachments
-        AttachmentLibrary::deleteAttachment('hotels', 'hotels-hotel', $object->id_170);
+        AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_170);
     }
 
-    public function deleteCustomTranslationRecord($object)
+    public function deleteCustomTranslationRecord($request, $object)
     {
         // delete all attachments from lang object
-        AttachmentLibrary::deleteAttachment('hotels', 'hotels-hotel', $object->id_171, $object->lang_171);
+        AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_171, $object->lang_171);
     }
 
-    public function deleteCustomRecords($ids)
+    public function deleteCustomRecords($request, $ids)
     {
         foreach($ids as $id)
         {
-            AttachmentLibrary::deleteAttachment('hotels', 'hotels-hotel', $id);
+            AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $id);
         }
     }
 
