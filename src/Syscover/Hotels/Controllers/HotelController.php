@@ -11,8 +11,7 @@
  */
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Http\Request;
 use Syscover\Hotels\Models\Decoration;
 use Syscover\Hotels\Models\Environment;
 use Syscover\Hotels\Models\Publication;
@@ -83,15 +82,15 @@ class HotelController extends Controller {
         return $parameters;
     }
 
-    public function checkSpecialRulesToStore($parameters)
+    public function checkSpecialRulesToStore($request, $parameters)
     {
         if(isset($parameters['id']))
         {
             $hotel = Hotel::find($parameters['id']);
 
-            $parameters['specialRules']['emailRule']    = Request::input('email') == $hotel->email_170? true : false;
-            $parameters['specialRules']['userRule']     = Request::input('user') == $hotel->user_170? true : false;
-            $parameters['specialRules']['passRule']     = Request::input('password') == ""? true : false;
+            $parameters['specialRules']['emailRule']    = $request->input('email') == $hotel->email_170? true : false;
+            $parameters['specialRules']['userRule']     = $request->input('user') == $hotel->user_170? true : false;
+            $parameters['specialRules']['passRule']     = $request->input('password') == ""? true : false;
         }
 
         return $parameters;
@@ -347,32 +346,11 @@ class HotelController extends Controller {
         }
     }
 
-    public function apiCheckSlug(HttpRequest $request)
+    public function apiCheckSlug(Request $request)
     {
-        $slug = $request->input('slug');
-        $query = Hotel::where('slug_170', $slug)->newQuery();
-
-        if($request->input('id'))
-        {
-            $query->whereNotIn('id_170', [$request->input('id')]);
-        }
-
-        $nObjects = $query->count();
-
-        if($nObjects > 0)
-        {
-            $sufix = 0;
-            while($nObjects > 0)
-            {
-                $sufix++;
-                $slug = $request->input('slug') . '-' . $sufix;
-                $nObjects = Hotel::where('slug_170', $slug)->count();
-            }
-        }
-
         return response()->json([
             'status'    => 'success',
-            'slug'      => $slug
+            'slug'      => Hotel::checkSlug('slug_170', $request->input('slug'), $request->input('id'))
         ]);
     }
 }

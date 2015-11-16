@@ -77,6 +77,7 @@
         'resource'          => 'hotels-hotel',
         'routesConfigFile'  => 'hotels',
         'objectId'          => $object->id_170])
+    @include('pulsar::includes.js.check_slug', ['route' => 'apiCheckSlugHotel'])
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -179,25 +180,6 @@
             $('.tabbable li:eq(3) a').tab('show');
             @endif
         });
-
-        $.checkSlug = function() {
-            $.ajax({
-                dataType:   'json',
-                type:       'POST',
-                url:        '{{ route('apiCheckSlugHotel') }}',
-                data:       {
-                    slug:   $('[name=slug]').val(),
-                    id:     $('[name=id]').val()
-                },
-                headers:  {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                success:  function(data)
-                {
-                    $("[name=slug]").val(data.slug);
-                }
-            });
-        }
     </script>
     @include('pulsar::includes.js.delete_translation_record')
 @stop
