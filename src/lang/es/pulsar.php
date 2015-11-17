@@ -35,6 +35,8 @@ return [
     'construction'                          => 'Construcción',
     'cuisine'                               => 'Cocina',
     'restaurant'                            => 'Restaurante',
+    'selected_services'                     => 'Servicios seleccionados',
+    'services_list'                         => 'Lista de servicios',
     'special_dish'                          => 'Plato estrella',
     'terrace'                               => 'Terraza',
     'open_public'                           => 'Abierto al público',

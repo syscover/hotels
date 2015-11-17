@@ -35,6 +35,8 @@ return [
     'construction'                          => 'Construction',
     'cuisine'                               => 'Cuisine',
     'restaurant'                            => 'Restaurant',
+    'selected_services'                     => 'Selected services',
+    'services_list'                         => 'Services list',
     'special_dish'                          => 'Special Dish',
     'terrace'                               => 'Terrace',
     'open_public'                           => 'Open to public',

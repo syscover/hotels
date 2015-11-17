@@ -2,7 +2,8 @@
         ['id' => 'box_tab1', 'name' => trans_choice('hotels::pulsar.hotel', 1)],
         ['id' => 'box_tab2', 'name' => trans_choice('pulsar::pulsar.description', 2)],
         ['id' => 'box_tab3', 'name' => trans('hotels::pulsar.billing_data')],
-        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.attachment', 2)]
+        ['id' => 'box_tab4', 'name' => trans_choice('pulsar::pulsar.attachment', 2)],
+        ['id' => 'box_tab5', 'name' => trans_choice('market::pulsar.product', 2)],
     ]])
 
 @section('css')
@@ -69,6 +70,7 @@
     <!-- /Froala -->
 
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/mappoint/js/jquery.mappoint.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/plugins/bootstrap-switch/bootstrap-switch.min.js') }}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ config('api.googleMapsApiKey') }}&libraries=places"></script>
 
     <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/attachment/js/attachment-library.js') }}"></script>
@@ -173,9 +175,44 @@
             $('.tabbable li:eq(2) a').tab('show');
             @elseif($tab == 3)
             $('.tabbable li:eq(3) a').tab('show');
+            @elseif($tab == 4)
+            $('.tabbable li:eq(4) a').tab('show');
             @endif
         });
     </script>
+    <style>
+        .card{
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius:2px;
+            padding: 30px;
+            width: calc(100% - 30px);
+            margin:0 15px;
+            margin-bottom: 30px;
+        }
+        .card .card-image{
+            max-height: 200px;
+        }
+        .card .card-toggle > *{
+            float: right;
+        }
+        .card .card-title h4{
+            margin:0;
+            padding-bottom: 20px;
+        }
+        .card .card-description textarea{
+            width:100%;
+        }
+        .content-product{
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        @media(max-height: 991px){
+            .card .card-toggle{
+                float: left;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
 @stop
 
 @section('layoutTabHeader')
@@ -225,7 +262,7 @@
     </div>
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('hotels::pulsar.service', 2), 'icon' => 'fa fa-star'])
-    @include('pulsar::includes.html.form_dual_list_group', ['name' => 'services', 'value' => Input::old('countries'), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'idList1' => 1, 'idList2' => 2, 'required' => true])
+    @include('pulsar::includes.html.form_dual_list_group', ['name' => 'services', 'value' => Input::old('countries'), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'idList1' => 1, 'idList2' => 2, 'labelList1' => trans('hotels::pulsar.services_list'), 'labelList2' => trans('hotels::pulsar.selected_services'), 'required' => true])
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.feature', 2), 'icon' => 'fa fa-bookmark'])
     <div class="row">
@@ -330,6 +367,39 @@
     @include('pulsar::includes.html.attachment', [
         'action'            => 'create',
         'routesConfigFile'  => 'hotels'])
+@stop
+
+@section('box_tab5')
+        <div class="row content-product">
+            <!-- list products -->
+            @foreach($products as $product)
+                <div class="col-md-12 card">
+                    <div class="row">
+                        <div class="col-md-3 card-image">
+                            <img src="{{ asset(config('market.attachmentFolder') . '/' . $product->id_111 . '/' . $product->lang_112 . '/' ) }}">
+                        </div>
+                        <div class="col-md-9 card-body">
+                            <div class="row">
+                                <div class="col-md-9 card-title">
+                                    <h4>{{ $product->name_112 }}</h4>
+                                </div>
+                                <div class="col-md-3 card-toggle">
+                                    <div class="make-switch" data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-times'></i>">
+                                        <input type="checkbox" class="toggle" name="p{{ $product->id_111 }}" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 card-description">
+                                    <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            <!-- /list products -->
+        </div>
 @stop
 
 @section('endBody')

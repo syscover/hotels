@@ -17,6 +17,7 @@ use Syscover\Hotels\Models\Environment;
 use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
 use Syscover\Hotels\Models\Service;
+use Syscover\Market\Models\Product;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
 use Syscover\Pulsar\Models\AttachmentFamily;
@@ -41,15 +42,15 @@ class HotelController extends Controller {
     public function indexCustom($parameters)
     {
         $parameters['urlParameters']['lang']    = session('baseLang');
-        // init record on tap 3
-        $parameters['urlParameters']['tab']     = 3;
+        // init record on tap 4
+        $parameters['urlParameters']['tab']     = 4;
 
         return $parameters;
     }
 
     public function customActionUrlParameters($actionUrlParameters, $parameters)
     {
-        $actionUrlParameters['tab'] = 3;
+        $actionUrlParameters['tab'] = 4;
 
         return $actionUrlParameters;
     }
@@ -69,6 +70,8 @@ class HotelController extends Controller {
         ];
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters['attachmentsInput']     = json_encode([]);
+        $parameters['products']             = Product::getRecords(['active_111' => true]);
+
 
         if(isset($parameters['id']))
         {

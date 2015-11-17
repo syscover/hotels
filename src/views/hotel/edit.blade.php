@@ -231,7 +231,7 @@
     </div>
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('hotels::pulsar.service', 2), 'icon' => 'fa fa-star'])
-    @include('pulsar::includes.html.form_dual_list_group', ['name' => 'services', 'value' => Input::old('countries'), 'objectsSelect' => $object->services->where('lang_153', $lang->id_001), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'idList1' => 1, 'idList2' => 2, 'required' => true])
+    @include('pulsar::includes.html.form_dual_list_group', ['name' => 'services', 'value' => Input::old('countries'), 'objectsSelect' => $object->services->where('lang_153', $lang->id_001), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'idList1' => 1, 'idList2' => 2, 'labelList1' => trans('hotels::pulsar.services_list'), 'labelList2' => trans('hotels::pulsar.selected_services'), 'required' => true])
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.feature', 2), 'icon' => 'fa fa-bookmark'])
     <div class="row">
