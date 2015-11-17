@@ -166,6 +166,22 @@
                 $.checkSlug();
             });
 
+            // save id product to save it after
+            $(".product-toggle").on('change', function() {
+                var products = JSON.parse($('[name=products]').val());
+                if($(this).is(':checked'))
+                {
+                    products.push($(this).val());
+                }
+                else
+                {
+                    var i = products.indexOf($(this).val());
+                    if(i != -1)
+                        products.splice(i, 1);
+                }
+                $('[name=products]').val(JSON.stringify(products));
+            });
+
             // set tab active
             @if($tab == 0)
             $('.tabbable li:eq(0) a').tab('show');
@@ -370,36 +386,39 @@
 @stop
 
 @section('box_tab5')
-        <div class="row content-product">
-            <!-- list products -->
-            @foreach($products as $product)
-                <div class="col-md-12 card">
-                    <div class="row">
-                        <div class="col-md-3 card-image">
-                            <img src="{{ asset(config('market.attachmentFolder') . '/' . $product->id_111 . '/' . $product->lang_112 . '/' ) }}">
-                        </div>
-                        <div class="col-md-9 card-body">
-                            <div class="row">
-                                <div class="col-md-9 card-title">
-                                    <h4>{{ $product->name_112 }}</h4>
-                                </div>
-                                <div class="col-md-3 card-toggle">
-                                    <div class="make-switch" data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-times'></i>">
-                                        <input type="checkbox" class="toggle" name="p{{ $product->id_111 }}" value="1">
-                                    </div>
+    <div class="row content-product">
+        <!-- list products -->
+        @foreach($products as $product)
+            <div class="col-md-12 card">
+                <div class="row">
+                    <div class="col-md-3 card-image">
+                        @if(isset($attachmentsProducts[$product->id_111]))
+                            <img src="{{ asset(config('market.attachmentFolder') . '/' . $product->id_111 . '/' . $product->lang_112 . '/' . $attachmentsProducts[$product->id_111]->file_name_016) }}">
+                        @endif
+                    </div>
+                    <div class="col-md-9 card-body">
+                        <div class="row">
+                            <div class="col-md-9 card-title">
+                                <h4>{{ $product->name_112 }}</h4>
+                            </div>
+                            <div class="col-md-3 card-toggle">
+                                <div class="make-switch" data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-times'></i>">
+                                    <input type="checkbox" class="toggle product-toggle" name="" value="{{ $product->id_111 }}">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12 card-description">
-                                    <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control"></textarea>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 card-description">
+                                <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control" name="d{{ $product->id_111 }}">{{ Input::old('d' . $product->id_111) }}</textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-            @endforeach
-            <!-- /list products -->
-        </div>
+            </div>
+        @endforeach
+        <!-- /list products -->
+    </div>
+    @include('pulsar::includes.html.form_hidden', ['name' => 'products', 'value' => '[]'])
 @stop
 
 @section('endBody')

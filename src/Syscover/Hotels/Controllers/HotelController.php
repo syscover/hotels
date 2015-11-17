@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Syscover\Hotels\Models\Decoration;
 use Syscover\Hotels\Models\Environment;
+use Syscover\Hotels\Models\HotelProduct;
 use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
 use Syscover\Hotels\Models\Service;
@@ -73,6 +74,8 @@ class HotelController extends Controller {
         $parameters['attachmentsInput']     = json_encode([]);
         $parameters['products']             = Product::getRecords(['active_111' => true]);
 
+        // TODO: especificar que familia de attachments coger
+        $parameters['attachmentsProducts']  = Attachment::getRecords(['lang_016' => $parameters['lang'], 'resource_016' => 'market-product'])->keyBy('object_016');
 
         if(isset($parameters['id']))
         {
@@ -194,9 +197,24 @@ class HotelController extends Controller {
             'description_171'               => $request->input('description')
         ]);
 
+        // set hotel products
+        $hotelProducts = [];
+        $products = json_decode($request->input('products'));
+        foreach($products as $product)
+        {
+            $hotelProducts[] = [
+                'hotel_177'         => $id,
+                'product_177'       => $product,
+                'lang_177'          => $request->input('lang'),
+                'description_177'   => $request->input('d' . $product)
+            ];
+        }
+
+        if(count($hotelProducts) > 0)
+            HotelProduct::insert($hotelProducts);
+
         // set attachments
         $attachments = json_decode($request->input('attachments'));
-
         AttachmentLibrary::storeAttachments($attachments, 'hotels', 'hotels-hotel', $id, $request->input('lang'));
     }
 
