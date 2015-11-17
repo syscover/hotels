@@ -20,6 +20,7 @@ use Syscover\Hotels\Models\Service;
 use Syscover\Market\Models\Product;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
+use Syscover\Pulsar\Models\Attachment;
 use Syscover\Pulsar\Models\AttachmentFamily;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Hotel;
@@ -76,7 +77,7 @@ class HotelController extends Controller {
         if(isset($parameters['id']))
         {
             // get attachments from base lang
-            $attachments = AttachmentLibrary::getAttachments($this->package, 'hotels-hotel', $parameters['id'], session('baseLang')->id_001, true);
+            $attachments = AttachmentLibrary::getRecords($this->package, 'hotels-hotel', $parameters['id'], session('baseLang')->id_001, true);
 
             // merge parameters and attachments array
             $parameters  = array_merge($parameters, $attachments);
@@ -214,7 +215,7 @@ class HotelController extends Controller {
         ];
 
         // get attachments elements
-        $attachments = AttachmentLibrary::getAttachments('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
+        $attachments = AttachmentLibrary::getRecords('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
 
         // merge parameters and attachments array
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
