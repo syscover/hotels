@@ -29,4 +29,15 @@ class HotelProduct extends Model {
     {
         return Validator::make($data, static::$rules);
 	}
+
+    public static function getRecords($parameters)
+    {
+        $query = HotelProduct::join('001_001_lang', '007_177_hotels_products.lang_177', '=', '001_001_lang.id_001')
+            ->newQuery();
+
+        if(isset($parameters['hotel_177'])) $query->where('hotel_177', $parameters['hotel_177']);
+        if(isset($parameters['lang_177'])) $query->where('lang_177', $parameters['lang_177']);
+
+        return $query->get();
+    }
 }

@@ -371,13 +371,13 @@
                             </div>
                             <div class="col-md-3 card-toggle">
                                 <div class="make-switch" data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-times'></i>">
-                                    <input type="checkbox" class="toggle product-toggle" name="p{{ $product->id_111 }}" value="{{ $product->id_111 }}" {{ Input::old('p' . $product->id_111)? 'checked' : null }}>
+                                    <input type="checkbox" class="toggle product-toggle" name="p{{ $product->id_111 }}" value="{{ $product->id_111 }}" {{ Input::old('p' . $product->id_111) || isset($hotelProducts[$product->id_111])? 'checked' : null }}>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 card-description">
-                                <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control" name="d{{ $product->id_111 }}">{{ Input::old('d' . $product->id_111) }}</textarea>
+                                <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control" name="d{{ $product->id_111 }}">{{ Input::old('d' . $product->id_111, isset($hotelProducts[$product->id_111])? $hotelProducts[$product->id_111]->description_177 : null) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -386,7 +386,7 @@
         @endforeach
         <!-- /list products -->
     </div>
-    @include('pulsar::includes.html.form_hidden', ['name' => 'products', 'value' => '[]'])
+    @include('pulsar::includes.html.form_hidden', ['name' => 'products', 'value' => $hotelProductsIds])
 @stop
 
 @section('endBody')

@@ -72,8 +72,10 @@ class HotelController extends Controller {
         ];
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters['attachmentsInput']     = json_encode([]);
+        $parameters['hotelProductsIds']     = json_encode([]);
 
         $parameters['products']             = Product::getRecords(['active_111' => true, 'lang_112' => $parameters['lang']]);
+
         // TODO: especificar que familia de attachments coger
         $parameters['attachmentsProducts']  = Attachment::getRecords(['lang_016' => $parameters['lang'], 'resource_016' => 'market-product'])->keyBy('object_016');
 
@@ -84,6 +86,10 @@ class HotelController extends Controller {
 
             // merge parameters and attachments array
             $parameters  = array_merge($parameters, $attachments);
+
+            // get hotel products
+            $parameters['hotelProducts']        = HotelProduct::getRecords(['hotel_177' => $parameters['id'], 'lang_177' => session('baseLang')->id_001])->keyBy('product_177');
+            $parameters['hotelProductsIds']     = json_encode($parameters['hotelProducts']->keys()->map(function($item, $key) { return strval($item); }));
         }
 
         return $parameters;
@@ -245,8 +251,7 @@ class HotelController extends Controller {
 
         // get hotel products
         $parameters['hotelProducts']        = $parameters['object']->hotelProducts->keyBy('product_177');
-
-        $parameters['productsId']           = json_encode(array_map('strval', $parameters['hotelProducts']->keys()->toArray()));
+        $parameters['hotelProductsIds']     = json_encode($parameters['hotelProducts']->keys()->map(function($item, $key) { return strval($item); }));
 
         return $parameters;
     }

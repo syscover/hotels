@@ -392,7 +392,7 @@
         @endforeach
         <!-- /list products -->
     </div>
-    @include('pulsar::includes.html.form_hidden', ['name' => 'products', 'value' => $productsId])
+    @include('pulsar::includes.html.form_hidden', ['name' => 'products', 'value' => $hotelProductsIds])
 @stop
 
 @section('endBody')
