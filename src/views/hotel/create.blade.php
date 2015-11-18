@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/cropper/cropper.css') }}">
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/libs/filedrop/filedrop.css') }}">
     <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/getfile/css/getfile.css') }}">
+    <link rel="stylesheet" href="{{ asset('packages/syscover/pulsar/vendor/select-listdescription/select-listdescription.css') }}">
 @stop
 
 @section('script')
@@ -196,39 +197,6 @@
             @endif
         });
     </script>
-    <style>
-        .card{
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius:2px;
-            padding: 30px;
-            width: calc(100% - 30px);
-            margin:0 15px;
-            margin-bottom: 30px;
-        }
-        .card .card-image{
-            max-height: 200px;
-        }
-        .card .card-toggle > *{
-            float: right;
-        }
-        .card .card-title h4{
-            margin:0;
-            padding-bottom: 20px;
-        }
-        .card .card-description textarea{
-            width:100%;
-        }
-        .content-product{
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-        @media(max-height: 991px){
-            .card .card-toggle{
-                float: left;
-                margin-bottom: 20px;
-            }
-        }
-    </style>
 @stop
 
 @section('layoutTabHeader')
@@ -403,7 +371,7 @@
                             </div>
                             <div class="col-md-3 card-toggle">
                                 <div class="make-switch" data-on-label="<i class='fa fa-check'></i>" data-off-label="<i class='fa fa-times'></i>">
-                                    <input type="checkbox" class="toggle product-toggle" name="" value="{{ $product->id_111 }}">
+                                    <input type="checkbox" class="toggle product-toggle" name="p{{ $product->id_111 }}" value="{{ $product->id_111 }}" {{ Input::old('p' . $product->id_111)? 'checked' : null }}>
                                 </div>
                             </div>
                         </div>

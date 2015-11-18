@@ -54,6 +54,12 @@ class Hotel extends Model {
         return $this->belongsToMany('Syscover\Hotels\Models\Service', '007_176_hotels_services', 'hotel_176', 'service_176');
     }
 
+    public function hotelProducts()
+    {
+        return $this->hasMany('Syscover\Hotels\Models\HotelProduct', 'hotel_177')
+            ->where('007_177_hotels_products.lang_177', $this->lang_171);
+    }
+
     public function products()
     {
         return $this->belongsToMany('Syscover\Market\Models\Product', '007_177_hotels_products', 'hotel_177', 'product_177');

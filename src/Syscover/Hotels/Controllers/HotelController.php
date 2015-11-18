@@ -72,8 +72,8 @@ class HotelController extends Controller {
         ];
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters['attachmentsInput']     = json_encode([]);
-        $parameters['products']             = Product::getRecords(['active_111' => true]);
 
+        $parameters['products']             = Product::getRecords(['active_111' => true, 'lang_112' => $parameters['lang']]);
         // TODO: especificar que familia de attachments coger
         $parameters['attachmentsProducts']  = Attachment::getRecords(['lang_016' => $parameters['lang'], 'resource_016' => 'market-product'])->keyBy('object_016');
 
@@ -235,9 +235,18 @@ class HotelController extends Controller {
         // get attachments elements
         $attachments = AttachmentLibrary::getRecords('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
 
+        $parameters['products']             = Product::getRecords(['active_111' => true, 'lang_112' => $parameters['lang']->id_001]);
+        // TODO: especificar que familia de attachments coger
+        $parameters['attachmentsProducts']  = Attachment::getRecords(['lang_016' => $parameters['lang']->id_001, 'resource_016' => 'market-product'])->keyBy('object_016');
+
         // merge parameters and attachments array
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters                         = array_merge($parameters, $attachments);
+
+        // get hotel products
+        $parameters['hotelProducts']        = $parameters['object']->hotelProducts->keyBy('product_177');
+
+        $parameters['productsId']           = json_encode(array_map('strval', $parameters['hotelProducts']->keys()->toArray()));
 
         return $parameters;
     }
@@ -346,6 +355,23 @@ class HotelController extends Controller {
             'description_title_171'         => $request->input('descriptionTitle'),
             'description_171'               => $request->input('description')
         ]);
+
+        // set hotel products
+        HotelProduct::where('hotel_177', $parameters['id'])->where('lang_177', $request->input('lang'))->delete();
+        $hotelProducts = [];
+        $products = json_decode($request->input('products'));
+        foreach($products as $product)
+        {
+            $hotelProducts[] = [
+                'hotel_177'         => $parameters['id'],
+                'product_177'       => $product,
+                'lang_177'          => $request->input('lang'),
+                'description_177'   => $request->input('d' . $product)
+            ];
+        }
+
+        if(count($hotelProducts) > 0)
+            HotelProduct::insert($hotelProducts);
     }
 
     public function deleteCustomRecord($request, $object)
