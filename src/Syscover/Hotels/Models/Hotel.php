@@ -65,7 +65,7 @@ class Hotel extends Model {
         return $this->belongsToMany('Syscover\Market\Models\Product', '007_177_hotels_products', 'hotel_177', 'product_177');
     }
 
-    public static function getCustomRecordsLimit($parameters)
+    public static function addToGetRecordsLimit($parameters)
     {
         $query =  Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')

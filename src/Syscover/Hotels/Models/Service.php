@@ -37,7 +37,7 @@ class Service extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_153');
     }
 
-    public static function getCustomRecordsLimit($parameters)
+    public static function addToGetRecordsLimit($parameters)
     {
         $query =  Service::join('001_001_lang', '007_153_service.lang_153', '=', '001_001_lang.id_001')->newQuery();
 

@@ -37,7 +37,7 @@ class Environment extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_150');
     }
 
-    public static function getCustomRecordsLimit($parameters)
+    public static function addToGetRecordsLimit($parameters)
     {
         $query =  Environment::join('001_001_lang', '007_150_environment.lang_150', '=', '001_001_lang.id_001')->newQuery();
 

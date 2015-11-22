@@ -37,7 +37,7 @@ class Relationship extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_152');
     }
 
-    public static function getCustomRecordsLimit($parameters)
+    public static function addToGetRecordsLimit($parameters)
     {
         $query =  Relationship::join('001_001_lang', '007_152_relationship.lang_152', '=', '001_001_lang.id_001')->newQuery();
 
