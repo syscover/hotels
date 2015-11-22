@@ -81,7 +81,7 @@ class Hotel extends Model {
         return $query;
     }
 
-    public static function getCustomTranslationRecord($parameters)
+    public static function getTranslationRecord($parameters)
     {
         return Hotel::join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
             ->join('001_001_lang', '007_171_hotel_lang.lang_171', '=', '001_001_lang.id_001')
