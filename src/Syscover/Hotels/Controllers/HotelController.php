@@ -387,7 +387,7 @@ class HotelController extends Controller {
         AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_170);
     }
 
-    public function deleteCustomTranslationRecord($request, $object)
+    public function addToDeleteTranslationRecord($request, $object)
     {
         // delete all attachments from lang object
         AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_171, $object->lang_171);
