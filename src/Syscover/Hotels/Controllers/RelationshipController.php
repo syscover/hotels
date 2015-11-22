@@ -10,7 +10,6 @@
  * @filesource
  */
 
-use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Relationship;
@@ -38,28 +37,30 @@ class RelationshipController extends Controller {
     public function storeCustomRecord($request, $parameters)
     {
         // check if there is id
-        if(Request::has('id'))
+        if($request->has('id'))
         {
-            $id = Request::get('id');
+            $id     = $request->input('id');
+            $idLang = $id;
         }
         else
         {
             $id = Relationship::max('id_152');
             $id++;
+            $idLang = null;
         }
 
         Relationship::create([
             'id_152'        => $id,
-            'lang_152'      => Request::input('lang'),
-            'name_152'      => Request::input('name'),
-            'data_lang_152' => Relationship::addLangDataRecord($id, Request::input('lang'))
+            'lang_152'      => $request->input('lang'),
+            'name_152'      => $request->input('name'),
+            'data_lang_152' => Relationship::addLangDataRecord($request->input('lang'), $idLang)
         ]);
     }
 
     public function updateCustomRecord($request, $parameters)
     {
-        Relationship::where('id_152', $parameters['id'])->where('lang_152', Request::input('lang'))->update([
-            'name_152'  => Request::input('name')
+        Relationship::where('id_152', $parameters['id'])->where('lang_152', $request->input('lang'))->update([
+            'name_152'  => $request->input('name')
         ]);
     }
 }

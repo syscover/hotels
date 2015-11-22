@@ -10,7 +10,6 @@
  * @filesource
  */
 
-use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Publication;
@@ -31,14 +30,14 @@ class PublicationController extends Controller {
     public function storeCustomRecord($request, $parameters)
     {
         Publication::create([
-            'name_174'      => Request::input('name')
+            'name_174'      => $request->input('name')
         ]);
     }
 
     public function updateCustomRecord($request, $parameters)
     {
         Publication::where('id_174', $parameters['id'])->update([
-            'name_174'      => Request::input('name')
+            'name_174'      => $request->input('name')
         ]);
     }
 }

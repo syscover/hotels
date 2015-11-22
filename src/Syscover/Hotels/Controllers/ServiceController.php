@@ -10,7 +10,6 @@
  * @filesource
  */
 
-use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Service;
@@ -38,30 +37,32 @@ class ServiceController extends Controller {
     public function storeCustomRecord($request, $parameters)
     {
         // check if there is id
-        if(Request::has('id'))
+        if($request->has('id'))
         {
-            $id = Request::get('id');
+            $id     = $request->input('id');
+            $idLang = $id;
         }
         else
         {
             $id = Service::max('id_153');
             $id++;
+            $idLang = null;
         }
 
         Service::create([
             'id_153'        => $id,
-            'lang_153'      => Request::input('lang'),
-            'name_153'      => Request::input('name'),
-            'icon_153'      => Request::input('icon'),
-            'data_lang_153' => Service::addLangDataRecord($id, Request::input('lang'))
+            'lang_153'      => $request->input('lang'),
+            'name_153'      => $request->input('name'),
+            'icon_153'      => $request->input('icon'),
+            'data_lang_153' => Service::addLangDataRecord($request->input('lang'), $idLang)
         ]);
     }
 
     public function updateCustomRecord($request, $parameters)
     {
-        Service::where('id_153', $parameters['id'])->where('lang_153', Request::input('lang'))->update([
-            'name_153'  => Request::input('name'),
-            'icon_153'  => Request::input('icon')
+        Service::where('id_153', $parameters['id'])->where('lang_153', $request->input('lang'))->update([
+            'name_153'  => $request->input('name'),
+            'icon_153'  => $request->input('icon')
         ]);
     }
 }

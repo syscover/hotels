@@ -169,7 +169,8 @@ class HotelController extends Controller {
                 'billing_bic_170'                               => $request->input('billingBic')
             ]);
 
-            $id = $hotel->id_170;
+            $id     = $hotel->id_170;
+            $idLang = null;
 
             // publications
             if(is_array($request->input('published')))
@@ -182,11 +183,12 @@ class HotelController extends Controller {
         else
         {
             // create hotel language
-            $id = $request->input('id');
+            $id     = $request->input('id');
+            $idLang = $id;
         }
 
         Hotel::where('id_170', $id)->update([
-            'data_lang_170'                 => Hotel::addLangDataRecord($id, $request->input('lang'))
+            'data_lang_170'                 => Hotel::addLangDataRecord($request->input('lang'), $idLang)
         ]);
 
         HotelLang::create([

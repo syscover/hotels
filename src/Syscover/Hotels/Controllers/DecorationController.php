@@ -10,7 +10,6 @@
  * @filesource
  */
 
-use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Decoration;
@@ -40,19 +39,21 @@ class DecorationController extends Controller {
         // check if there is id
         if($request->has('id'))
         {
-            $id = $request->get('id');
+            $id = $request->input('id');
+            $idLang = $id;
         }
         else
         {
             $id = Decoration::max('id_151');
             $id++;
+            $idLang = null;
         }
 
         Decoration::create([
             'id_151'        => $id,
             'lang_151'      => $request->input('lang'),
             'name_151'      => $request->input('name'),
-            'data_lang_151' => Decoration::addLangDataRecord($id, $request->input('lang'))
+            'data_lang_151' => Decoration::addLangDataRecord($request->input('lang'), $idLang)
         ]);
     }
 

@@ -10,7 +10,6 @@
  * @filesource
  */
 
-use Illuminate\Support\Facades\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Environment;
@@ -38,28 +37,30 @@ class EnvironmentController extends Controller {
     public function storeCustomRecord($request, $parameters)
     {
         // check if there is id
-        if(Request::has('id'))
+        if($request->has('id'))
         {
-            $id = Request::get('id');
+            $id     = $request->input('id');
+            $idLang = $id;
         }
         else
         {
             $id = Environment::max('id_150');
             $id++;
+            $idLang = null;
         }
 
         Environment::create([
             'id_150'        => $id,
-            'lang_150'      => Request::input('lang'),
-            'name_150'      => Request::input('name'),
-            'data_lang_150' => Environment::addLangDataRecord($id, Request::input('lang'))
+            'lang_150'      => $request->input('lang'),
+            'name_150'      => $request->input('name'),
+            'data_lang_150' => Environment::addLangDataRecord($request->input('lang'), $idLang)
         ]);
     }
 
     public function updateCustomRecord($request, $parameters)
     {
-        Environment::where('id_150', $parameters['id'])->where('lang_150', Request::input('lang'))->update([
-            'name_150'  => Request::input('name')
+        Environment::where('id_150', $parameters['id'])->where('lang_150', $request->input('lang'))->update([
+            'name_150'  => $request->input('name')
         ]);
     }
 }
