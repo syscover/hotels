@@ -39,7 +39,8 @@ class Decoration extends Model {
 
     public static function addToGetRecordsLimit($parameters)
     {
-        $query =  Decoration::join('001_001_lang', '007_151_decoration.lang_151', '=', '001_001_lang.id_001')->newQuery();
+        $query =  Decoration::join('001_001_lang', '007_151_decoration.lang_151', '=', '001_001_lang.id_001')
+            ->newQuery();
 
         if(isset($parameters['lang'])) $query->where('lang_151', $parameters['lang']);
 

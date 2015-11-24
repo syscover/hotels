@@ -393,7 +393,7 @@ class HotelController extends Controller {
         AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_171, $object->lang_171);
     }
 
-    public function deleteCustomRecords($request, $ids)
+    public function addToDeleteRecordsSelect($request, $ids)
     {
         foreach($ids as $id)
         {
