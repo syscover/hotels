@@ -381,7 +381,7 @@ class HotelController extends Controller {
             HotelProduct::insert($hotelProducts);
     }
 
-    public function deleteCustomRecord($request, $object)
+    public function addToDeleteRecord($request, $object)
     {
         // delete all attachments
         AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_170);
