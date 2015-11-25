@@ -22,7 +22,7 @@ class HotelsCreateTableEnvironment extends Migration {
             $table->text('data_150')->nullable();
 
             $table->primary(['id_150', 'lang_150']);
-            $table->foreign('lang_150')->references('id_001')->on('001_001_lang')
+            $table->foreign('lang_150', 'fk01_007_150_environment')->references('id_001')->on('001_001_lang')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
 	}

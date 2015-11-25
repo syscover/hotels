@@ -23,7 +23,7 @@ class HotelsCreateTableService extends Migration {
             $table->text('data_153')->nullable();
 
             $table->primary(['id_153', 'lang_153']);
-            $table->foreign('lang_153')->references('id_001')->on('001_001_lang')
+            $table->foreign('lang_153', 'fk01_007_153_service')->references('id_001')->on('001_001_lang')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
 	}

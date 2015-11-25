@@ -93,21 +93,21 @@ class HotelsCreateTableHotel extends Migration {
             // INDEX
             $table->index('slug_170');
 
-            $table->foreign('country_170')->references('id_002')->on('001_002_country')
+            $table->foreign('country_170', 'fk01_007_170_hotel')->references('id_002')->on('001_002_country')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('territorial_area_1_170')->references('id_003')->on('001_003_territorial_area_1')
+            $table->foreign('territorial_area_1_170', 'fk02_007_170_hotel')->references('id_003')->on('001_003_territorial_area_1')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('territorial_area_2_170')->references('id_004')->on('001_004_territorial_area_2')
+            $table->foreign('territorial_area_2_170', 'fk03_007_170_hotel')->references('id_004')->on('001_004_territorial_area_2')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('territorial_area_3_170')->references('id_005')->on('001_005_territorial_area_3')
+            $table->foreign('territorial_area_3_170', 'fk04_007_170_hotel')->references('id_005')->on('001_005_territorial_area_3')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('billing_country_170')->references('id_002')->on('001_002_country')
+            $table->foreign('billing_country_170', 'fk05_007_170_hotel')->references('id_002')->on('001_002_country')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('billing_territorial_area_1_170')->references('id_003')->on('001_003_territorial_area_1')
+            $table->foreign('billing_territorial_area_1_170', 'fk06_007_170_hotel')->references('id_003')->on('001_003_territorial_area_1')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('billing_territorial_area_2_170')->references('id_004')->on('001_004_territorial_area_2')
+            $table->foreign('billing_territorial_area_2_170', 'fk07_007_170_hotel')->references('id_004')->on('001_004_territorial_area_2')
                 ->onDelete('restrict')->onUpdate('cascade');
-            $table->foreign('billing_territorial_area_3_170')->references('id_005')->on('001_005_territorial_area_3')
+            $table->foreign('billing_territorial_area_3_170', 'fk08_007_170_hotel')->references('id_005')->on('001_005_territorial_area_3')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
 	}

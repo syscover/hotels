@@ -22,7 +22,7 @@ class HotelsCreateTableRelationship extends Migration {
             $table->text('data_152')->nullable();
 
             $table->primary(['id_152', 'lang_152']);
-            $table->foreign('lang_152')->references('id_001')->on('001_001_lang')
+            $table->foreign('lang_152', 'fk01_007_152_relationship')->references('id_001')->on('001_001_lang')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
 	}
