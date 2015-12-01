@@ -20,7 +20,7 @@ class Decoration extends Model {
 
 	protected $table        = '007_151_decoration';
     protected $primaryKey   = 'id_151';
-    protected $sufix        = '151';
+    protected $suffix        = '151';
     public $timestamps      = false;
     protected $fillable     = ['id_151', 'lang_151', 'name_151', 'data_lang_151', 'data_151'];
     private static $rules   = [

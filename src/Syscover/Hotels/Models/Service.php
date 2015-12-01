@@ -20,7 +20,7 @@ class Service extends Model {
 
 	protected $table        = '007_153_service';
     protected $primaryKey   = 'id_153';
-    protected $sufix        = '153';
+    protected $suffix        = '153';
     public $timestamps      = false;
     protected $fillable     = ['id_153', 'lang_153', 'name_153', 'icon_153', 'data_lang_153', 'data_153'];
     private static $rules   = [

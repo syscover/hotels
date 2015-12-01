@@ -20,7 +20,7 @@ class Environment extends Model {
 
 	protected $table        = '007_150_environment';
     protected $primaryKey   = 'id_150';
-    protected $sufix        = '150';
+    protected $suffix        = '150';
     public $timestamps      = false;
     protected $fillable     = ['id_150', 'lang_150', 'name_150', 'data_lang_150', 'data_150'];
     private static $rules   = [

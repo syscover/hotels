@@ -20,7 +20,7 @@ class HotelProduct extends Model {
 
 	protected $table        = '007_177_hotels_products';
     protected $primaryKey   = 'hotel_177';
-    protected $sufix        = '177';
+    protected $suffix        = '177';
     public $timestamps      = false;
     protected $fillable     = ['hotel_177', 'product_177', 'lang_177', 'description_177'];
     private static $rules   = [];
