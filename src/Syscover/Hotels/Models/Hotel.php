@@ -46,6 +46,10 @@ class Hotel extends Model {
         return Validator::make($data, static::$rules);
 	}
 
+    /**
+     * @param   \Sofa\Eloquence\Builder     $query
+     * @return  mixed
+     */
     public function scopeBuilder($query)
     {
         return $query->join('007_171_hotel_lang', '007_170_hotel.id_170', '=', '007_171_hotel_lang.id_171')
@@ -67,6 +71,20 @@ class Hotel extends Model {
                 $join->on('007_170_hotel.relationship_170', '=', '007_152_relationship.id_152')
                     ->on('007_152_relationship.lang_152', '=', '007_171_hotel_lang.lang_171');
             });
+    }
+
+    /**
+     * @param   \Sofa\Eloquence\Builder   $query
+     * @param   array                     $publications
+     * @return  mixed
+     */
+    public function scopePublishedOn($query, $publications)
+    {
+        return $query->whereIn('id_170', function($query) use ($publications) {
+            $query->select('hotel_175')
+                ->from('007_175_hotels_publications')
+                ->whereIn('publication_175', $publications);
+        });
     }
 
     public function getLang()
