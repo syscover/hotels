@@ -28,7 +28,8 @@ class Hotel extends Model {
     protected $maps         = [];
     protected $relationMaps = [
         'lang'          => \Syscover\Pulsar\Models\Lang::class,
-        'hotel_lang'    => \Syscover\Hotels\Models\HotelLang::class
+        'hotel_lang'    => \Syscover\Hotels\Models\HotelLang::class,
+        'country'       => \Syscover\Pulsar\Models\Country::class
     ];
     private static $rules   = [
         'name'      => 'required|between:2,100',
