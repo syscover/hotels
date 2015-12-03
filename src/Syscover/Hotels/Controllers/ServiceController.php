@@ -1,18 +1,13 @@
 <?php namespace Syscover\Hotels\Controllers;
 
-/**
- * @package	    Hotels
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Service;
+
+/**
+ * Class ServiceController
+ * @package Syscover\Hotels\Controllers
+ */
 
 class ServiceController extends Controller {
 

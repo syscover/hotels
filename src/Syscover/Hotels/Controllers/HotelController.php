@@ -1,15 +1,5 @@
 <?php namespace Syscover\Hotels\Controllers;
 
-/**
- * @package	    Hotels
- * @author	    Jose Carlos Rodríguez Palacín
- * @copyright   Copyright (c) 2015, SYSCOVER, SL
- * @license
- * @link		http://www.syscover.com
- * @since		Version 2.0
- * @filesource
- */
-
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Syscover\Hotels\Models\Decoration;
@@ -26,6 +16,11 @@ use Syscover\Pulsar\Models\AttachmentFamily;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Hotel;
 use Syscover\Hotels\Models\HotelLang;
+
+/**
+ * Class HotelController
+ * @package Syscover\Hotels\Controllers
+ */
 
 class HotelController extends Controller {
 
