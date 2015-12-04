@@ -246,13 +246,13 @@
             @include('pulsar::includes.html.form_text_group', ['label' => trans('pulsar::pulsar.repeat_password'), 'type' => 'password' , 'name' => 'repassword', 'maxLength' => '50', 'rangeLength' => '4,50', 'fieldSize' => 8])
         </div>
         <div class="col-md-6">
-            @include('pulsar::includes.html.form_select_group', ['label' => trans('hotels::pulsar.published'), 'name' => 'published[]', 'value' => $object->publications, 'objects' => $publications, 'idSelect' => 'id_174', 'nameSelect' => 'name_174', 'multiple' => true, 'class' => 'select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
+            @include('pulsar::includes.html.form_select_group', ['label' => trans('hotels::pulsar.published'), 'name' => 'published[]', 'value' => $object->getPublications, 'objects' => $publications, 'idSelect' => 'id_174', 'nameSelect' => 'name_174', 'multiple' => true, 'class' => 'select2', 'data' => ['language' => config('app.locale'), 'width' => '100%', 'error-placement' => 'select2-section-outer-container']])
             @include('pulsar::includes.html.form_checkbox_group', ['label' => trans('pulsar::pulsar.active'), 'name' => 'active', 'value' => 1, 'checked' => $object->active_170])
         </div>
     </div>
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('hotels::pulsar.service', 2), 'icon' => 'fa fa-star'])
-    @include('pulsar::includes.html.form_dual_list_group', ['name' => 'services', 'value' => Input::old('countries'), 'objectsSelect' => $object->services->where('lang_153', $lang->id_001), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'idList1' => 1, 'idList2' => 2, 'labelList1' => trans('hotels::pulsar.services_list'), 'labelList2' => trans('hotels::pulsar.selected_services'), 'required' => true])
+    @include('pulsar::includes.html.form_dual_list_group', ['name' => 'services', 'value' => Input::old('countries'), 'objectsSelect' => $object->getServices->where('lang_153', $lang->id_001), 'objects' => $services, 'idSelect' => 'id_153', 'nameSelect' => 'name_153', 'idList1' => 1, 'idList2' => 2, 'labelList1' => trans('hotels::pulsar.services_list'), 'labelList2' => trans('hotels::pulsar.selected_services'), 'required' => true])
 
     @include('pulsar::includes.html.form_section_header', ['label' => trans_choice('pulsar::pulsar.feature', 2), 'icon' => 'fa fa-bookmark'])
     <div class="row">

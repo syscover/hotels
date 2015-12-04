@@ -169,11 +169,11 @@ class HotelController extends Controller {
 
             // publications
             if(is_array($request->input('published')))
-                $hotel->publications()->sync($request->input('published'));
+                $hotel->getPublications()->sync($request->input('published'));
 
             // services
             if(is_array($request->input('services')))
-                $hotel->services()->sync($request->input('services'));
+                $hotel->getServices()->sync($request->input('services'));
         }
         else
         {
@@ -247,7 +247,7 @@ class HotelController extends Controller {
         $parameters                         = array_merge($parameters, $attachments);
 
         // get hotel products
-        $parameters['hotelProducts']        = $parameters['object']->hotelProducts->keyBy('product_177');
+        $parameters['hotelProducts']        = $parameters['object']->getHotelProducts->keyBy('product_177');
         $parameters['hotelProductsIds']     = json_encode($parameters['hotelProducts']->keys()->map(function($item, $key) { return strval($item); }));
 
         return $parameters;
@@ -329,21 +329,21 @@ class HotelController extends Controller {
         // publications
         if(is_array($request->input('published')))
         {
-            $hotel->publications()->sync($request->input('published'));
+            $hotel->getPublications()->sync($request->input('published'));
         }
         else
         {
-            $hotel->publications()->detach();
+            $hotel->getPublications()->detach();
         }
 
         // services
         if(is_array($request->input('services')))
         {
-            $hotel->services()->sync($request->input('services'));
+            $hotel->getServices()->sync($request->input('services'));
         }
         else
         {
-            $hotel->services()->detach();
+            $hotel->getServices()->detach();
         }
 
         HotelLang::where('id_171', $parameters['id'])->where('lang_171', $request->input('lang'))->update([
