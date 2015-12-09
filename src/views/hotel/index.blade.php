@@ -10,9 +10,9 @@
                 $('.datatable-pulsar').dataTable({
                     'iDisplayStart' : {{ $offset }},
                     'aoColumnDefs': [
-                        { 'bSortable': false, 'aTargets': [5,6]},
-                        { 'sClass': 'checkbox-column', 'aTargets': [5]},
-                        { 'sClass': 'align-center', 'aTargets': [6]}
+                        { 'bSortable': false, 'aTargets': [6,7]},
+                        { 'sClass': 'checkbox-column', 'aTargets': [6]},
+                        { 'sClass': 'align-center', 'aTargets': [5,7]}
                     ],
                     "bProcessing": true,
                     "bServerSide": true,
@@ -21,7 +21,7 @@
             }
         });
     </script>
-    <!-- hotels::hotels.index -->
+    <!-- ./hotels::hotels.index -->
 @stop
 
 @section('tHead')
@@ -32,8 +32,9 @@
         <th data-hide="phone,tablet">{{ trans_choice('pulsar::pulsar.country', 1) }}</th>
         <th data-hide="phone,tablet">{{ trans_choice('pulsar::pulsar.territorial_area', 1) }}</th>
         <th data-class="expand">{{ trans_choice('hotels::pulsar.hotel', 1) }}</th>
+        <th>{{ trans_choice('pulsar::pulsar.active', 1) }}</th>
         <th class="checkbox-column"><input type="checkbox" class="uniform"></th>
         <th>{{ trans_choice('pulsar::pulsar.action', 2) }}</th>
     </tr>
-    <!-- /hotels::hotels.index -->
+    <!-- ./hotels::hotels.index -->
 @stop
