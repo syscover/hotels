@@ -22,6 +22,6 @@ return new Sami($iterator, [
     'title'                => 'Hotels API',
     'build_dir'            => __DIR__.'/docs/api',
     'cache_dir'            => __DIR__.'/docs/cache',
-    'remote_repository'    => new GitHubRemoteRepository('syscover/cms', 'src'),
+    'remote_repository'    => new GitHubRemoteRepository('syscover/hotels', 'src'),
     'default_opened_level' => 2,
 ]);
