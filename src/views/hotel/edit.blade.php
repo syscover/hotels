@@ -367,7 +367,7 @@
                 <div class="row">
                     <div class="col-md-3 card-image">
                         @if(isset($attachmentsProducts[$product->id_111]))
-                            <img src="{{ asset(config('market.attachmentFolder') . '/' . $product->id_111 . '/' . $product->lang_112 . '/' . $attachmentsProducts[$product->id_111]->file_name_016) }}">
+                            <img src="{{ asset(config('market.attachmentFolder') . '/' . $product->id_111 . '/' . $product->lang_112 . '/' . $attachmentsProducts[$product->id_111]->file_name_016) }}" class="img-responsive" style="max-height:200px;margin: 0 auto">
                         @endif
                     </div>
                     <div class="col-md-9 card-body">
