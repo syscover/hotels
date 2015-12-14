@@ -71,11 +71,12 @@ class HotelController extends Controller {
 
         $parameters['products']             = Product::getRecords(['active_111' => true, 'lang_112' => $parameters['lang']]);
 
-        // TODO: especificar que familia de attachments coger
+        // get attachments products with photo list
         $parameters['attachmentsProducts']  = Attachment::builder()
             ->where('lang_016', $parameters['lang'])
             ->where('resource_016', 'market-product')
             ->where('family_016', config('hotels.idAttachmentsFamily.productList'))
+            ->get()
             ->keyBy('object_016');
 
         if(isset($parameters['id']))
@@ -243,8 +244,14 @@ class HotelController extends Controller {
         $attachments = AttachmentLibrary::getRecords('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
 
         $parameters['products']             = Product::getRecords(['active_111' => true, 'lang_112' => $parameters['lang']->id_001]);
-        // TODO: especificar que familia de attachments coger
-        $parameters['attachmentsProducts']  = Attachment::getRecords(['lang_016' => $parameters['lang']->id_001, 'resource_016' => 'market-product'])->keyBy('object_016');
+        
+        // get attachments products with photo list
+        $parameters['attachmentsProducts']  = Attachment::builder()
+            ->where('lang_016', $parameters['lang'])
+            ->where('resource_016', 'market-product')
+            ->where('family_016', config('hotels.idAttachmentsFamily.productList'))
+            ->get()
+            ->keyBy('object_016');
 
         // merge parameters and attachments array
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
