@@ -27,4 +27,12 @@ return [
     */
 
     'bookingPartnerId'      => env('BOOKING_PARTNER_ID', 0),
+
+    // Correspondencias de los IDs de las familias de attachments
+    'idAttachmentsFamily' => [
+        'hotelSheet'    => 1,
+        'hotelList'     => 2,
+        'productSheet'  => 3,
+        'productList'   => 4,
+    ],
 ];

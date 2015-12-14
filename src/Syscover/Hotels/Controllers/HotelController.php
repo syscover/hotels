@@ -72,7 +72,11 @@ class HotelController extends Controller {
         $parameters['products']             = Product::getRecords(['active_111' => true, 'lang_112' => $parameters['lang']]);
 
         // TODO: especificar que familia de attachments coger
-        $parameters['attachmentsProducts']  = Attachment::getRecords(['lang_016' => $parameters['lang'], 'resource_016' => 'market-product'])->keyBy('object_016');
+        $parameters['attachmentsProducts']  = Attachment::builder()
+            ->where('lang_016', $parameters['lang'])
+            ->where('resource_016', 'market-product')
+            ->where('family_016', config('hotels.idAttachmentsFamily.productList'))
+            ->keyBy('object_016');
 
         if(isset($parameters['id']))
         {
