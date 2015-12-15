@@ -243,7 +243,7 @@ class HotelController extends Controller {
         // get attachments elements
         $attachments = AttachmentLibrary::getRecords('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
 
-        $parameters['products']             = Product::getRecords(['active_111' => true, 'lang_112' => $parameters['lang']->id_001]);
+        $parameters['products']             = Product::builder()->where('active_111',true)->where('lang_112', $parameters['lang']->id_001)->get();
 
         // get attachments products with photo list
         $parameters['attachmentsProducts']  = Attachment::builder()

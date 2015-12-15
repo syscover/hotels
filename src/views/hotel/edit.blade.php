@@ -383,7 +383,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 card-description">
-                                <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control" name="d{{ $product->id_111 }}">{{ isset($hotelProducts[$product->id_111])? $hotelProducts[$product->id_111]->description_177 : null }}</textarea>
+                                <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control wysiwyg" name="d{{ $product->id_111 }}">{{ isset($hotelProducts[$product->id_111])? $hotelProducts[$product->id_111]->description_177 : null }}</textarea>
                             </div>
                         </div>
                     </div>
