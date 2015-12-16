@@ -16,13 +16,16 @@ class HotelsCreateTableService extends Migration {
             $table->engine = 'InnoDB';
             $table->integer('id_153')->unsigned();
             $table->string('lang_153',2);
-            $table->string('name_153', 50);
-            $table->string('icon_153', 50)->nullable();
+            $table->string('name_153');
+			$table->string('slug_153');
+            $table->string('icon_153')->nullable();
 
             $table->string('data_lang_153',255)->nullable();
             $table->text('data_153')->nullable();
 
-            $table->primary(['id_153', 'lang_153']);
+            $table->primary(['id_153', 'lang_153'], 'pk01_007_153_service');
+			$table->unique(['lang_153','slug_153'], 'uk01_007_153_service');
+
             $table->foreign('lang_153', 'fk01_007_153_service')->references('id_001')->on('001_001_lang')
                 ->onDelete('restrict')->onUpdate('cascade');
         });

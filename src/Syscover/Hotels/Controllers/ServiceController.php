@@ -1,5 +1,6 @@
 <?php namespace Syscover\Hotels\Controllers;
 
+use Illuminate\Http\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Service;
@@ -48,6 +49,7 @@ class ServiceController extends Controller {
             'id_153'        => $id,
             'lang_153'      => $request->input('lang'),
             'name_153'      => $request->input('name'),
+            'slug_153'      => $request->input('slug'),
             'icon_153'      => $request->input('icon'),
             'data_lang_153' => Service::addLangDataRecord($request->input('lang'), $idLang)
         ]);
@@ -57,7 +59,41 @@ class ServiceController extends Controller {
     {
         Service::where('id_153', $parameters['id'])->where('lang_153', $request->input('lang'))->update([
             'name_153'  => $request->input('name'),
+            'slug_153'  => $request->input('slug'),
             'icon_153'  => $request->input('icon')
+        ]);
+    }
+
+    public function apiCheckSlug(Request $request)
+    {
+        $slug = $request->input('slug');
+
+        $query = Service::where('lang_153', $request->input('lang'))
+            ->where('slug_153', $slug);
+
+        if($request->input('id'))
+        {
+            $query->whereNotIn('id_153', [$request->input('id')]);
+        }
+
+        $nObjects = $query->count();
+
+        if($nObjects > 0)
+        {
+            $suffix = 0;
+            while($nObjects > 0)
+            {
+                $suffix++;
+                $slug = $request->input('slug') . '-' . $suffix;
+                $nObjects = Service::where('lang_153', $request->input('lang'))
+                    ->where('slug_153', $slug)
+                    ->count();
+            }
+        }
+
+        return response()->json([
+            'status'    => 'success',
+            'slug'      => $slug
         ]);
     }
 }

@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth.pulsar','permission.pulsar','locale.pulsar'
     Route::get(config('pulsar.appName') . '/hotels/services/delete/{lang}/{id}/{offset}',                       ['as'=>'deleteHotelsService',              'uses'=>'Syscover\Hotels\Controllers\ServiceController@deleteRecord',               'resource' => 'hotels-service',        'action' => 'delete']);
     Route::get(config('pulsar.appName') . '/hotels/services/delete/translation/{lang}/{id}/{offset}',           ['as'=>'deleteTranslationHotelsService',   'uses'=>'Syscover\Hotels\Controllers\ServiceController@deleteTranslationRecord',    'resource' => 'hotels-service',        'action' => 'delete']);
     Route::delete(config('pulsar.appName') . '/hotels/services/delete/select/records/{lang}',                   ['as'=>'deleteSelectHotelsService',        'uses'=>'Syscover\Hotels\Controllers\ServiceController@deleteRecordsSelect',        'resource' => 'hotels-service',        'action' => 'delete']);
+    Route::post(config('pulsar.appName') . '/hotels/services/check/service/slug',                               ['as'=>'apiCheckSlugHotelsService',        'uses'=>'Syscover\Hotels\Controllers\ServiceController@apiCheckSlug',               'resource' => 'hotels-service',        'action' => 'access']);
 
     /*
     |--------------------------------------------------------------------------
