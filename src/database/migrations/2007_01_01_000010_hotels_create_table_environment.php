@@ -12,7 +12,7 @@ class HotelsCreateTableEnvironment extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('007_150_environment', function($table) {
+        Schema::create('007_150_environment', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id_150')->unsigned();
             $table->string('lang_150',2);

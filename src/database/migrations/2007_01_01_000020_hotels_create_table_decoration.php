@@ -12,7 +12,7 @@ class HotelsCreateTableDecoration extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('007_151_decoration', function($table) {
+        Schema::create('007_151_decoration', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id_151')->unsigned();
             $table->string('lang_151',2);

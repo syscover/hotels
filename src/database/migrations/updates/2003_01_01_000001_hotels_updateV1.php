@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 
 class HotelsUpdateV1 extends Migration
@@ -14,7 +15,7 @@ class HotelsUpdateV1 extends Migration
 	{
 		if(!Schema::hasColumn('007_170_hotel', 'slug_170'))
 		{
-			Schema::table('007_170_hotel', function ($table) {
+			Schema::table('007_170_hotel', function (Blueprint $table) {
 				$table->string('slug_170', 255)->nullable()->after('name_170');
 
 				$table->index('slug_170');
