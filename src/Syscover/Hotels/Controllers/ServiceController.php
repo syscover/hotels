@@ -60,8 +60,9 @@ class ServiceController extends Controller {
 
         $services = Service::all();
         foreach($services as $service){
-            $service->slug_153 = str_slug($service->name_153);
-            $service->save();
+            Service::where('id_153', $service->id_153)->where('lang_153', $service->lang_153)->update([
+                'slug_153'  => str_slug($service->name_153)
+            ]);
         }
 
         Service::where('id_153', $parameters['id'])->where('lang_153', $request->input('lang'))->update([
