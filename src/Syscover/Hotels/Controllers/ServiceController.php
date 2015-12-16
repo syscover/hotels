@@ -57,6 +57,13 @@ class ServiceController extends Controller {
 
     public function updateCustomRecord($request, $parameters)
     {
+
+        $services = Service::all();
+        foreach($services as $service){
+            $service->slug_153 = str_slug($service->name_153);
+            $service->save();
+        }
+
         Service::where('id_153', $parameters['id'])->where('lang_153', $request->input('lang'))->update([
             'name_153'  => $request->input('name'),
             'slug_153'  => $request->input('slug'),
