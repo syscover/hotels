@@ -24,7 +24,7 @@ class Service extends Model {
     protected $primaryKey   = 'id_153';
     protected $suffix       = '153';
     public $timestamps      = false;
-    protected $fillable     = ['id_153', 'lang_153', 'name_153', 'icon_153', 'data_lang_153', 'data_153'];
+    protected $fillable     = ['id_153', 'lang_153', 'name_153', 'slug_153', 'icon_153', 'data_lang_153', 'data_153'];
     protected $maps         = [];
     protected $relationMaps = [
         'lang'  => \Syscover\Pulsar\Models\Lang::class
