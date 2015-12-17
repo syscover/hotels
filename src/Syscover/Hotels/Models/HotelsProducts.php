@@ -15,8 +15,8 @@ use Sofa\Eloquence\Mappable;
  * @package     Syscover\Hotels\Models
  */
 
-class HotelsProducts extends Model {
-
+class HotelsProducts extends Model
+{
     use TraitModel;
     use Eloquence, Mappable;
 
