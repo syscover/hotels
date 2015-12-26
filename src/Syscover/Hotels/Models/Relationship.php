@@ -48,7 +48,7 @@ class Relationship extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_152');
     }
 
-    public static function addToGetRecordsLimit($parameters)
+    public static function addToGetIndexRecords($parameters)
     {
         $query =  Relationship::builder();
 

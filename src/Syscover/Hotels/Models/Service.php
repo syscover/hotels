@@ -48,7 +48,7 @@ class Service extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_153');
     }
 
-    public static function addToGetRecordsLimit($parameters)
+    public static function addToGetIndexRecords($parameters)
     {
         $query =  Service::builder();
 

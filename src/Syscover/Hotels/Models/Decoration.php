@@ -48,7 +48,7 @@ class Decoration extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_151');
     }
 
-    public static function addToGetRecordsLimit($parameters)
+    public static function addToGetIndexRecords($parameters)
     {
         $query =  Decoration::builder();
 
