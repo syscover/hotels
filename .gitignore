@@ -7,7 +7,7 @@ sami.phar
 # -- Composer -----------------------------------------
 composer.phar
 composer.lock
-vendor/
+/vendor/
 
 # -- PHPUnit ------------------------------------------
 app/phpunit.xml
