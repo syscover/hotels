@@ -56,4 +56,9 @@ class Decoration extends Model {
 
         return $query;
     }
+
+    public static function customCount($parameters)
+    {
+        return Decoration::where('lang_151', $parameters['lang'])->getQuery();
+    }
 }

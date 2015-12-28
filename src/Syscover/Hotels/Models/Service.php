@@ -56,4 +56,9 @@ class Service extends Model {
 
         return $query;
     }
+
+    public static function customCount($parameters)
+    {
+        return Service::where('lang_153', $parameters['lang'])->getQuery();
+    }
 }

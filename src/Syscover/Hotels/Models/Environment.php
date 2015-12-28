@@ -56,4 +56,9 @@ class Environment extends Model {
 
         return $query;
     }
+
+    public static function customCount($parameters)
+    {
+        return Environment::where('lang_150', $parameters['lang'])->getQuery();
+    }
 }

@@ -56,4 +56,9 @@ class Relationship extends Model {
 
         return $query;
     }
+
+    public static function customCount($parameters)
+    {
+        return Relationship::where('lang_152', $parameters['lang'])->getQuery();
+    }
 }
