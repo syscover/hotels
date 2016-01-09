@@ -18,7 +18,7 @@ class HotelsCreateTableRelationship extends Migration {
             $table->string('lang_152',2);
             $table->string('name_152', 50);
 
-            $table->string('data_lang_152', 255)->nullable();
+            $table->string('data_lang_152')->nullable();
             $table->text('data_152')->nullable();
 
             $table->primary(['id_152', 'lang_152']);

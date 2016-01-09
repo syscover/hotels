@@ -21,7 +21,7 @@ class HotelsCreateTableDecoration extends Migration {
             $table->string('data_lang_151',255)->nullable();
             $table->text('data_151')->nullable();
 
-            $table->primary(['id_151', 'lang_151']);
+            $table->primary(['id_151', 'lang_151'], 'pk01_007_151_decoration');
             $table->foreign('lang_151', 'fk01_007_151_decoration')->references('id_001')->on('001_001_lang')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
