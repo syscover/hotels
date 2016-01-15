@@ -35,4 +35,12 @@ return [
         'productSheet'  => 3,
         'productList'   => 4,
     ],
+
+    // Restaurant types
+    'restaurantTypes' => [
+        (object)['id' => 1, 'name' => trans('hotels::pulsar.open_public')],
+        (object)['id' => 2, 'name' => trans('hotels::pulsar.open_by_reservation')],
+        (object)['id' => 3, 'name' => trans('hotels::pulsar.only_guest')],
+        (object)['id' => 4, 'name' => trans('hotels::pulsar.only_guest_reservation')]
+    ],
 ];

@@ -54,17 +54,12 @@ class HotelController extends Controller {
 
     public function createCustomRecord($request, $parameters)
     {
-        $parameters['services']         = Service::getTranslationsRecords($parameters['lang']);
-        $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']);
-        $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']);
-        $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']);
-        $parameters['publications']     = Publication::all();
-        $parameters['restaurantTypes']  = [
-            (object)['id' => 0, 'name' => trans('hotels::pulsar.open_public')],
-            (object)['id' => 1, 'name' => trans('hotels::pulsar.open_by_reservation')],
-            (object)['id' => 2, 'name' => trans('hotels::pulsar.only_guest')],
-            (object)['id' => 3, 'name' => trans('hotels::pulsar.only_guest_reservation')]
-        ];
+        $parameters['services']             = Service::getTranslationsRecords($parameters['lang']);
+        $parameters['environments']         = Environment::getTranslationsRecords($parameters['lang']);
+        $parameters['decorations']          = Decoration::getTranslationsRecords($parameters['lang']);
+        $parameters['relationships']        = Relationship::getTranslationsRecords($parameters['lang']);
+        $parameters['publications']         = Publication::all();
+        $parameters['restaurantTypes']      = config('hotel.restaurantTypes');
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters['attachmentsInput']     = json_encode([]);
         $parameters['hotelProductsIds']     = json_encode([]);
@@ -233,12 +228,7 @@ class HotelController extends Controller {
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['publications']     = Publication::all();
-        $parameters['restaurantTypes']  = [
-            (object)['id' => 0, 'name' => trans('hotels::pulsar.open_public')],
-            (object)['id' => 1, 'name' => trans('hotels::pulsar.open_by_reservation')],
-            (object)['id' => 2, 'name' => trans('hotels::pulsar.only_guest')],
-            (object)['id' => 3, 'name' => trans('hotels::pulsar.only_guest_reservation')]
-        ];
+        $parameters['restaurantTypes']  = config('hotel.restaurantTypes');
 
         // get attachments elements
         $attachments = AttachmentLibrary::getRecords('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
