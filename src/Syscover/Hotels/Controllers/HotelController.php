@@ -59,7 +59,10 @@ class HotelController extends Controller {
         $parameters['decorations']          = Decoration::getTranslationsRecords($parameters['lang']);
         $parameters['relationships']        = Relationship::getTranslationsRecords($parameters['lang']);
         $parameters['publications']         = Publication::all();
-        $parameters['restaurantTypes']      = config('hotel.restaurantTypes');
+        $parameters['restaurantTypes']      = array_map(function($object){
+            $object->name = trans($object->name);
+            return $object;
+        }, config('hotel.restaurantTypes'));
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters['attachmentsInput']     = json_encode([]);
         $parameters['hotelProductsIds']     = json_encode([]);
@@ -228,7 +231,10 @@ class HotelController extends Controller {
         $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['publications']     = Publication::all();
-        $parameters['restaurantTypes']  = config('hotel.restaurantTypes');
+        $parameters['restaurantTypes']      = array_map(function($object){
+            $object->name = trans($object->name);
+            return $object;
+        }, config('hotel.restaurantTypes'));
 
         // get attachments elements
         $attachments = AttachmentLibrary::getRecords('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
