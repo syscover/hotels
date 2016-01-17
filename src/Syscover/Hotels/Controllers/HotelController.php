@@ -11,6 +11,7 @@ use Syscover\Hotels\Models\Service;
 use Syscover\Market\Models\Product;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
+use Syscover\Pulsar\Libraries\CustomFieldResultLibrary;
 use Syscover\Pulsar\Models\Attachment;
 use Syscover\Pulsar\Models\AttachmentFamily;
 use Syscover\Pulsar\Models\CustomFieldGroup;
@@ -115,6 +116,7 @@ class HotelController extends Controller {
         {
             // create new hotel
             $hotel = Hotel::create([
+                'custom_field_group_170'                        => empty($request->input('customFieldGroup'))? null : $request->input('customFieldGroup'),
                 'name_170'                                      => $request->input('name'),
                 'slug_170'                                      => $request->input('slug'),
                 'web_170'                                       => $request->input('web'),
@@ -224,6 +226,10 @@ class HotelController extends Controller {
         // set attachments
         $attachments = json_decode($request->input('attachments'));
         AttachmentLibrary::storeAttachments($attachments, 'hotels', 'hotels-hotel', $id, $request->input('lang'));
+
+        // set custom fields
+        if(!empty($request->input('customFieldGroup')))
+            CustomFieldResultLibrary::storeCustomFieldResults($request, $request->input('customFieldGroup'), 'hotels-hotel', $id, $request->input('lang'));
     }
 
     public function editCustomRecord($request, $parameters)
@@ -277,6 +283,7 @@ class HotelController extends Controller {
     public function updateCustomRecord($request, $parameters)
     {
         $hotel = [
+            'custom_field_group_170'                        => empty($request->input('customFieldGroup'))? null : $request->input('customFieldGroup'),
             'name_170'                                      => $request->input('name'),
             'slug_170'                                      => $request->input('slug'),
             'web_170'                                       => $request->input('web'),
@@ -384,6 +391,13 @@ class HotelController extends Controller {
 
         if(count($hotelProducts) > 0)
             HotelProduct::insert($hotelProducts);
+
+        // set custom fields
+        if(!empty($request->input('customFieldGroup')))
+        {
+            CustomFieldResultLibrary::deleteCustomFieldResults('hotels-hotel', $parameters['id'], $request->input('lang'));
+            CustomFieldResultLibrary::storeCustomFieldResults($request, $request->input('customFieldGroup'), 'hotels-hotel', $parameters['id'], $request->input('lang'));
+        }
     }
 
     public function addToDeleteRecord($request, $object)

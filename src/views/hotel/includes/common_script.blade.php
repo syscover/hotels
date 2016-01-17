@@ -16,7 +16,7 @@
             territorialArea1Value:      '{{ Input::old('territorialArea1', isset($object->territorial_area_1_170)? $object->territorial_area_1_170 : null) }}',
             territorialArea2Value:      '{{ Input::old('territorialArea2', isset($object->territorial_area_2_170)? $object->territorial_area_2_170 : null) }}',
             territorialArea3Value:      '{{ Input::old('territorialArea3', isset($object->territorial_area_3_170)? $object->territorial_area_3_170 : null) }}'
-        });
+        })
 
         // to billing data
         $.getAddress({
@@ -45,7 +45,7 @@
             territorialArea1Value:      '{{ Input::old('billingTerritorialArea1', isset($object->billing_territorial_area_1_170)? $object->billing_territorial_area_1_170 : null) }}',
             territorialArea2Value:      '{{ Input::old('billingTerritorialArea2', isset($object->billing_territorial_area_2_170)? $object->billing_territorial_area_2_170 : null) }}',
             territorialArea3Value:      '{{ Input::old('billingTerritorialArea3', isset($object->billing_territorial_area_3_170)? $object->billing_territorial_area_3_170 : null) }}'
-        });
+        })
 
         $.mapPoint({
             id:                 '01',
@@ -61,7 +61,7 @@
                 anchorX: 25,
                 anchorY: 71
             }
-        });
+        })
 
         $('.wysiwyg').froalaEditor({
             language: '{{ config('app.locale') }}',
@@ -73,13 +73,13 @@
             heightMin: 130,
             enter: $.FroalaEditor.ENTER_BR,
             key: '{{ config('pulsar.froalaEditorKey') }}'
-        });
+        })
 
         // custom Dual multi select
         $.configureBoxes({
             textShowing: '{{ trans('pulsar::pulsar.showing') }}',
             textOf: '{{ trans('pulsar::pulsar.of') }}'
-        });
+        })
 
         // launch slug function when change name and slug
         $("[name=name], [name=slug]").on('change', function(){
@@ -87,8 +87,8 @@
                 separator: '-',
                 lang: '{{ $lang->id_001 }}'
             }));
-            $.checkSlug();
-        });
+            $.checkSlug()
+        })
 
         // save id product to save it after
         $(".product-toggle").on('change', function() {
@@ -104,23 +104,80 @@
                     products.splice(i, 1);
             }
             $('[name=products]').val(JSON.stringify(products));
-        });
+        })
 
         // hide every elements
         $('#headerCustomFields').hide()
         $('#wrapperCustomFields').hide()
 
+        // on change family show fields and custom fields
+        $("[name=customFieldGroup]").on('change', function() {
+            if($("[name=customFieldGroup]").val())
+            {
+                // get html doing a request to controller to render the views
+                        @if($action == 'edit' || isset($id))
+                var request = {
+                            customFieldGroup: $("[name=customFieldGroup]").val(),
+                            lang: '{{ $lang->id_001 }}',
+                            object: '{{ $id }}',
+                            resource: 'hotels-hotel',
+                            action: '{{ $action }}'
+                        }
+                        @else
+                var request = {
+                            customFieldGroup: $("[name=customFieldGroup]").val(),
+                            lang: '{{ $lang->id_001 }}'
+                        }
+                @endif
+
+                $.ajax({
+                    dataType: 'json',
+                    type: 'POST',
+                    headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                    url: '{{ route('apiGetCustomFields') }}',
+                    data: request,
+                    success: function (data) {
+                        // set html custom fields section
+                        $('#wrapperCustomFields').html(data.html)
+
+                        if ($.fn.select2)
+                            $('.select2').each(function() {
+                                var self = $(this);
+                                $(self).select2(self.data());
+                            })
+
+                        if (data.html != '')
+                        {
+                            $(".uniform").uniform()
+                            $('#headerCustomFields').fadeIn()
+                            $('#wrapperCustomFields').fadeIn()
+                        }
+                    }
+                });
+            }
+            else
+            {
+                $('#headerCustomFields').fadeOut()
+                $('#wrapperCustomFields').fadeOut()
+                $('#wrapperCustomFields').html('')
+            }
+        })
+
+        // if we have customFieldGroup value, throw event to show or hide elements
+        if($("[name=customFieldGroup]").val())
+            $("[name=customFieldGroup]").trigger('change')
+
         // set tab active
         @if($tab == 0)
-        $('.tabbable li:eq(0) a').tab('show');
+        $('.tabbable li:eq(0) a').tab('show')
         @elseif($tab == 1)
-        $('.tabbable li:eq(1) a').tab('show');
+        $('.tabbable li:eq(1) a').tab('show')
         @elseif($tab == 2)
-        $('.tabbable li:eq(2) a').tab('show');
+        $('.tabbable li:eq(2) a').tab('show')
         @elseif($tab == 3)
-        $('.tabbable li:eq(3) a').tab('show');
+        $('.tabbable li:eq(3) a').tab('show')
         @elseif($tab == 4)
-        $('.tabbable li:eq(4) a').tab('show');
+        $('.tabbable li:eq(4) a').tab('show')
         @endif
 
     });
