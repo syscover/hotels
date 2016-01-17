@@ -16,6 +16,8 @@ class HotelsCreateTableHotel extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id_170')->unsigned();
 
+            $table->integer('custom_field_group_170')->unsigned()->nullable();
+
             // hotel description
             $table->string('name_170', 100);
             $table->string('slug_170', 255)->nullable();
@@ -91,7 +93,7 @@ class HotelsCreateTableHotel extends Migration {
             $table->text('data_170')->nullable();
 
             // INDEX
-            $table->index('slug_170');
+            $table->index('slug_170', 'ix01_007_170_hotel');
 
             $table->foreign('country_170', 'fk01_007_170_hotel')->references('id_002')->on('001_002_country')
                 ->onDelete('restrict')->onUpdate('cascade');
@@ -108,6 +110,8 @@ class HotelsCreateTableHotel extends Migration {
             $table->foreign('billing_territorial_area_2_170', 'fk07_007_170_hotel')->references('id_004')->on('001_004_territorial_area_2')
                 ->onDelete('restrict')->onUpdate('cascade');
             $table->foreign('billing_territorial_area_3_170', 'fk08_007_170_hotel')->references('id_005')->on('001_005_territorial_area_3')
+                ->onDelete('restrict')->onUpdate('cascade');
+            $table->foreign('custom_field_group_170', 'fk09_007_170_hotel')->references('id_025')->on('001_025_field_group')
                 ->onDelete('restrict')->onUpdate('cascade');
         });
 	}

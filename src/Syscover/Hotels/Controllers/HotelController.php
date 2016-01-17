@@ -13,6 +13,7 @@ use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
 use Syscover\Pulsar\Models\Attachment;
 use Syscover\Pulsar\Models\AttachmentFamily;
+use Syscover\Pulsar\Models\CustomFieldGroup;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Hotel;
 use Syscover\Hotels\Models\HotelLang;
@@ -64,6 +65,7 @@ class HotelController extends Controller {
             return $object;
         }, config('hotels.restaurantTypes'));
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
+        $parameters['customFieldGroups']    = CustomFieldGroup::where('resource_025', 'hotels-hotel')->get();
         $parameters['attachmentsInput']     = json_encode([]);
         $parameters['hotelProductsIds']     = json_encode([]);
 
@@ -226,12 +228,12 @@ class HotelController extends Controller {
 
     public function editCustomRecord($request, $parameters)
     {
-        $parameters['services']         = Service::getTranslationsRecords($parameters['lang']->id_001);
-        $parameters['environments']     = Environment::getTranslationsRecords($parameters['lang']->id_001);
-        $parameters['decorations']      = Decoration::getTranslationsRecords($parameters['lang']->id_001);
-        $parameters['relationships']    = Relationship::getTranslationsRecords($parameters['lang']->id_001);
-        $parameters['publications']     = Publication::all();
-        $parameters['restaurantTypes']  = array_map(function($object){
+        $parameters['services']             = Service::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['environments']         = Environment::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['decorations']          = Decoration::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['relationships']        = Relationship::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['publications']         = Publication::all();
+        $parameters['restaurantTypes']      = array_map(function($object){
             $object->name = trans($object->name);
             return $object;
         }, config('hotels.restaurantTypes'));
@@ -250,6 +252,7 @@ class HotelController extends Controller {
             ->keyBy('object_016');
 
         // merge parameters and attachments array
+        $parameters['customFieldGroups']    = CustomFieldGroup::builder()->where('resource_025', 'hotels-hotel')->get();
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_015' => 'hotels-hotel']);
         $parameters                         = array_merge($parameters, $attachments);
 
