@@ -81,6 +81,7 @@
         'routesConfigFile'  => 'hotels'])
     @include('pulsar::includes.js.check_slug', ['route' => 'apiCheckSlugHotel'])
     @include('hotels::hotel.includes.common_script', ['action' => 'create'])
+    @include('pulsar::includes.js.custom_fields', ['resource' => 'hotels-hotel', 'action' => 'create'])
 @stop
 
 @section('layoutTabHeader')

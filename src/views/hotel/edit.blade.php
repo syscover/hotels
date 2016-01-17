@@ -82,6 +82,7 @@
         'objectId'          => $object->id_170])
     @include('pulsar::includes.js.check_slug', ['route' => 'apiCheckSlugHotel'])
     @include('hotels::hotel.includes.common_script', ['action' => 'edit'])
+    @include('pulsar::includes.js.custom_fields', ['resource' => 'hotels-hotel', 'action' => 'edit'])
     @include('pulsar::includes.js.delete_translation_record')
 @stop
 
