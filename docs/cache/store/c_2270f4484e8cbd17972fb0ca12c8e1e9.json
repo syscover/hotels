@@ -14,7 +14,7 @@
     "namespace": "Syscover\\Hotels\\Models",
     "file": "src\/Syscover\/Hotels\/Models\/Decoration.php",
     "relative_file": "\/Syscover\/Hotels\/Models\/Decoration.php",
-    "hash": "36c0fc8dccf85a46de398e5da0d152acffacd40b",
+    "hash": "2207f18d64ebcf04b9045ce5bce844cffef33a86",
     "parent": "Syscover\\Pulsar\\Models\\Model",
     "modifiers": "Stmt_Class",
     "is_trait": false,
@@ -120,8 +120,8 @@
             "errors": [],
             "parameters": []
         },
-        "addToGetRecordsLimit": {
-            "name": "addToGetRecordsLimit",
+        "addToGetIndexRecords": {
+            "name": "addToGetIndexRecords",
             "line": 51,
             "short_desc": "",
             "long_desc": "",
@@ -136,6 +136,32 @@
                 "parameters": {
                     "name": "parameters",
                     "line": 51,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "customCount": {
+            "name": "customCount",
+            "line": 60,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "9",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "parameters": {
+                    "name": "parameters",
+                    "line": 60,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,

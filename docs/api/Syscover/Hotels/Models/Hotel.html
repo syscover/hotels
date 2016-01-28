@@ -77,7 +77,7 @@
     </div>
 
     <p>    class
-    <strong>Hotel</strong>        extends <abbr title="Syscover\Pulsar\Models\Model">Model</abbr>        (<a href="https://github.com/syscover/cms/blob/master/Syscover/Hotels/Models/Hotel.php">View source</a>)
+    <strong>Hotel</strong>        extends <abbr title="Syscover\Pulsar\Models\Model">Model</abbr>        (<a href="https://github.com/syscover/hotels/blob/master/Syscover/Hotels/Models/Hotel.php">View source</a>)
 </p>
 
             <div class="description">
@@ -151,10 +151,24 @@
                     <div class="row">
                 <div class="col-md-2 type">
                     
-    
+    mixed
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_scopeBuilder">scopeBuilder</a>($query)
+                    <a href="#method_scopeBuilder">scopeBuilder</a>(
+    <abbr title="Sofa\Eloquence\Builder">Builder</abbr> $query)
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+    mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_scopePublishedOn">scopePublishedOn</a>(
+    <abbr title="Sofa\Eloquence\Builder">Builder</abbr> $query, 
+    array $publications)
                                             <p class="no-description">No description</p>
                                     </div>
                 <div class="col-md-2"></div>
@@ -220,7 +234,7 @@
     
                 </div>
                 <div class="col-md-8 type">
-                    <a href="#method_addToGetRecordsLimit">addToGetRecordsLimit</a>($parameters)
+                    <a href="#method_addToGetIndexRecords">addToGetIndexRecords</a>($parameters)
                                             <p class="no-description">No description</p>
                                     </div>
                 <div class="col-md-2"></div>
@@ -255,7 +269,7 @@
             <div id="method-details">
                     <div class="method-item">
                     <h3 id="method_validate">
-        <div class="location">at line 39</div>
+        <div class="location">at line 41</div>
         <code>        static            
     
     <strong>validate</strong>($data, $specialRules = array())</code>
@@ -288,10 +302,11 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_scopeBuilder">
-        <div class="location">at line 48</div>
+        <div class="location">at line 54</div>
         <code>                    
-    
-    <strong>scopeBuilder</strong>($query)</code>
+    mixed
+    <strong>scopeBuilder</strong>(
+    <abbr title="Sofa\Eloquence\Builder">Builder</abbr> $query)</code>
     </h3>
     <div class="details">
                 <div class="tags">
@@ -299,7 +314,8 @@
 
                     <table class="table table-condensed">
                     <tr>
-                <td></td>
+                <td>
+    <abbr title="Sofa\Eloquence\Builder">Builder</abbr></td>
                 <td>$query</td>
                 <td>
 </td>
@@ -307,6 +323,65 @@
             </table>
 
             
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    mixed</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_scopePublishedOn">
+        <div class="location">at line 83</div>
+        <code>                    
+    mixed
+    <strong>scopePublishedOn</strong>(
+    <abbr title="Sofa\Eloquence\Builder">Builder</abbr> $query, 
+    array $publications)</code>
+    </h3>
+    <div class="details">
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>
+    <abbr title="Sofa\Eloquence\Builder">Builder</abbr></td>
+                <td>$query</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>
+    array</td>
+                <td>$publications</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>
+    mixed</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
             
             
                     </div>
@@ -315,7 +390,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getLang">
-        <div class="location">at line 71</div>
+        <div class="location">at line 92</div>
         <code>                    
     
     <strong>getLang</strong>()</code>
@@ -331,7 +406,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getPublications">
-        <div class="location">at line 76</div>
+        <div class="location">at line 97</div>
         <code>                    
     
     <strong>getPublications</strong>()</code>
@@ -347,7 +422,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getServices">
-        <div class="location">at line 81</div>
+        <div class="location">at line 102</div>
         <code>                    
     
     <strong>getServices</strong>()</code>
@@ -363,7 +438,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getHotelProducts">
-        <div class="location">at line 86</div>
+        <div class="location">at line 107</div>
         <code>                    
     
     <strong>getHotelProducts</strong>()</code>
@@ -379,7 +454,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getProducts">
-        <div class="location">at line 92</div>
+        <div class="location">at line 113</div>
         <code>                    
     
     <strong>getProducts</strong>()</code>
@@ -394,11 +469,11 @@
 
             </div>
                     <div class="method-item">
-                    <h3 id="method_addToGetRecordsLimit">
-        <div class="location">at line 97</div>
+                    <h3 id="method_addToGetIndexRecords">
+        <div class="location">at line 118</div>
         <code>        static            
     
-    <strong>addToGetRecordsLimit</strong>($parameters)</code>
+    <strong>addToGetIndexRecords</strong>($parameters)</code>
     </h3>
     <div class="details">
                 <div class="tags">
@@ -422,7 +497,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getTranslationRecord">
-        <div class="location">at line 106</div>
+        <div class="location">at line 127</div>
         <code>        static            
     
     <strong>getTranslationRecord</strong>($parameters)</code>
@@ -449,7 +524,7 @@
             </div>
                     <div class="method-item">
                     <h3 id="method_getRecords">
-        <div class="location">at line 114</div>
+        <div class="location">at line 135</div>
         <code>        static            
     
     <strong>getRecords</strong>($parameters)</code>

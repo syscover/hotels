@@ -1,6 +1,6 @@
 {
     "name": "Syscover\\Hotels\\Controllers\\ServiceController",
-    "line": 12,
+    "line": 13,
     "short_desc": "Class ServiceController",
     "long_desc": "",
     "hint": null,
@@ -14,12 +14,13 @@
     "namespace": "Syscover\\Hotels\\Controllers",
     "file": "src\/Syscover\/Hotels\/Controllers\/ServiceController.php",
     "relative_file": "\/Syscover\/Hotels\/Controllers\/ServiceController.php",
-    "hash": "28be1808afc1a9437661e8f2cb5720c07e0f757f",
+    "hash": "27b6b401d279d1eda75e21d9a74df18027ea74c3",
     "parent": "Syscover\\Pulsar\\Controllers\\Controller",
     "modifiers": "Stmt_Class",
     "is_trait": false,
     "is_interface": false,
     "aliases": {
+        "Request": "Illuminate\\Http\\Request",
         "Controller": "Syscover\\Pulsar\\Controllers\\Controller",
         "TraitController": "Syscover\\Pulsar\\Traits\\TraitController",
         "Service": "Syscover\\Hotels\\Models\\Service"
@@ -33,7 +34,7 @@
     "methods": {
         "indexCustom": {
             "name": "indexCustom",
-            "line": 25,
+            "line": 26,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -46,7 +47,7 @@
             "parameters": {
                 "parameters": {
                     "name": "parameters",
-                    "line": 25,
+                    "line": 26,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -59,7 +60,7 @@
         },
         "storeCustomRecord": {
             "name": "storeCustomRecord",
-            "line": 32,
+            "line": 33,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -72,7 +73,7 @@
             "parameters": {
                 "request": {
                     "name": "request",
-                    "line": 32,
+                    "line": 33,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -83,7 +84,7 @@
                 },
                 "parameters": {
                     "name": "parameters",
-                    "line": 32,
+                    "line": 33,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -96,7 +97,7 @@
         },
         "updateCustomRecord": {
             "name": "updateCustomRecord",
-            "line": 56,
+            "line": 58,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -109,7 +110,7 @@
             "parameters": {
                 "request": {
                     "name": "request",
-                    "line": 56,
+                    "line": 58,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -120,12 +121,43 @@
                 },
                 "parameters": {
                     "name": "parameters",
-                    "line": 56,
+                    "line": 58,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
                     "tags": [],
                     "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "apiCheckSlug": {
+            "name": "apiCheckSlug",
+            "line": 67,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": null,
+            "hint_desc": null,
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "request": {
+                    "name": "request",
+                    "line": 67,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "Syscover\\Hotels\\Controllers\\Illuminate\\Http\\Request",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "Illuminate\\Http\\Request",
                     "default": null,
                     "is_by_ref": false
                 }

@@ -14,7 +14,7 @@
     "namespace": "Syscover\\Hotels\\Models",
     "file": "src\/Syscover\/Hotels\/Models\/Hotel.php",
     "relative_file": "\/Syscover\/Hotels\/Models\/Hotel.php",
-    "hash": "81d00fee4b992e73b3eb67d2ccb85cb4ade3c147",
+    "hash": "0d7140b3307735d3796607243c260f97c6e3b57e",
     "parent": "Syscover\\Pulsar\\Models\\Model",
     "modifiers": "Stmt_Class",
     "is_trait": false,
@@ -56,7 +56,7 @@
     "methods": {
         "validate": {
             "name": "validate",
-            "line": 39,
+            "line": 41,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -69,7 +69,7 @@
             "parameters": {
                 "data": {
                     "name": "data",
-                    "line": 39,
+                    "line": 41,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -80,7 +80,7 @@
                 },
                 "specialRules": {
                     "name": "specialRules",
-                    "line": 39,
+                    "line": 41,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -93,11 +93,16 @@
         },
         "scopeBuilder": {
             "name": "scopeBuilder",
-            "line": 48,
+            "line": 54,
             "short_desc": "",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": "1",
             "is_by_ref": "",
@@ -106,10 +111,67 @@
             "parameters": {
                 "query": {
                     "name": "query",
-                    "line": 48,
-                    "short_desc": null,
+                    "line": 54,
+                    "short_desc": "",
                     "long_desc": null,
-                    "hint": null,
+                    "hint": [
+                        [
+                            "\\Sofa\\Eloquence\\Builder",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "scopePublishedOn": {
+            "name": "scopePublishedOn",
+            "line": 83,
+            "short_desc": "",
+            "long_desc": "",
+            "hint": [
+                [
+                    "mixed",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": "1",
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": {
+                "query": {
+                    "name": "query",
+                    "line": 83,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "\\Sofa\\Eloquence\\Builder",
+                            false
+                        ]
+                    ],
+                    "tags": [],
+                    "modifiers": "",
+                    "default": null,
+                    "is_by_ref": false
+                },
+                "publications": {
+                    "name": "publications",
+                    "line": 83,
+                    "short_desc": "",
+                    "long_desc": null,
+                    "hint": [
+                        [
+                            "array",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": "",
                     "default": null,
@@ -119,7 +181,7 @@
         },
         "getLang": {
             "name": "getLang",
-            "line": 71,
+            "line": 92,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -133,7 +195,7 @@
         },
         "getPublications": {
             "name": "getPublications",
-            "line": 76,
+            "line": 97,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -147,7 +209,7 @@
         },
         "getServices": {
             "name": "getServices",
-            "line": 81,
+            "line": 102,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -161,7 +223,7 @@
         },
         "getHotelProducts": {
             "name": "getHotelProducts",
-            "line": 86,
+            "line": 107,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -175,7 +237,7 @@
         },
         "getProducts": {
             "name": "getProducts",
-            "line": 92,
+            "line": 113,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -187,9 +249,9 @@
             "errors": [],
             "parameters": []
         },
-        "addToGetRecordsLimit": {
-            "name": "addToGetRecordsLimit",
-            "line": 97,
+        "addToGetIndexRecords": {
+            "name": "addToGetIndexRecords",
+            "line": 118,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -202,7 +264,7 @@
             "parameters": {
                 "parameters": {
                     "name": "parameters",
-                    "line": 97,
+                    "line": 118,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -215,7 +277,7 @@
         },
         "getTranslationRecord": {
             "name": "getTranslationRecord",
-            "line": 106,
+            "line": 127,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -228,7 +290,7 @@
             "parameters": {
                 "parameters": {
                     "name": "parameters",
-                    "line": 106,
+                    "line": 127,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
@@ -241,7 +303,7 @@
         },
         "getRecords": {
             "name": "getRecords",
-            "line": 114,
+            "line": 135,
             "short_desc": "",
             "long_desc": "",
             "hint": null,
@@ -254,7 +316,7 @@
             "parameters": {
                 "parameters": {
                     "name": "parameters",
-                    "line": 114,
+                    "line": 135,
                     "short_desc": null,
                     "long_desc": null,
                     "hint": null,
