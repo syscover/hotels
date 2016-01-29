@@ -12,10 +12,10 @@
             useSeparatorHighlight:      true,
             textSeparatorHighlight:     '------------------',
 
-            countryValue:               '{{ Input::old('country', isset($object->country_170)? $object->country_170 : null) }}',
-            territorialArea1Value:      '{{ Input::old('territorialArea1', isset($object->territorial_area_1_170)? $object->territorial_area_1_170 : null) }}',
-            territorialArea2Value:      '{{ Input::old('territorialArea2', isset($object->territorial_area_2_170)? $object->territorial_area_2_170 : null) }}',
-            territorialArea3Value:      '{{ Input::old('territorialArea3', isset($object->territorial_area_3_170)? $object->territorial_area_3_170 : null) }}'
+            countryValue:               '{{ old('country', isset($object->country_170)? $object->country_170 : null) }}',
+            territorialArea1Value:      '{{ old('territorialArea1', isset($object->territorial_area_1_170)? $object->territorial_area_1_170 : null) }}',
+            territorialArea2Value:      '{{ old('territorialArea2', isset($object->territorial_area_2_170)? $object->territorial_area_2_170 : null) }}',
+            territorialArea3Value:      '{{ old('territorialArea3', isset($object->territorial_area_3_170)? $object->territorial_area_3_170 : null) }}'
         })
 
         // to billing data
@@ -41,10 +41,10 @@
             tA2Select:                  'billingTerritorialArea2',
             tA3Select:                  'billingTerritorialArea3',
 
-            countryValue:               '{{ Input::old('billingCountry', isset($object->billing_country_170)? $object->billing_country_170 : null) }}',
-            territorialArea1Value:      '{{ Input::old('billingTerritorialArea1', isset($object->billing_territorial_area_1_170)? $object->billing_territorial_area_1_170 : null) }}',
-            territorialArea2Value:      '{{ Input::old('billingTerritorialArea2', isset($object->billing_territorial_area_2_170)? $object->billing_territorial_area_2_170 : null) }}',
-            territorialArea3Value:      '{{ Input::old('billingTerritorialArea3', isset($object->billing_territorial_area_3_170)? $object->billing_territorial_area_3_170 : null) }}'
+            countryValue:               '{{ old('billingCountry', isset($object->billing_country_170)? $object->billing_country_170 : null) }}',
+            territorialArea1Value:      '{{ old('billingTerritorialArea1', isset($object->billing_territorial_area_1_170)? $object->billing_territorial_area_1_170 : null) }}',
+            territorialArea2Value:      '{{ old('billingTerritorialArea2', isset($object->billing_territorial_area_2_170)? $object->billing_territorial_area_2_170 : null) }}',
+            territorialArea3Value:      '{{ old('billingTerritorialArea3', isset($object->billing_territorial_area_3_170)? $object->billing_territorial_area_3_170 : null) }}'
         })
 
         $.mapPoint({
