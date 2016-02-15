@@ -40,7 +40,7 @@ class HotelController extends Controller {
 
     public function indexCustom($parameters)
     {
-        $parameters['urlParameters']['lang']    = session('baseLang');
+        $parameters['urlParameters']['lang']    = session('baseLang')->id_001;
         // init record on tap 4
         $parameters['urlParameters']['tab']     = 4;
 
