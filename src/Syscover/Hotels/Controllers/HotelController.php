@@ -144,8 +144,8 @@ class HotelController extends Controller {
                 'cp_170'                                        => $request->input('cp'),
                 'locality_170'                                  => $request->input('locality'),
                 'address_170'                                   => $request->input('address'),
-                'latitude_170'                                  => $request->input('latitude'),
-                'longitude_170'                                 => $request->input('longitude'),
+                'latitude_170'                                  => str_replace(',', '', $request->input('latitude')),   // replace ',' character, can contain this character that damage script
+                'longitude_170'                                 => str_replace(',', '', $request->input('longitude')),  // replace ',' character, can contain this character that damage script
                 'booking_url_170'                               => $request->input('bookingUrl'),
                 'country_chef_restaurant_170'                   => $request->has('countryChefRestaurant'),
                 'country_chef_url_170'                          => $request->input('countryChefUrl'),
@@ -308,8 +308,8 @@ class HotelController extends Controller {
             'cp_170'                                        => $request->input('cp'),
             'locality_170'                                  => $request->input('locality'),
             'address_170'                                   => $request->input('address'),
-            'latitude_170'                                  => $request->input('latitude'),
-            'longitude_170'                                 => $request->input('longitude'),
+            'latitude_170'                                  => str_replace(',', '', $request->input('latitude')),       // replace ',' character, can contain this character that damage script
+            'longitude_170'                                 => str_replace(',', '', $request->input('longitude')),      // replace ',' character, can contain this character that damage script
             'booking_url_170'                               => $request->input('bookingUrl'),
             'country_chef_restaurant_170'                   => $request->has('countryChefRestaurant'),
             'country_chef_url_170'                          => $request->input('countryChefUrl'),
