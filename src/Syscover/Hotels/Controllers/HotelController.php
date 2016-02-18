@@ -400,19 +400,19 @@ class HotelController extends Controller {
         }
     }
 
-    public function addToDeleteRecord($request, $object)
+    public function deleteCustomRecord($request, $object)
     {
         // delete all attachments
         AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_170);
     }
 
-    public function addToDeleteTranslationRecord($request, $object)
+    public function deleteCustomTranslationRecord($request, $object)
     {
         // delete all attachments from lang object
         AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_171, $object->lang_171);
     }
 
-    public function addToDeleteRecordsSelect($request, $ids)
+    public function deleteCustomRecordsSelect($request, $ids)
     {
         foreach($ids as $id)
         {
