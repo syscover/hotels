@@ -18,7 +18,7 @@ class DecorationController extends Controller {
     protected $package      = 'hotels';
     protected $aColumns     = ['id_151', 'name_001', 'name_151'];
     protected $nameM        = 'name_151';
-    protected $model        = '\Syscover\Hotels\Models\Decoration';
+    protected $model        = Decoration::class;
     protected $icon         = 'icon-lightbulb';
     protected $objectTrans  = 'decoration';
 

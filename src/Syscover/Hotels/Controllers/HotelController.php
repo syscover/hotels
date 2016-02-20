@@ -33,8 +33,8 @@ class HotelController extends Controller {
     protected $package      = 'hotels';
     protected $aColumns     = ['id_170', 'name_001', 'name_002', 'name_003', 'name_170', ['data' => 'active_170', 'type' => 'active']];
     protected $nameM        = 'name_170';
-    protected $model        = '\Syscover\Hotels\Models\Hotel';
-    protected $langModel    = '\Syscover\Hotels\Models\HotelLang';
+    protected $model        = Hotel::class;
+    protected $langModel    = HotelLang::class;
     protected $icon         = 'fa fa-h-square';
     protected $objectTrans  = 'hotel';
 

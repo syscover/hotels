@@ -18,7 +18,7 @@ class PublicationController extends Controller {
     protected $package      = 'hotels';
     protected $aColumns     = ['id_174', 'name_174'];
     protected $nameM        = 'name_174';
-    protected $model        = '\Syscover\Hotels\Models\Publication';
+    protected $model        = Publication::class;
     protected $icon         = 'fa fa-object-ungroup';
     protected $objectTrans  = 'publication';
 

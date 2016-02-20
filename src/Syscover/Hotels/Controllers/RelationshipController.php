@@ -18,7 +18,7 @@ class RelationshipController extends Controller {
     protected $package      = 'hotels';
     protected $aColumns     = ['id_152', 'name_001', 'name_152'];
     protected $nameM        = 'name_152';
-    protected $model        = '\Syscover\Hotels\Models\Relationship';
+    protected $model        = Relationship::class;
     protected $icon         = 'fa fa-group';
     protected $objectTrans  = 'relationship';
 

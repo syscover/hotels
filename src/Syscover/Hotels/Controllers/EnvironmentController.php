@@ -18,7 +18,7 @@ class EnvironmentController extends Controller {
     protected $package      = 'hotels';
     protected $aColumns     = ['id_150', 'name_001', 'name_150'];
     protected $nameM        = 'name_150';
-    protected $model        = '\Syscover\Hotels\Models\Environment';
+    protected $model        = Environment::class;
     protected $icon         = 'fa fa-picture-o';
     protected $objectTrans  = 'environment';
 
