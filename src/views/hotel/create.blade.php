@@ -30,7 +30,6 @@
     @include('pulsar::includes.html.froala_references')
     <script src="{{ asset('packages/syscover/pulsar/vendor/attachment/js/attachment-library.js') }}"></script>
     @include('pulsar::includes.js.attachment', [
-        'action'            => 'create',
         'resource'          => 'hotels-hotel',
         'routesConfigFile'  => 'hotels'])
     @include('pulsar::includes.js.check_slug', ['route' => 'apiCheckSlugHotel'])

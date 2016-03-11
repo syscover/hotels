@@ -118,6 +118,5 @@
         @elseif($tab == 4)
         $('.tabbable li:eq(4) a').tab('show')
         @endif
-
     });
 </script>
