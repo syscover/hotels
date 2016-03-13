@@ -12,6 +12,8 @@ class HotelsTableSeeder extends Seeder
         $this->call(HotelsPackageTableSeeder::class);
         $this->call(HotelsResourceTableSeeder::class);
         $this->call(HotelsPublicationTableSeeder::class);
+
+        Model::reguard();
     }
 }
 
