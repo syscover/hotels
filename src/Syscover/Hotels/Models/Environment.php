@@ -48,9 +48,9 @@ class Environment extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_150');
     }
 
-    public static function addToGetIndexRecords($parameters)
+    public function addToGetIndexRecords($parameters)
     {
-        $query =  Environment::builder();
+        $query =  $this->builder();
 
         if(isset($parameters['lang'])) $query->where('lang_150', $parameters['lang']);
 

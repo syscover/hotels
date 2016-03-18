@@ -115,9 +115,9 @@ class Hotel extends Model {
         return $this->belongsToMany('Syscover\Market\Models\Product', '007_177_hotels_products', 'hotel_177', 'product_177');
     }
 
-    public static function addToGetIndexRecords($parameters)
+    public function addToGetIndexRecords($parameters)
     {
-        $query =  Hotel::builder();
+        $query =  $this->builder();
 
         if(isset($parameters['lang'])) $query->where('lang_171', $parameters['lang']);
 
