@@ -115,7 +115,7 @@ class Hotel extends Model {
         return $this->belongsToMany('Syscover\Market\Models\Product', '007_177_hotels_products', 'hotel_177', 'product_177');
     }
 
-    public function addToGetIndexRecords($parameters)
+    public function addToGetIndexRecords($request, $parameters)
     {
         $query =  $this->builder();
 

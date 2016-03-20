@@ -48,7 +48,7 @@ class Service extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_153');
     }
 
-    public function addToGetIndexRecords($parameters)
+    public function addToGetIndexRecords($request, $parameters)
     {
         $query =  $this->builder();
 
@@ -57,7 +57,7 @@ class Service extends Model {
         return $query;
     }
 
-    public static function customCount($parameters)
+    public static function customCount($request, $parameters)
     {
         return Service::where('lang_153', $parameters['lang'])->getQuery();
     }

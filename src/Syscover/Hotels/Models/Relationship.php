@@ -48,7 +48,7 @@ class Relationship extends Model {
         return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_152');
     }
 
-    public function addToGetIndexRecords($parameters)
+    public function addToGetIndexRecords($request, $parameters)
     {
         $query = $this->builder();
 
@@ -57,7 +57,7 @@ class Relationship extends Model {
         return $query;
     }
 
-    public static function customCount($parameters)
+    public static function customCount($request, $parameters)
     {
         return Relationship::where('lang_152', $parameters['lang'])->getQuery();
     }
