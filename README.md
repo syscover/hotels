@@ -5,7 +5,11 @@
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
 "syscover/hotels": "dev-master"
+```
 
+and execute on console:
+```
+composer update
 ```
 
 **2 - Register service provider, on file config/app.php add to providers array**
