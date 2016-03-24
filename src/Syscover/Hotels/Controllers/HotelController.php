@@ -234,6 +234,8 @@ class HotelController extends Controller {
 
     public function editCustomRecord($request, $parameters)
     {
+        dd($parameters['lang']);
+
         $parameters['services']             = Service::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['environments']         = Environment::getTranslationsRecords($parameters['lang']->id_001);
         $parameters['decorations']          = Decoration::getTranslationsRecords($parameters['lang']->id_001);

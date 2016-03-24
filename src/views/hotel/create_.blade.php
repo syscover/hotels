@@ -28,6 +28,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ config('api.googleMapsApiKey') }}&libraries=places"></script>
 
     @include('pulsar::includes.html.froala_references')
+
     <script src="{{ asset('packages/syscover/pulsar/vendor/attachment/js/attachment-library.js') }}"></script>
     @include('pulsar::includes.js.attachment', [
         'resource'          => 'hotels-hotel',

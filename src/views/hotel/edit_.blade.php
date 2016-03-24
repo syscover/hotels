@@ -29,7 +29,7 @@
 
     @include('pulsar::includes.html.froala_references')
 
-    <script type="text/javascript" src="{{ asset('packages/syscover/pulsar/vendor/attachment/js/attachment-library.js') }}"></script>
+    <script src="{{ asset('packages/syscover/pulsar/vendor/attachment/js/attachment-library.js') }}"></script>
     @include('pulsar::includes.js.attachment', [
         'resource'          => 'hotels-hotel',
         'routesConfigFile'  => 'hotels',
