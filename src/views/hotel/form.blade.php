@@ -79,7 +79,7 @@
         'maxLength' => '100',
         'rangeLength' => '2,100',
         'required' => true,
-        'readOnly' => isset($object->id_170)
+        'readOnly' =>  $action == 'update'? false : true
     ])
     @include('pulsar::includes.html.form_text_group', [
         'labelSize' => 1,
@@ -90,7 +90,7 @@
         'maxLength' => '255',
         'rangeLength' => '2,255',
         'required' => true,
-        'readOnly' => isset($object->id_170)
+        'readOnly' => $action == 'update'? false : true
     ])
     <div class="row">
         <div class="col-md-6">
@@ -101,7 +101,7 @@
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
                 'placeholder' => 'mydomain.com',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans_choice('pulsar::pulsar.contact', 1),
@@ -109,7 +109,7 @@
                 'value' => old('contact', isset($object->contact_170)? $object->contact_170 : null),
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans_choice('pulsar::pulsar.phone', 1),
@@ -117,7 +117,7 @@
                 'value' => old('phone', isset($object->phone_170)? $object->phone_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '2,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.fax'),
@@ -125,7 +125,7 @@
                 'value' => old('fax', isset($object->fax_170)? $object->fax_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '2,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update'? false : true
             ])
         </div>
         <div class="col-md-6">
@@ -136,7 +136,7 @@
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
                 'placeholder' => 'http://www.mydomain.com',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.email'),
@@ -146,7 +146,7 @@
                 'rangeLength' => '2,50',
                 'type' => 'email',
                 'required' => true,
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.mobile'),
