@@ -56,10 +56,10 @@ class HotelController extends Controller {
 
     public function createCustomRecord($request, $parameters)
     {
-        $parameters['services']             = Service::getTranslationsRecords($parameters['lang']);
-        $parameters['environments']         = Environment::getTranslationsRecords($parameters['lang']);
-        $parameters['decorations']          = Decoration::getTranslationsRecords($parameters['lang']);
-        $parameters['relationships']        = Relationship::getTranslationsRecords($parameters['lang']);
+        $parameters['services']             = Service::where('lang_153', $parameters['lang'])->get();
+        $parameters['environments']         = Environment::where('lang_150', $parameters['lang'])->get();
+        $parameters['decorations']          = Decoration::where('lang_151', $parameters['lang'])->get();
+        $parameters['relationships']        = Relationship::where('lang_152', $parameters['lang'])->get();
         $parameters['publications']         = Publication::all();
         $parameters['restaurantTypes']      = array_map(function($object){
             $object->name = trans($object->name);
@@ -234,12 +234,10 @@ class HotelController extends Controller {
 
     public function editCustomRecord($request, $parameters)
     {
-        dd($parameters['lang']);
-
-        $parameters['services']             = Service::getTranslationsRecords($parameters['lang']->id_001);
-        $parameters['environments']         = Environment::getTranslationsRecords($parameters['lang']->id_001);
-        $parameters['decorations']          = Decoration::getTranslationsRecords($parameters['lang']->id_001);
-        $parameters['relationships']        = Relationship::getTranslationsRecords($parameters['lang']->id_001);
+        $parameters['services']             = Service::where('lang_153', $parameters['lang']->id_001)->get();
+        $parameters['environments']         = Environment::where('lang_150', $parameters['lang']->id_001)->get();
+        $parameters['decorations']          = Decoration::where('lang_151', $parameters['lang']->id_001)->get();
+        $parameters['relationships']        = Relationship::where('lang_152', $parameters['lang']->id_001)->get();
         $parameters['publications']         = Publication::all();
         $parameters['restaurantTypes']      = array_map(function($object){
             $object->name = trans($object->name);
