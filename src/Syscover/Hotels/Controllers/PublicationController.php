@@ -22,17 +22,17 @@ class PublicationController extends Controller {
     protected $icon         = 'fa fa-object-ungroup';
     protected $objectTrans  = 'publication';
 
-    public function storeCustomRecord($request, $parameters)
+    public function storeCustomRecord($parameters)
     {
         Publication::create([
-            'name_174'      => $request->input('name')
+            'name_174'      => $this->request->input('name')
         ]);
     }
 
-    public function updateCustomRecord($request, $parameters)
+    public function updateCustomRecord($parameters)
     {
         Publication::where('id_174', $parameters['id'])->update([
-            'name_174'      => $request->input('name')
+            'name_174'      => $this->request->input('name')
         ]);
     }
 }

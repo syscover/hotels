@@ -29,12 +29,12 @@ class DecorationController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord($request, $parameters)
+    public function storeCustomRecord($parameters)
     {
         // check if there is id
-        if($request->has('id'))
+        if($this->request->has('id'))
         {
-            $id = $request->input('id');
+            $id = $this->request->input('id');
             $idLang = $id;
         }
         else
@@ -46,16 +46,16 @@ class DecorationController extends Controller {
 
         Decoration::create([
             'id_151'        => $id,
-            'lang_151'      => $request->input('lang'),
-            'name_151'      => $request->input('name'),
-            'data_lang_151' => Decoration::addLangDataRecord($request->input('lang'), $idLang)
+            'lang_151'      => $this->request->input('lang'),
+            'name_151'      => $this->request->input('name'),
+            'data_lang_151' => Decoration::addLangDataRecord($this->request->input('lang'), $idLang)
         ]);
     }
 
-    public function updateCustomRecord($request, $parameters)
+    public function updateCustomRecord($parameters)
     {
-        Decoration::where('id_151', $parameters['id'])->where('lang_151', $request->input('lang'))->update([
-            'name_151'  => $request->input('name')
+        Decoration::where('id_151', $parameters['id'])->where('lang_151', $this->request->input('lang'))->update([
+            'name_151'  => $this->request->input('name')
         ]);
     }
 }

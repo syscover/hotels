@@ -29,12 +29,12 @@ class RelationshipController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord($request, $parameters)
+    public function storeCustomRecord($parameters)
     {
         // check if there is id
-        if($request->has('id'))
+        if($this->request->has('id'))
         {
-            $id     = $request->input('id');
+            $id     = $this->request->input('id');
             $idLang = $id;
         }
         else
@@ -46,16 +46,16 @@ class RelationshipController extends Controller {
 
         Relationship::create([
             'id_152'        => $id,
-            'lang_152'      => $request->input('lang'),
-            'name_152'      => $request->input('name'),
-            'data_lang_152' => Relationship::addLangDataRecord($request->input('lang'), $idLang)
+            'lang_152'      => $this->request->input('lang'),
+            'name_152'      => $this->request->input('name'),
+            'data_lang_152' => Relationship::addLangDataRecord($this->request->input('lang'), $idLang)
         ]);
     }
 
-    public function updateCustomRecord($request, $parameters)
+    public function updateCustomRecord($parameters)
     {
-        Relationship::where('id_152', $parameters['id'])->where('lang_152', $request->input('lang'))->update([
-            'name_152'  => $request->input('name')
+        Relationship::where('id_152', $parameters['id'])->where('lang_152', $this->request->input('lang'))->update([
+            'name_152'  => $this->request->input('name')
         ]);
     }
 }

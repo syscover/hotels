@@ -29,12 +29,12 @@ class EnvironmentController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord($request, $parameters)
+    public function storeCustomRecord($parameters)
     {
         // check if there is id
-        if($request->has('id'))
+        if($this->request->has('id'))
         {
-            $id     = $request->input('id');
+            $id     = $this->request->input('id');
             $idLang = $id;
         }
         else
@@ -46,16 +46,16 @@ class EnvironmentController extends Controller {
 
         Environment::create([
             'id_150'        => $id,
-            'lang_150'      => $request->input('lang'),
-            'name_150'      => $request->input('name'),
-            'data_lang_150' => Environment::addLangDataRecord($request->input('lang'), $idLang)
+            'lang_150'      => $this->request->input('lang'),
+            'name_150'      => $this->request->input('name'),
+            'data_lang_150' => Environment::addLangDataRecord($this->request->input('lang'), $idLang)
         ]);
     }
 
-    public function updateCustomRecord($request, $parameters)
+    public function updateCustomRecord($parameters)
     {
-        Environment::where('id_150', $parameters['id'])->where('lang_150', $request->input('lang'))->update([
-            'name_150'  => $request->input('name')
+        Environment::where('id_150', $parameters['id'])->where('lang_150', $this->request->input('lang'))->update([
+            'name_150'  => $this->request->input('name')
         ]);
     }
 }

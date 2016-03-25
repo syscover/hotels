@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
     $(document).ready(function() {
         // to hotel data
         $.getAddress({
@@ -86,24 +86,24 @@
             $("[name=slug]").val(getSlug($(this).val(),{
                 separator: '-',
                 lang: '{{ $lang->id_001 }}'
-            }));
+            }))
             $.checkSlug()
         })
 
         // save id product to save it after
         $(".product-toggle").on('change', function() {
-            var products = JSON.parse($('[name=products]').val());
+            var products = JSON.parse($('[name=products]').val())
             if($(this).is(':checked'))
             {
-                products.push($(this).val());
+                products.push($(this).val())
             }
             else
             {
-                var i = products.indexOf($(this).val());
+                var i = products.indexOf($(this).val())
                 if(i != -1)
-                    products.splice(i, 1);
+                    products.splice(i, 1)
             }
-            $('[name=products]').val(JSON.stringify(products));
+            $('[name=products]').val(JSON.stringify(products))
         })
 
         // set tab active
@@ -118,5 +118,5 @@
         @elseif($tab == 4)
         $('.tabbable li:eq(4) a').tab('show')
         @endif
-    });
+    })
 </script>

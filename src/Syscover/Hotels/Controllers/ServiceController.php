@@ -1,6 +1,5 @@
 <?php namespace Syscover\Hotels\Controllers;
 
-use Illuminate\Http\Request;
 use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Service;
@@ -30,12 +29,12 @@ class ServiceController extends Controller {
         return $parameters;
     }
 
-    public function storeCustomRecord($request, $parameters)
+    public function storeCustomRecord($parameters)
     {
         // check if there is id
-        if($request->has('id'))
+        if($this->request->has('id'))
         {
-            $id     = $request->input('id');
+            $id     = $this->request->input('id');
             $idLang = $id;
         }
         else
@@ -47,33 +46,33 @@ class ServiceController extends Controller {
 
         Service::create([
             'id_153'        => $id,
-            'lang_153'      => $request->input('lang'),
-            'name_153'      => $request->input('name'),
-            'slug_153'      => $request->input('slug'),
-            'icon_153'      => $request->input('icon'),
-            'data_lang_153' => Service::addLangDataRecord($request->input('lang'), $idLang)
+            'lang_153'      => $this->request->input('lang'),
+            'name_153'      => $this->request->input('name'),
+            'slug_153'      => $this->request->input('slug'),
+            'icon_153'      => $this->request->input('icon'),
+            'data_lang_153' => Service::addLangDataRecord($this->request->input('lang'), $idLang)
         ]);
     }
 
-    public function updateCustomRecord($request, $parameters)
+    public function updateCustomRecord($parameters)
     {
-        Service::where('id_153', $parameters['id'])->where('lang_153', $request->input('lang'))->update([
-            'name_153'  => $request->input('name'),
-            'slug_153'  => $request->input('slug'),
-            'icon_153'  => $request->input('icon')
+        Service::where('id_153', $parameters['id'])->where('lang_153', $this->request->input('lang'))->update([
+            'name_153'  => $this->request->input('name'),
+            'slug_153'  => $this->request->input('slug'),
+            'icon_153'  => $this->request->input('icon')
         ]);
     }
 
-    public function apiCheckSlug(Request $request)
+    public function apiCheckSlug()
     {
-        $slug = $request->input('slug');
+        $slug = $this->request->input('slug');
 
-        $query = Service::where('lang_153', $request->input('lang'))
+        $query = Service::where('lang_153', $this->request->input('lang'))
             ->where('slug_153', $slug);
 
-        if($request->input('id'))
+        if($this->request->input('id'))
         {
-            $query->whereNotIn('id_153', [$request->input('id')]);
+            $query->whereNotIn('id_153', [$this->request->input('id')]);
         }
 
         $nObjects = $query->count();
@@ -84,8 +83,8 @@ class ServiceController extends Controller {
             while($nObjects > 0)
             {
                 $suffix++;
-                $slug = $request->input('slug') . '-' . $suffix;
-                $nObjects = Service::where('lang_153', $request->input('lang'))
+                $slug = $this->request->input('slug') . '-' . $suffix;
+                $nObjects = Service::where('lang_153', $this->request->input('lang'))
                     ->where('slug_153', $slug)
                     ->count();
             }

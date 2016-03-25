@@ -35,15 +35,18 @@
         'routesConfigFile'  => 'hotels',
         'objectId'          => isset($object)? $object->id_170 : null])
     @include('pulsar::includes.js.check_slug', ['route' => 'apiCheckSlugHotel'])
-    @include('hotels::hotel.includes.common_script', ['action' => 'create'])
-    @include('pulsar::includes.js.custom_fields', ['resource' => 'hotels-hotel', 'action' => 'create'])
+    @include('hotels::hotel.includes.common_script')
+    @include('pulsar::includes.js.custom_fields', [
+        'resource' => 'hotels-hotel'
+    ])
+    @include('pulsar::includes.js.delete_translation_record')
 @stop
 
 @section('layoutTabHeader')
-    @include('pulsar::includes.html.form_record_header', ['action' => 'store'])
+    @include('pulsar::includes.html.form_record_header')
 @stop
 @section('layoutTabFooter')
-    @include('pulsar::includes.html.form_record_footer', ['action' => 'store'])
+    @include('pulsar::includes.html.form_record_footer')
 @stop
 
 @section('box_tab1')
@@ -79,7 +82,7 @@
         'maxLength' => '100',
         'rangeLength' => '2,100',
         'required' => true,
-        'readOnly' =>  $action == 'update'? false : true
+        'readOnly' => $action == 'update' || $action == 'store'? false : true
     ])
     @include('pulsar::includes.html.form_text_group', [
         'labelSize' => 1,
@@ -90,7 +93,7 @@
         'maxLength' => '255',
         'rangeLength' => '2,255',
         'required' => true,
-        'readOnly' => $action == 'update'? false : true
+        'readOnly' => $action == 'update' || $action == 'store'? false : true
     ])
     <div class="row">
         <div class="col-md-6">
@@ -101,7 +104,7 @@
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
                 'placeholder' => 'mydomain.com',
-                'readOnly' => $action == 'update'? false : true
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans_choice('pulsar::pulsar.contact', 1),
@@ -109,7 +112,7 @@
                 'value' => old('contact', isset($object->contact_170)? $object->contact_170 : null),
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
-                'readOnly' => $action == 'update'? false : true
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans_choice('pulsar::pulsar.phone', 1),
@@ -117,7 +120,7 @@
                 'value' => old('phone', isset($object->phone_170)? $object->phone_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '2,50',
-                'readOnly' => $action == 'update'? false : true
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.fax'),
@@ -125,7 +128,7 @@
                 'value' => old('fax', isset($object->fax_170)? $object->fax_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '2,50',
-                'readOnly' => $action == 'update'? false : true
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
         <div class="col-md-6">
@@ -136,7 +139,7 @@
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
                 'placeholder' => 'http://www.mydomain.com',
-                'readOnly' => $action == 'update'? false : true
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.email'),
@@ -146,7 +149,7 @@
                 'rangeLength' => '2,50',
                 'type' => 'email',
                 'required' => true,
-                'readOnly' => $action == 'update'? false : true
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.mobile'),
@@ -154,7 +157,7 @@
                 'value' => old('mobile', isset($object->mobile_170)? $object->mobile_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '2,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_select_group', [
                 'fieldSize' => 7,
@@ -182,28 +185,29 @@
                 'rangeLength' => '2,50',
                 'fieldSize' => 6,
                 'required' => true,
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
+                'fieldSize' => 8,
                 'label' => trans('pulsar::pulsar.password'),
                 'type' => 'password',
                 'name' => 'password',
                 'value' => old('password'),
                 'maxLength' => '50',
                 'rangeLength' => '4,50',
-                'fieldSize' => 8,
-                'readOnly' => isset($object->id_170)
+                'required' => $action == 'store'? true : false,
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
+                'fieldSize' => 8,
                 'label' => trans('pulsar::pulsar.repeat_password'),
                 'type' => 'password' ,
                 'name' => 'repassword',
                 'value' => old('repassword'),
                 'maxLength' => '50',
                 'rangeLength' => '4,50',
-                'fieldSize' => 8,
-                'required' => true,
-                'readOnly' => isset($object->id_170)
+                'required' => $action == 'store'? true : false,
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
         <div class="col-md-6">
@@ -220,7 +224,7 @@
                     'language' => config('app.locale'),
                     'width' => '100%',
                     'error-placement' => 'select2-section-outer-container',
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_checkbox_group', [
@@ -228,7 +232,7 @@
                 'name' => 'active',
                 'value' => 1,
                 'checked' => old('active', isset($object)? $object->active_170 : null),
-                'disabled' => isset($object->id_170)? true : null
+                'disabled' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
     </div>
@@ -240,6 +244,7 @@
     @include('pulsar::includes.html.form_dual_list_group', [
         'name' => 'services',
         'value' => old('countries'),
+        'objectsSelect' => isset($object)? $object->getServices->where('lang_153', $lang->id_001) : null,
         'objects' => $services,
         'idSelect' => 'id_153',
         'nameSelect' => 'name_153',
@@ -268,7 +273,7 @@
                     'language' => config('app.locale'),
                     'width' => '100%',
                     'error-placement' => 'select2-section-outer-container',
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -283,7 +288,7 @@
                     'language' => config('app.locale'),
                     'width' => '100%',
                     'error-placement' => 'select2-section-outer-container',
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -298,7 +303,7 @@
                     'language' => config('app.locale'),
                     'width' => '100%',
                     'error-placement' => 'select2-section-outer-container',
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
         </div>
@@ -309,7 +314,7 @@
                 'value' => old('nRooms', isset($object->n_rooms_170)? $object->n_rooms_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '1,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('hotels::pulsar.number_places'),
@@ -317,7 +322,7 @@
                 'value' => old('nPlaces', isset($object->n_places_170)? $object->n_places_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '1,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
     </div>
@@ -334,7 +339,7 @@
                 'value' => old('nEventsRooms', isset($object->n_events_rooms_170)? $object->n_events_rooms_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '1,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
         <div class="col-md-6">
@@ -344,7 +349,7 @@
                 'value' => old('nEventsRoomsPlaces', isset($object->n_events_rooms_places_170)? $object->n_events_rooms_places_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '1,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
     </div>
@@ -361,7 +366,7 @@
                 'value' => old('restaurantName', isset($object->restaurant_name_170)? $object->restaurant_name_170 : null),
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('hotels::pulsar.cuisine'),
@@ -382,7 +387,7 @@
                 'name' => 'restaurantTerrace',
                 'value' => 1,
                 'checked' => old('restaurantTerrace', isset($object)? $object->restaurant_terrace_170 : null),
-                'disabled' => isset($object->id_170)? true : null
+                'disabled' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
         <div class="col-md-6">
@@ -391,7 +396,7 @@
                 'name' => 'countryChefRestaurant',
                 'value' => 1,
                 'checked' => old('countryChefRestaurant', isset($object)? $object->country_chef_restaurant_170 : null),
-                'disabled' => isset($object->id_170)? true : null
+                'disabled' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => 'T.C.C. URL',
@@ -400,7 +405,7 @@
                 'maxLength' => '255',
                 'rangeLength' => '2,255',
                 'placeholder' => 'http://www.thecountrychef.es/',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_select_group', [
                 'label' => trans_choice('pulsar::pulsar.type', 1),
@@ -415,7 +420,7 @@
                     'width' => '100%',
                     'error-placement' => 'select2-section-outer-container',
                     'minimum-results-for-search' => -1,
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
         </div>
@@ -434,7 +439,7 @@
         'maxLength' => '50',
         'rangeLength' => '2,50',
         'type' => 'email',
-        'readOnly' => isset($object->id_170)
+        'readOnly' => $action == 'update' || $action == 'store'? false : true
     ])
     @include('pulsar::includes.html.form_text_group', [
         'labelSize' => 1,
@@ -445,7 +450,7 @@
         'maxLength' => '100',
         'rangeLength' => '2,100',
         'placeholder' => 'http://www.booking.com/',
-        'readOnly' => isset($object->id_170)
+        'readOnly' => $action == 'update' || $action == 'store'? false : true
     ])
 
     @include('pulsar::includes.html.form_section_header', [
@@ -460,7 +465,7 @@
         'value' => old('address', isset($object->address_170)? $object->address_170 : null),
         'maxLength' => '150',
         'rangeLength' => '2,150',
-        'readOnly' => isset($object->id_170)
+        'readOnly' => $action == 'update' || $action == 'store'? false : true
     ])
     <div class="row">
         <div class="col-md-6">
@@ -476,7 +481,7 @@
                 'data' => [
                     'language' => config('app.locale'),
                     'error-placement' => 'select2-country-outer-container',
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -487,7 +492,7 @@
                 'style' => 'width:100%',
                 'data' => [
                     'language' => config('app.locale'),
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -498,7 +503,7 @@
                 'style' => 'width:100%',
                 'data' => [
                     'language' => config('app.locale'),
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -507,7 +512,11 @@
                 'name' => 'territorialArea3',
                 'class' => 'col-md-12 select2',
                 'style' => 'width:100%',
-                'data' => ['language' => config('app.locale'), 'disabled' => isset($object->id_170)? true : null]])
+                'data' => [
+                    'language' => config('app.locale'),
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
+                ]
+            ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.cp'),
                 'name' => 'cp',
@@ -515,7 +524,7 @@
                 'maxLength' => '10',
                 'rangeLength' => '2,10',
                 'fieldSize' => 4,
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.locality'),
@@ -524,7 +533,7 @@
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
                 'fieldSize' => 6,
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.latitude'),
@@ -532,7 +541,7 @@
                 'value' => old('latitude', isset($object->latitude_170)? $object->latitude_170 : null),
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.longitude'),
@@ -540,7 +549,7 @@
                 'value' => old('longitude', isset($object->longitude_170)? $object->longitude_170 : null),
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
         <div class="col-md-6">
@@ -603,7 +612,7 @@
         'value' => old('billingCompanyName', isset($object->billing_company_name_170)? $object->billing_company_name_170 : null),
         'maxLength' => '100',
         'rangeLength' => '2,100',
-        'readOnly' => isset($object->id_170)
+        'readOnly' => $action == 'update' || $action == 'store'? false : true
     ])
     <div class="row">
         <div class="col-md-6">
@@ -613,7 +622,7 @@
                 'value' => old('billingName', isset($object->billing_name_170)? $object->billing_name_170 : null),
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.surname'),
@@ -621,7 +630,7 @@
                 'value' => old('billingSurname', isset($object->billing_surname_170)? $object->billing_surname_170 : null),
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.tin'),
@@ -629,7 +638,7 @@
                 'value' => old('billingTin', isset($object->billing_tin_170)? $object->billing_tin_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '2,100',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.phone'),
@@ -637,7 +646,7 @@
                 'value' => old('billingPhone', isset($object->billing_phone_170)? $object->billing_phone_170 : null),
                 'maxLength' => '50',
                 'rangeLength' => '2,50',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.email'),
@@ -646,7 +655,7 @@
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
                 'type' => 'email',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
                 'fieldSize' => 2,
@@ -655,7 +664,7 @@
                 'value' => old('billingIbanCountry', isset($object->billing_iban_country_170)? $object->billing_iban_country_170 : null),
                 'maxLength' => '2',
                 'rangeLength' => '2,2',
-                'readOnly' => isset($object->id_170),
+                'readOnly' => $action == 'update' || $action == 'store'? false : true,
                 'inputs' => [
                     [
                         'fieldSize' => 2,
@@ -663,7 +672,7 @@
                         'value' => old('billingIbanCheckDigits', isset($object->billing_iban_check_digits_170)? $object->billing_iban_check_digits_170 : null),
                         'maxLength' => '2',
                         'rangeLength' => '2,2',
-                        'readOnly' => isset($object->id_170)
+                        'readOnly' => $action == 'update' || $action == 'store'? false : true
                     ],
                     [
                         'fieldSize' => 6,
@@ -671,7 +680,7 @@
                         'value' => old('billingIbanBasicBankAccountNumber', isset($object->billing_iban_basic_bank_account_number_170)? $object->billing_iban_basic_bank_account_number_170 : null),
                         'maxLength' => '30',
                         'rangeLength' => '15,30',
-                        'readOnly' => isset($object->id_170)
+                        'readOnly' => $action == 'update' || $action == 'store'? false : true
                     ]
                 ]
             ])
@@ -682,7 +691,7 @@
                 'value' => old('billingBic', isset($object->billing_bic_170)? $object->billing_bic_170 : null),
                 'maxLength' => '11',
                 'rangeLength' => '8,11',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
         <div class="col-md-6">
@@ -692,7 +701,7 @@
                 'value' => old('billingAddress', isset($object->billing_address_170)? $object->billing_address_170 : null),
                 'maxLength' => '150',
                 'rangeLength' => '2,150',
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_select_group', [
                 'label' => trans_choice('pulsar::pulsar.country', 1),
@@ -705,7 +714,7 @@
                 'data' => [
                     'language' => config('app.locale'),
                     'error-placement' => 'select2-country-outer-container',
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -716,7 +725,7 @@
                 'style' => 'width:100%',
                 'data' => [
                     'language' => config('app.locale'),
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -727,7 +736,7 @@
                 'style' => 'width:100%',
                 'data' => [
                     'language' => config('app.locale'),
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_select_group', [
@@ -738,7 +747,7 @@
                 'style' => 'width:100%',
                 'data' => [
                     'language' => config('app.locale'),
-                    'disabled' => isset($object->id_170)? true : null
+                    'disabled' => $action == 'update' || $action == 'store'? false : true
                 ]
             ])
             @include('pulsar::includes.html.form_text_group', [
@@ -747,7 +756,9 @@
                 'name' => 'billingCp',
                 'value' => old('billingCp', isset($object->billing_cp_170)? $object->billing_cp_170 : null),
                 'maxLength' => '10',
-                'rangeLength' => '2,10', 'readOnly' => isset($object->id_170)])
+                'rangeLength' => '2,10',
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
+            ])
             @include('pulsar::includes.html.form_text_group', [
                 'label' => trans('pulsar::pulsar.locality'),
                 'name' => 'billingLocality',
@@ -755,7 +766,7 @@
                 'maxLength' => '100',
                 'rangeLength' => '2,100',
                 'fieldSize' => 6,
-                'readOnly' => isset($object->id_170)
+                'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
         </div>
     </div>
