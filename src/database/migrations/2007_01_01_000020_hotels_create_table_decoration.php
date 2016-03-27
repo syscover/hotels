@@ -36,5 +36,4 @@ class HotelsCreateTableDecoration extends Migration {
 	{
         Schema::drop('007_151_decoration');
 	}
-
 }

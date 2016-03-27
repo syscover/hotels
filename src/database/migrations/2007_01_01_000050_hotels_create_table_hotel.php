@@ -125,5 +125,4 @@ class HotelsCreateTableHotel extends Migration {
 	{
         Schema::drop('007_170_hotel');
 	}
-
 }

@@ -36,5 +36,4 @@ class HotelsCreateTableEnvironment extends Migration {
 	{
         Schema::drop('007_150_environment');
 	}
-
 }
