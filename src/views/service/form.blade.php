@@ -1,4 +1,4 @@
-@extends('pulsar::layouts.form', ['action' => 'store'])
+@extends('pulsar::layouts.form')
 
 @section('head')
     @parent
@@ -14,33 +14,17 @@
                 $.checkSlug();
             });
         });
-
-        <!-- Check slug -->
-        $.checkSlug = function() {
-            $.ajax({
-                dataType:   'json',
-                type:       'POST',
-                url:        '{{ route('apiCheckSlugHotelsService') }}',
-                data:       {
-                    lang:   '{{ $lang->id_001 }}',
-                    slug:   $('[name=slug]').val(),
-                    id:     $('[name=id]').val()
-                },
-                headers:  {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                success:  function(data)
-                {
-                    $("[name=slug]").val(data.slug);
-                }
-            });
-        }
-        <!-- ./Check slug -->
     </script>
+
+    @include('pulsar::includes.js.check_slug', [
+        'route' => 'apiCheckSlugHotelsService',
+        'lang'  => $lang->id_001
+    ])
+    @include('pulsar::includes.js.delete_translation_record')
 @stop
 
 @section('rows')
-    <!-- hotels::services.create -->
+    <!-- hotels::service.create -->
     @include('pulsar::includes.html.form_text_group', [
         'label' => 'ID',
         'name' => 'id',
@@ -79,5 +63,5 @@
         'maxLength' => '50',
         'rangeLength' => '2,50'
     ])
-    <!-- ./hotels::services.create -->
+    <!-- ./hotels::service.create -->
 @stop

@@ -20,7 +20,7 @@ class HotelsCreateTableService extends Migration {
 			$table->string('slug_153');
             $table->string('icon_153')->nullable();
 
-            $table->string('data_lang_153',255)->nullable();
+            $table->string('data_lang_153')->nullable();
             $table->text('data_153')->nullable();
 
             $table->primary(['id_153', 'lang_153'], 'pk01_007_153_service');

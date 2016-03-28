@@ -22,7 +22,6 @@ return [
     'construction'                          => 'Construcción',
     'cuisine'                               => 'Cocina',
     'decoration'                            => 'Decoración|Decoraciones',
-    'description_title'                     => 'Título de la descripción',
     'environment'                           => 'Entorno|Entornos',
     'hotel'                                 => 'Hotel|Hoteles',
     'indications'                           => 'Indicaciones',
@@ -46,5 +45,4 @@ return [
     'only_guest_reservation'                => 'Solo para huéspedes previa reserva',
     'open_public'                           => 'Abierto al público',
     'published'                             => 'Publicado en',
-    'web_url'                               => 'URl web',
 ];

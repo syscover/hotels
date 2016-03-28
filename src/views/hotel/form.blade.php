@@ -34,8 +34,10 @@
         'resource'          => 'hotels-hotel',
         'routesConfigFile'  => 'hotels',
         'objectId'          => isset($object)? $object->id_170 : null])
+
     @include('pulsar::includes.js.check_slug', [
-        'route' => 'apiCheckSlugHotel'
+        'route' => 'apiCheckSlugHotel',
+        'lang'  => null
     ])
 
     <script>
@@ -250,7 +252,7 @@
         </div>
         <div class="col-md-6">
             @include('pulsar::includes.html.form_text_group', [
-                'label' => trans('hotels::pulsar.web_url'),
+                'label' => trans('pulsar::pulsar.web_url'),
                 'name' => 'webUrl',
                 'value' => old('webUrl', isset($object->web_url_170)? $object->web_url_170 : null),
                 'maxLength' => '100',
@@ -692,7 +694,7 @@
         'rangeLength' => '2,255'
     ])
     @include('pulsar::includes.html.form_text_group', [
-        'label' => trans('hotels::pulsar.description_title'),
+        'label' => trans('pulsar::pulsar.description_title'),
         'name' => 'descriptionTitle',
         'value' => old('descriptionTitle', isset($object->description_title_171)? $object->description_title_171 : null),
         'maxLength' => '100',

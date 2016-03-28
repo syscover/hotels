@@ -70,10 +70,8 @@ class ServiceController extends Controller {
         $query = Service::where('lang_153', $this->request->input('lang'))
             ->where('slug_153', $slug);
 
-        if($this->request->input('id'))
-        {
+        if($this->request->has('id'))
             $query->whereNotIn('id_153', [$this->request->input('id')]);
-        }
 
         $nObjects = $query->count();
 
