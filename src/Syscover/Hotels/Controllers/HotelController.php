@@ -115,7 +115,7 @@ class HotelController extends Controller {
         {
             // create new hotel
             $hotel = Hotel::create([
-                'custom_field_group_170'                        => empty($this->request->input('customFieldGroup'))? null : $this->request->input('customFieldGroup'),
+                'custom_field_group_170'                        => $this->request->has('customFieldGroup')? $this->request->input('customFieldGroup') : null,
                 'name_170'                                      => $this->request->input('name'),
                 'slug_170'                                      => $this->request->input('slug'),
                 'web_170'                                       => $this->request->input('web'),
@@ -282,7 +282,7 @@ class HotelController extends Controller {
     public function updateCustomRecord($parameters)
     {
         $hotel = [
-            'custom_field_group_170'                        => empty($this->request->input('customFieldGroup'))? null : $this->request->input('customFieldGroup'),
+            'custom_field_group_170'                        => $this->request->has('customFieldGroup')? $this->request->input('customFieldGroup') : null,
             'name_170'                                      => $this->request->input('name'),
             'slug_170'                                      => $this->request->input('slug'),
             'web_170'                                       => $this->request->input('web'),

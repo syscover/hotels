@@ -2,8 +2,8 @@
 
 @section('head')
     @parent
-    <!-- hotels::hotels.index -->
-    <script type="text/javascript">
+    <!-- hotels::hotel.index -->
+    <script>
         $(document).ready(function() {
             if ($.fn.dataTable)
             {
@@ -21,11 +21,11 @@
             }
         });
     </script>
-    <!-- ./hotels::hotels.index -->
+    <!-- ./hotels::hotel.index -->
 @stop
 
 @section('tHead')
-    <!-- hotels::hotels.index -->
+    <!-- hotels::hotel.index -->
     <tr>
         <th data-hide="phone,tablet">ID.</th>
         <th data-hide="phone,tablet">{{ trans_choice('pulsar::pulsar.language', 1) }}</th>
@@ -36,5 +36,5 @@
         <th class="checkbox-column"><input type="checkbox" class="uniform"></th>
         <th>{{ trans_choice('pulsar::pulsar.action', 2) }}</th>
     </tr>
-    <!-- ./hotels::hotels.index -->
+    <!-- ./hotels::hotel.index -->
 @stop
