@@ -195,15 +195,15 @@ class HotelController extends Controller {
         HotelLang::create([
             'id_171'                        => $id,
             'lang_171'                      => $this->request->input('lang'),
-            'cuisine_171'                   => $this->request->input('cuisine'),
-            'special_dish_171'              => $this->request->input('specialDish'),
-            'indications_171'               => $this->request->input('indications'),
-            'interest_points_171'           => $this->request->input('interestPoints'),
-            'environment_description_171'   => $this->request->input('environmentDescription'),
-            'construction_171'              => $this->request->input('construction'),
-            'activities_171'                => $this->request->input('activities'),
-            'description_title_171'         => $this->request->input('descriptionTitle'),
-            'description_171'               => $this->request->input('description')
+            'cuisine_171'                   => $this->request->has('cuisine')? $this->request->input('cuisine') : null,
+            'special_dish_171'              => $this->request->has('specialDish')? $this->request->input('specialDish') : null,
+            'indications_171'               => $this->request->has('indications')? $this->request->input('indications') : null,
+            'interest_points_171'           => $this->request->has('interestPoints')? $this->request->input('interestPoints') : null,
+            'environment_description_171'   => $this->request->has('environmentDescription')? $this->request->input('environmentDescription') : null,
+            'construction_171'              => $this->request->has('construction')? $this->request->input('construction') : null,
+            'activities_171'                => $this->request->has('activities')? $this->request->input('activities') : null,
+            'description_title_171'         => $this->request->has('descriptionTitle')? $this->request->input('descriptionTitle') : null,
+            'description_171'               => $this->request->has('description')? $this->request->input('description') : null,
         ]);
 
         // set hotel products
@@ -365,15 +365,15 @@ class HotelController extends Controller {
         }
 
         HotelLang::where('id_171', $parameters['id'])->where('lang_171', $this->request->input('lang'))->update([
-            'cuisine_171'                   => $this->request->input('cuisine'),
-            'special_dish_171'              => $this->request->input('specialDish'),
-            'indications_171'               => $this->request->input('indications'),
-            'interest_points_171'           => $this->request->input('interestPoints'),
-            'environment_description_171'   => $this->request->input('environmentDescription'),
-            'construction_171'              => $this->request->input('construction'),
-            'activities_171'                => $this->request->input('activities'),
-            'description_title_171'         => $this->request->input('descriptionTitle'),
-            'description_171'               => $this->request->input('description')
+            'cuisine_171'                   => $this->request->has('cuisine')? $this->request->input('cuisine') : null,
+            'special_dish_171'              => $this->request->has('specialDish')? $this->request->input('specialDish') : null,
+            'indications_171'               => $this->request->has('indications')? $this->request->input('indications') : null,
+            'interest_points_171'           => $this->request->has('interestPoints')? $this->request->input('interestPoints') : null,
+            'environment_description_171'   => $this->request->has('environmentDescription')? $this->request->input('environmentDescription') : null,
+            'construction_171'              => $this->request->has('construction')? $this->request->input('construction') : null,
+            'activities_171'                => $this->request->has('activities')? $this->request->input('activities') : null,
+            'description_title_171'         => $this->request->has('descriptionTitle')? $this->request->input('descriptionTitle') : null,
+            'description_171'               => $this->request->has('description')? $this->request->input('description') : null,
         ]);
 
         // set hotel products
