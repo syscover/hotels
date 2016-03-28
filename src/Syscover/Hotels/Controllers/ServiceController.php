@@ -13,7 +13,7 @@ class ServiceController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'HotelsService';
+    protected $routeSuffix  = 'hotelsService';
     protected $folder       = 'service';
     protected $package      = 'hotels';
     protected $aColumns     = ['id_153', 'name_001', 'name_153', 'slug_153', 'icon_153'];

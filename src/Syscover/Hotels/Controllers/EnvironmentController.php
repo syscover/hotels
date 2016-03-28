@@ -13,7 +13,7 @@ class EnvironmentController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'HotelsEnvironment';
+    protected $routeSuffix  = 'hotelsEnvironment';
     protected $folder       = 'environment';
     protected $package      = 'hotels';
     protected $aColumns     = ['id_150', 'name_001', 'name_150'];

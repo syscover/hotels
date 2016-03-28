@@ -13,7 +13,7 @@ class DecorationController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'HotelsDecoration';
+    protected $routeSuffix  = 'hotelsDecoration';
     protected $folder       = 'decoration';
     protected $package      = 'hotels';
     protected $aColumns     = ['id_151', 'name_001', 'name_151'];

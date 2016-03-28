@@ -17,7 +17,7 @@ Route::group(['middleware' => ['web', 'pulsar']], function() {
     | HOTELS
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/hotels/hotels/{lang}/{offset?}',                                    ['as'=>'Hotel',                    'uses'=>'Syscover\Hotels\Controllers\HotelController@index',                      'resource' => 'hotels-hotel',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/hotels/{lang}/{offset?}',                                    ['as'=>'hotel',                    'uses'=>'Syscover\Hotels\Controllers\HotelController@index',                      'resource' => 'hotels-hotel',        'action' => 'access']);
     Route::any(config('pulsar.appName') . '/hotels/hotels/json/data/{lang}',                                    ['as'=>'jsonDataHotel',            'uses'=>'Syscover\Hotels\Controllers\HotelController@jsonData',                   'resource' => 'hotels-hotel',        'action' => 'access']);
     Route::get(config('pulsar.appName') . '/hotels/hotels/create/{lang}/{offset}/{tab}/{id?}',                  ['as'=>'createHotel',              'uses'=>'Syscover\Hotels\Controllers\HotelController@createRecord',               'resource' => 'hotels-hotel',        'action' => 'create']);
     Route::post(config('pulsar.appName') . '/hotels/hotels/store/{lang}/{offset}/{tab}/{id?}',                  ['as'=>'storeHotel',               'uses'=>'Syscover\Hotels\Controllers\HotelController@storeRecord',                'resource' => 'hotels-hotel',        'action' => 'create']);
@@ -33,7 +33,7 @@ Route::group(['middleware' => ['web', 'pulsar']], function() {
     | PUBLICATIONS
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/hotels/publications/{offset?}',                                     ['as'=>'HotelsPublication',                 'uses'=>'Syscover\Hotels\Controllers\PublicationController@index',                  'resource' => 'hotels-publication',         'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/publications/{offset?}',                                     ['as'=>'hotelsPublication',                 'uses'=>'Syscover\Hotels\Controllers\PublicationController@index',                  'resource' => 'hotels-publication',         'action' => 'access']);
     Route::any(config('pulsar.appName') . '/hotels/publications/json/data',                                     ['as'=>'jsonDataHotelsPublication',         'uses'=>'Syscover\Hotels\Controllers\PublicationController@jsonData',               'resource' => 'hotels-publication',         'action' => 'access']);
     Route::get(config('pulsar.appName') . '/hotels/publications/create/{offset}',                               ['as'=>'createHotelsPublication',           'uses'=>'Syscover\Hotels\Controllers\PublicationController@createRecord',           'resource' => 'hotels-publication',         'action' => 'create']);
     Route::post(config('pulsar.appName') . '/hotels/publications/store/{offset}',                               ['as'=>'storeHotelsPublication',            'uses'=>'Syscover\Hotels\Controllers\PublicationController@storeRecord',            'resource' => 'hotels-publication',         'action' => 'create']);
@@ -47,7 +47,7 @@ Route::group(['middleware' => ['web', 'pulsar']], function() {
     | SERVICES
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/hotels/services/{lang}/{offset?}',                                  ['as'=>'HotelsService',                    'uses'=>'Syscover\Hotels\Controllers\ServiceController@index',                      'resource' => 'hotels-service',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/services/{lang}/{offset?}',                                  ['as'=>'hotelsService',                    'uses'=>'Syscover\Hotels\Controllers\ServiceController@index',                      'resource' => 'hotels-service',        'action' => 'access']);
     Route::any(config('pulsar.appName') . '/hotels/services/json/data/{lang}',                                  ['as'=>'jsonDataHotelsService',            'uses'=>'Syscover\Hotels\Controllers\ServiceController@jsonData',                   'resource' => 'hotels-service',        'action' => 'access']);
     Route::get(config('pulsar.appName') . '/hotels/services/create/{lang}/{offset}/{id?}',                      ['as'=>'createHotelsService',              'uses'=>'Syscover\Hotels\Controllers\ServiceController@createRecord',               'resource' => 'hotels-service',        'action' => 'create']);
     Route::post(config('pulsar.appName') . '/hotels/services/store/{lang}/{offset}/{id?}',                      ['as'=>'storeHotelsService',               'uses'=>'Syscover\Hotels\Controllers\ServiceController@storeRecord',                'resource' => 'hotels-service',        'action' => 'create']);
@@ -63,7 +63,7 @@ Route::group(['middleware' => ['web', 'pulsar']], function() {
     | RELATIONSHIPS
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/hotels/relationships/{lang}/{offset?}',                             ['as'=>'HotelsRelationship',                    'uses'=>'Syscover\Hotels\Controllers\RelationshipController@index',                      'resource' => 'hotels-relationship',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/relationships/{lang}/{offset?}',                             ['as'=>'hotelsRelationship',                    'uses'=>'Syscover\Hotels\Controllers\RelationshipController@index',                      'resource' => 'hotels-relationship',        'action' => 'access']);
     Route::any(config('pulsar.appName') . '/hotels/relationships/json/data/{lang}',                             ['as'=>'jsonDataHotelsRelationship',            'uses'=>'Syscover\Hotels\Controllers\RelationshipController@jsonData',                   'resource' => 'hotels-relationship',        'action' => 'access']);
     Route::get(config('pulsar.appName') . '/hotels/relationships/create/{lang}/{offset}/{id?}',                 ['as'=>'createHotelsRelationship',              'uses'=>'Syscover\Hotels\Controllers\RelationshipController@createRecord',               'resource' => 'hotels-relationship',        'action' => 'create']);
     Route::post(config('pulsar.appName') . '/hotels/relationships/store/{lang}/{offset}/{id?}',                 ['as'=>'storeHotelsRelationship',               'uses'=>'Syscover\Hotels\Controllers\RelationshipController@storeRecord',                'resource' => 'hotels-relationship',        'action' => 'create']);
@@ -78,7 +78,7 @@ Route::group(['middleware' => ['web', 'pulsar']], function() {
     | ENVIROMENTS
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/hotels/environments/{lang}/{offset?}',                              ['as'=>'HotelsEnvironment',                     'uses'=>'Syscover\Hotels\Controllers\EnvironmentController@index',                      'resource' => 'hotels-environment',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/environments/{lang}/{offset?}',                              ['as'=>'hotelsEnvironment',                     'uses'=>'Syscover\Hotels\Controllers\EnvironmentController@index',                      'resource' => 'hotels-environment',        'action' => 'access']);
     Route::any(config('pulsar.appName') . '/hotels/environments/json/data/{lang}',                              ['as'=>'jsonDataHotelsEnvironment',             'uses'=>'Syscover\Hotels\Controllers\EnvironmentController@jsonData',                   'resource' => 'hotels-environment',        'action' => 'access']);
     Route::get(config('pulsar.appName') . '/hotels/environments/create/{lang}/{offset}/{id?}',                  ['as'=>'createHotelsEnvironment',               'uses'=>'Syscover\Hotels\Controllers\EnvironmentController@createRecord',               'resource' => 'hotels-environment',        'action' => 'create']);
     Route::post(config('pulsar.appName') . '/hotels/environments/store/{lang}/{offset}/{id?}',                  ['as'=>'storeHotelsEnvironment',                'uses'=>'Syscover\Hotels\Controllers\EnvironmentController@storeRecord',                'resource' => 'hotels-environment',        'action' => 'create']);
@@ -93,7 +93,7 @@ Route::group(['middleware' => ['web', 'pulsar']], function() {
     | DECORATIONS
     |--------------------------------------------------------------------------
     */
-    Route::any(config('pulsar.appName') . '/hotels/decorations/{lang}/{offset?}',                               ['as'=>'HotelsDecoration',                      'uses'=>'Syscover\Hotels\Controllers\DecorationController@index',                        'resource' => 'hotels-decoration',        'action' => 'access']);
+    Route::any(config('pulsar.appName') . '/hotels/decorations/{lang}/{offset?}',                               ['as'=>'hotelsDecoration',                      'uses'=>'Syscover\Hotels\Controllers\DecorationController@index',                        'resource' => 'hotels-decoration',        'action' => 'access']);
     Route::any(config('pulsar.appName') . '/hotels/decorations/json/data/{lang}',                               ['as'=>'jsonDataHotelsDecoration',              'uses'=>'Syscover\Hotels\Controllers\DecorationController@jsonData',                     'resource' => 'hotels-decoration',        'action' => 'access']);
     Route::get(config('pulsar.appName') . '/hotels/decorations/create/{lang}/{offset}/{id?}',                   ['as'=>'createHotelsDecoration',                'uses'=>'Syscover\Hotels\Controllers\DecorationController@createRecord',                 'resource' => 'hotels-decoration',        'action' => 'create']);
     Route::post(config('pulsar.appName') . '/hotels/decorations/store/{lang}/{offset}/{id?}',                   ['as'=>'storeHotelsDecoration',                 'uses'=>'Syscover\Hotels\Controllers\DecorationController@storeRecord',                  'resource' => 'hotels-decoration',        'action' => 'create']);

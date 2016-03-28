@@ -13,7 +13,7 @@ class PublicationController extends Controller {
 
     use TraitController;
 
-    protected $routeSuffix  = 'HotelsPublication';
+    protected $routeSuffix  = 'hotelsPublication';
     protected $folder       = 'publication';
     protected $package      = 'hotels';
     protected $aColumns     = ['id_174', 'name_174'];
