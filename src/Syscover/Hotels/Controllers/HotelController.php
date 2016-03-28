@@ -224,7 +224,7 @@ class HotelController extends Controller {
 
         // set attachments
         $attachments = json_decode($this->request->input('attachments'));
-        AttachmentLibrary::storeAttachments($attachments, 'hotels', 'hotels-hotel', $id, $this->request->input('lang'));
+        AttachmentLibrary::storeAttachments($attachments, $this->package, 'hotels-hotel', $id, $this->request->input('lang'));
 
         // set custom fields
         if(!empty($this->request->input('customFieldGroup')))
@@ -244,7 +244,7 @@ class HotelController extends Controller {
         }, config('hotels.restaurantTypes'));
 
         // get attachments elements
-        $attachments = AttachmentLibrary::getRecords('hotels', 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
+        $attachments = AttachmentLibrary::getRecords($this->package, 'hotels-hotel', $parameters['object']->id_170, $parameters['lang']->id_001);
 
         $parameters['products']             = Product::builder()->where('active_111',true)->where('lang_112', $parameters['lang']->id_001)->get();
 
