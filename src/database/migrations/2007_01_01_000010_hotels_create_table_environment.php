@@ -15,10 +15,10 @@ class HotelsCreateTableEnvironment extends Migration {
         Schema::create('007_150_environment', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id_150')->unsigned();
-            $table->string('lang_150',2);
-            $table->string('name_150', 50);
+            $table->string('lang_150', 2);
+            $table->string('name_150');
 
-            $table->string('data_lang_150',255)->nullable();
+            $table->string('data_lang_150')->nullable();
             $table->text('data_150')->nullable();
 
             $table->primary(['id_150', 'lang_150']);

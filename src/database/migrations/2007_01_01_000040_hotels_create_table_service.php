@@ -15,7 +15,7 @@ class HotelsCreateTableService extends Migration {
         Schema::create('007_153_service', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id_153')->unsigned();
-            $table->string('lang_153',2);
+            $table->string('lang_153', 2);
             $table->string('name_153');
 			$table->string('slug_153');
             $table->string('icon_153')->nullable();

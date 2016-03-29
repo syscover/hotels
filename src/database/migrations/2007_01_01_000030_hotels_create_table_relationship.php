@@ -15,8 +15,8 @@ class HotelsCreateTableRelationship extends Migration {
         Schema::create('007_152_relationship', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id_152')->unsigned();
-            $table->string('lang_152',2);
-            $table->string('name_152', 50);
+            $table->string('lang_152', 2);
+            $table->string('name_152');
 
             $table->string('data_lang_152')->nullable();
             $table->text('data_152')->nullable();

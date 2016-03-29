@@ -16,7 +16,7 @@ class HotelsCreateTableHotelLang extends Migration {
             $table->engine = 'InnoDB';
 
             $table->integer('id_171')->unsigned();
-            $table->string('lang_171',2);
+            $table->string('lang_171', 2);
 
             // cuisine
             $table->string('cuisine_171')->nullable();

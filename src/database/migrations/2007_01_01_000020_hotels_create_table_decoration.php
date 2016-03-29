@@ -15,10 +15,10 @@ class HotelsCreateTableDecoration extends Migration {
         Schema::create('007_151_decoration', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('id_151')->unsigned();
-            $table->string('lang_151',2);
-            $table->string('name_151', 50);
+            $table->string('lang_151', 2);
+            $table->string('name_151');
 
-            $table->string('data_lang_151',255)->nullable();
+            $table->string('data_lang_151')->nullable();
             $table->text('data_151')->nullable();
 
             $table->primary(['id_151', 'lang_151'], 'pk01_007_151_decoration');
