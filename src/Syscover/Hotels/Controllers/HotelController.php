@@ -37,7 +37,7 @@ class HotelController extends Controller {
     protected $icon         = 'fa fa-h-square';
     protected $objectTrans  = 'hotel';
 
-    public function indexCustom($parameters)
+    public function customIndex($parameters)
     {
         $parameters['urlParameters']['lang']    = session('baseLang')->id_001;
         // init record on tap 4

@@ -22,7 +22,7 @@ class EnvironmentController extends Controller {
     protected $icon         = 'fa fa-picture-o';
     protected $objectTrans  = 'environment';
 
-    public function indexCustom($parameters)
+    public function customIndex($parameters)
     {
         $parameters['urlParameters']['lang']    = session('baseLang')->id_001;
 

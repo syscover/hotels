@@ -22,7 +22,7 @@ class RelationshipController extends Controller {
     protected $icon         = 'fa fa-group';
     protected $objectTrans  = 'relationship';
 
-    public function indexCustom($parameters)
+    public function customIndex($parameters)
     {
         $parameters['urlParameters']['lang']    = session('baseLang')->id_001;
 

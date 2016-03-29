@@ -22,7 +22,7 @@ class ServiceController extends Controller {
     protected $icon         = 'icomoon-icon-wand-2';
     protected $objectTrans  = 'service';
 
-    public function indexCustom($parameters)
+    public function customIndex($parameters)
     {
         $parameters['urlParameters']['lang']    = session('baseLang')->id_001;
 

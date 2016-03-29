@@ -22,7 +22,7 @@ class DecorationController extends Controller {
     protected $icon         = 'icon-lightbulb';
     protected $objectTrans  = 'decoration';
 
-    public function indexCustom($parameters)
+    public function customIndex($parameters)
     {
         $parameters['urlParameters']['lang']    = session('baseLang')->id_001;
 
