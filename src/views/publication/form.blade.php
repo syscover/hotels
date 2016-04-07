@@ -17,5 +17,5 @@
         'rangeLength' => '2,50',
         'required' => true
     ])
-    <!-- ./hotels::publication.create -->
+    <!-- /.hotels::publication.create -->
 @stop

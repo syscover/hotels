@@ -21,7 +21,7 @@
             }
         });
     </script>
-    <!-- ./hotels::relationship.index -->
+    <!-- /.hotels::relationship.index -->
 @stop
 
 @section('tHead')
@@ -33,5 +33,5 @@
         <th class="checkbox-column"><input type="checkbox" class="uniform"></th>
         <th>{{ trans_choice('pulsar::pulsar.action', 2) }}</th>
     </tr>
-    <!-- ./hotels::relationship.index -->
+    <!-- /.hotels::relationship.index -->
 @stop

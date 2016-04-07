@@ -29,5 +29,5 @@
         'rangeLength' => '2,50',
         'required' => true
     ])
-    <!-- ./hotels::relationship.create -->
+    <!-- /.hotels::relationship.create -->
 @stop

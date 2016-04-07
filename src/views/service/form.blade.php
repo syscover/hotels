@@ -63,5 +63,5 @@
         'maxLength' => '50',
         'rangeLength' => '2,50'
     ])
-    <!-- ./hotels::service.create -->
+    <!-- /.hotels::service.create -->
 @stop

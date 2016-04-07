@@ -21,7 +21,7 @@
             }
         });
     </script>
-    <!-- ./hotels::hotel.index -->
+    <!-- /.hotels::hotel.index -->
 @stop
 
 @section('tHead')
@@ -36,5 +36,5 @@
         <th class="checkbox-column"><input type="checkbox" class="uniform"></th>
         <th>{{ trans_choice('pulsar::pulsar.action', 2) }}</th>
     </tr>
-    <!-- ./hotels::hotel.index -->
+    <!-- /.hotels::hotel.index -->
 @stop
