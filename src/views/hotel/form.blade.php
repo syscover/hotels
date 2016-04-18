@@ -140,15 +140,20 @@
                 if($(this).is(':checked'))
                 {
                     products.push($(this).val())
+                    $('#wrapperHotelPrice' + $(this).val()).fadeIn();
                 }
                 else
                 {
                     var i = products.indexOf($(this).val())
                     if(i != -1)
                         products.splice(i, 1)
+                    $('#wrapperHotelPrice' + $(this).val()).fadeOut();
                 }
                 $('[name=products]').val(JSON.stringify(products))
             })
+
+            // hide price hotel field, no select
+            $('.not-select').hide()
 
             // set tab active
             @if(isset($tab))
@@ -924,6 +929,17 @@
                         <div class="row">
                             <div class="col-md-12 card-description">
                                 <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control wysiwyg" name="d{{ $product->id_111 }}">{{ old('d' . $product->id_111, isset($hotelProducts[$product->id_111])? $hotelProducts[$product->id_111]->description_177 : null) }}</textarea>
+                            </div>
+                        </div>
+                        <div id="wrapperHotelPrice{{ $product->id_111 }}" class="row {{ ! isset($hotelProducts[$product->id_111])? 'not-select' : null }}" style="margin-top: 15px; margin-bottom: -15px">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="col-md-4" style="float: right;">
+                                        <input class="form-control" type="number" name="hotelPrice{{ $product->id_111 }}" value="{{ old('hotelPrice' . $product->id_111, isset($hotelProducts[$product->id_111])? $hotelProducts[$product->id_111]->hotel_price_177 : null) }}" required>
+                                        {!! $errors->first('hotelPrice'. $product->id_111, config('pulsar.errorDelimiters')) !!}
+                                    </div>
+                                    <label class="col-md-2 control-label" style="float: right;">{{ trans('hotels::pulsar.hotel_price') }} </label>
+                                </div>
                             </div>
                         </div>
                     </div>

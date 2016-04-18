@@ -215,7 +215,8 @@ class HotelController extends Controller {
                 'hotel_177'         => $id,
                 'product_177'       => $product,
                 'lang_177'          => $this->request->input('lang'),
-                'description_177'   => $this->request->input('d' . $product)
+                'hotel_price_177'   => $this->request->input('hotelPrice' . $product),
+                'description_177'   => $this->request->input('d' . $product),
             ];
         }
 
@@ -380,13 +381,15 @@ class HotelController extends Controller {
         HotelProduct::where('hotel_177', $parameters['id'])->where('lang_177', $this->request->input('lang'))->delete();
         $hotelProducts = [];
         $products = json_decode($this->request->input('products'));
+
         foreach($products as $product)
         {
             $hotelProducts[] = [
                 'hotel_177'         => $parameters['id'],
                 'product_177'       => $product,
                 'lang_177'          => $this->request->input('lang'),
-                'description_177'   => $this->request->input('d' . $product)
+                'hotel_price_177'   => $this->request->input('hotelPrice' . $product),
+                'description_177'   => $this->request->input('d' . $product),
             ];
         }
 

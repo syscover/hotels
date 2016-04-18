@@ -12,13 +12,14 @@ class HotelsCreateTableHotelsProducts extends Migration {
 	 */
 	public function up()
 	{
-		if(Schema::hasTable('012_111_product'))
+		if(Schema::hasTable('012_111_product') && ! Schema::hasTable('007_177_hotels_products'))
 		{
 			Schema::create('007_177_hotels_products', function (Blueprint $table) {
 				$table->engine = 'InnoDB';
 				$table->integer('hotel_177')->unsigned();
 				$table->integer('product_177')->unsigned();
 				$table->string('lang_177', 2);
+				$table->decimal('hotel_price_177', 10, 2);
 				$table->text('description_177');
 
 				$table->primary(['hotel_177', 'product_177', 'lang_177']);

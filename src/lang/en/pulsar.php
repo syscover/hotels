@@ -13,6 +13,7 @@ return [
     'decoration'                            => 'Decoration|Decorations',
     'environment'                           => 'Environment|Environments',
     'hotel'                                 => 'Hotel|Hotels',
+    'hotel_price'                           => 'Hotel price',
     'indications'                           => 'Indications',
     'interest_points'                       => 'Interest points',
     'meeting_rooms'                         => 'Meeting rooms',
