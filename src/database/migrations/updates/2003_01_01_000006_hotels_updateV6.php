@@ -12,7 +12,7 @@ class HotelsUpdateV6 extends Migration
 	 */
 	public function up()
 	{
-		if(!Schema::hasColumn('007_177_hotels_products', 'hotel_price_177'))
+		if(! Schema::hasColumn('007_177_hotels_products', 'hotel_price_177'))
 		{
 			Schema::table('007_177_hotels_products', function (Blueprint $table) {
 				$table->decimal('hotel_price_177', 10, 2)->after('lang_177');

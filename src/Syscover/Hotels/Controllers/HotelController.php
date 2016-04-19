@@ -215,7 +215,6 @@ class HotelController extends Controller {
                 'hotel_177'         => $id,
                 'product_177'       => $product,
                 'lang_177'          => $this->request->input('lang'),
-                'hotel_price_177'   => $this->request->input('hotelPrice' . $product),
                 'description_177'   => $this->request->input('d' . $product),
             ];
         }
@@ -388,7 +387,6 @@ class HotelController extends Controller {
                 'hotel_177'         => $parameters['id'],
                 'product_177'       => $product,
                 'lang_177'          => $this->request->input('lang'),
-                'hotel_price_177'   => $this->request->input('hotelPrice' . $product),
                 'description_177'   => $this->request->input('d' . $product),
             ];
         }

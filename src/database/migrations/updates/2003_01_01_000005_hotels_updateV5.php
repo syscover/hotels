@@ -13,7 +13,7 @@ class HotelsUpdateV5 extends Migration
 	 */
 	public function up()
 	{
-		if(!Schema::hasColumn('007_170_hotel', 'custom_field_group_170'))
+		if(! Schema::hasColumn('007_170_hotel', 'custom_field_group_170'))
 		{
 			Schema::table('007_170_hotel', function (Blueprint $table) {
 				$table->integer('custom_field_group_170')->unsigned()->nullable()->after('id_170');

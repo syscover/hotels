@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-
-class HotelsUpdateV3 extends Migration
+class HotelsUpdateV7 extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -13,10 +12,10 @@ class HotelsUpdateV3 extends Migration
 	 */
 	public function up()
 	{
-		if(! Schema::hasColumn('007_153_service', 'slug_153'))
+		if(Schema::hasColumn('007_177_hotels_products', 'hotel_price_177'))
 		{
-			Schema::table('007_153_service', function (Blueprint $table) {
-				$table->string('slug_153')->after('name_153');
+			Schema::table('007_177_hotels_products', function (Blueprint $table) {
+				$table->dropColumn('hotel_price_177');
 			});
 		}
 	}
