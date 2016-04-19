@@ -140,14 +140,16 @@
                 if($(this).is(':checked'))
                 {
                     products.push($(this).val())
-                    $('#wrapperHotelPrice' + $(this).val()).fadeIn();
+                    $('#wrapperHotelPrice' + $(this).val()).fadeIn()
+                    $('#wrapperHotelProductDescription' + $(this).val()).fadeIn()
                 }
                 else
                 {
                     var i = products.indexOf($(this).val())
                     if(i != -1)
                         products.splice(i, 1)
-                    $('#wrapperHotelPrice' + $(this).val()).fadeOut();
+                    $('#wrapperHotelPrice' + $(this).val()).fadeOut()
+                    $('#wrapperHotelProductDescription' + $(this).val()).fadeOut()
                 }
                 $('[name=products]').val(JSON.stringify(products))
             })
@@ -926,7 +928,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div id="wrapperHotelProductDescription{{ $product->id_111 }}" class="row {{ ! isset($hotelProducts[$product->id_111])? 'not-select' : null }}">
                             <div class="col-md-12 card-description">
                                 <textarea rows="3" placeholder="{{ trans_choice('pulsar::pulsar.description', 1) }}" class="form-control wysiwyg" name="d{{ $product->id_111 }}">{{ old('d' . $product->id_111, isset($hotelProducts[$product->id_111])? $hotelProducts[$product->id_111]->description_177 : null) }}</textarea>
                             </div>
