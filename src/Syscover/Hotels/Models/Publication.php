@@ -1,6 +1,6 @@
 <?php namespace Syscover\Hotels\Models;
 
-use Syscover\Pulsar\Models\Model;
+use Syscover\Pulsar\Core\Model;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Mappable;
 use Illuminate\Support\Facades\Validator;
