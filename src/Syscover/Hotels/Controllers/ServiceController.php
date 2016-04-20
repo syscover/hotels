@@ -1,7 +1,6 @@
 <?php namespace Syscover\Hotels\Controllers;
 
-use Syscover\Pulsar\Controllers\Controller;
-use Syscover\Pulsar\Traits\TraitController;
+use Syscover\Pulsar\Core\Controller;
 use Syscover\Hotels\Models\Service;
 
 /**
@@ -9,10 +8,8 @@ use Syscover\Hotels\Models\Service;
  * @package Syscover\Hotels\Controllers
  */
 
-class ServiceController extends Controller {
-
-    use TraitController;
-
+class ServiceController extends Controller
+{
     protected $routeSuffix  = 'hotelsService';
     protected $folder       = 'service';
     protected $package      = 'hotels';

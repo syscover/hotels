@@ -1,5 +1,6 @@
 <?php namespace Syscover\Hotels\Controllers;
 
+use Syscover\Pulsar\Core\Controller;
 use Illuminate\Support\Facades\Hash;
 use Syscover\Hotels\Models\Decoration;
 use Syscover\Hotels\Models\Environment;
@@ -8,13 +9,11 @@ use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
 use Syscover\Hotels\Models\Service;
 use Syscover\Market\Models\Product;
-use Syscover\Pulsar\Controllers\Controller;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
 use Syscover\Pulsar\Libraries\CustomFieldResultLibrary;
 use Syscover\Pulsar\Models\Attachment;
 use Syscover\Pulsar\Models\AttachmentFamily;
 use Syscover\Pulsar\Models\CustomFieldGroup;
-use Syscover\Pulsar\Traits\TraitController;
 use Syscover\Hotels\Models\Hotel;
 use Syscover\Hotels\Models\HotelLang;
 
@@ -23,10 +22,8 @@ use Syscover\Hotels\Models\HotelLang;
  * @package Syscover\Hotels\Controllers
  */
 
-class HotelController extends Controller {
-
-    use TraitController;
-
+class HotelController extends Controller
+{
     protected $routeSuffix  = 'hotel';
     protected $folder       = 'hotel';
     protected $package      = 'hotels';

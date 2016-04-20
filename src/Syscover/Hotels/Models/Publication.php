@@ -1,10 +1,9 @@
 <?php namespace Syscover\Hotels\Models;
 
 use Syscover\Pulsar\Models\Model;
-use Illuminate\Support\Facades\Validator;
-use Syscover\Pulsar\Traits\TraitModel;
 use Sofa\Eloquence\Eloquence;
 use Sofa\Eloquence\Mappable;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class Publication
@@ -15,9 +14,8 @@ use Sofa\Eloquence\Mappable;
  * @package     Syscover\Hotels\Models
  */
 
-class Publication extends Model {
-
-    use TraitModel;
+class Publication extends Model
+{
     use Eloquence, Mappable;
 
 	protected $table        = '007_174_publication';
