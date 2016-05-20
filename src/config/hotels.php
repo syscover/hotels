@@ -25,7 +25,6 @@ return [
     | Booking partner ID
     |
     */
-
     'bookingPartnerId'      => env('BOOKING_PARTNER_ID', 0),
 
     // Correspondencias de los IDs de las familias de attachments
