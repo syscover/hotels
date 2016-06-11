@@ -60,7 +60,7 @@
                 territorialArea1Value:      '{{ old('territorialArea1', isset($object->territorial_area_1_170)? $object->territorial_area_1_170 : null) }}',
                 territorialArea2Value:      '{{ old('territorialArea2', isset($object->territorial_area_2_170)? $object->territorial_area_2_170 : null) }}',
                 territorialArea3Value:      '{{ old('territorialArea3', isset($object->territorial_area_3_170)? $object->territorial_area_3_170 : null) }}'
-            })
+            });
 
             // to billing data
             $.getAddress({
@@ -89,7 +89,7 @@
                 territorialArea1Value:      '{{ old('billingTerritorialArea1', isset($object->billing_territorial_area_1_170)? $object->billing_territorial_area_1_170 : null) }}',
                 territorialArea2Value:      '{{ old('billingTerritorialArea2', isset($object->billing_territorial_area_2_170)? $object->billing_territorial_area_2_170 : null) }}',
                 territorialArea3Value:      '{{ old('billingTerritorialArea3', isset($object->billing_territorial_area_3_170)? $object->billing_territorial_area_3_170 : null) }}'
-            })
+            });
 
             $.mapPoint({
                 id:                 '01',
@@ -105,7 +105,7 @@
                     anchorX: 25,
                     anchorY: 71
                 }
-            })
+            });
 
             $('.wysiwyg').froalaEditor({
                 language: '{{ config('app.locale') }}',
@@ -118,47 +118,47 @@
                 heightMin: 130,
                 enter: $.FroalaEditor.ENTER_BR,
                 key: '{{ config('pulsar.froalaEditorKey') }}'
-            })
+            });
 
             // custom Dual multi select
             $.configureBoxes({
                 textShowing: '{{ trans('pulsar::pulsar.showing') }}',
                 textOf: '{{ trans('pulsar::pulsar.of') }}'
-            })
+            });
 
             // launch slug function when change name and slug
             $("[name=name], [name=slug]").on('change', function(){
                 $("[name=slug]").val(getSlug($(this).val(),{
                     separator: '-',
                     lang: '{{ $lang->id_001 }}'
-                }))
+                }));
                 $.checkSlug()
-            })
+            });
 
             // save id product to save it after
             $(".product-toggle").on('change', function() {
-                var products = JSON.parse($('[name=products]').val())
+                var products = JSON.parse($('[name=products]').val());
                 if($(this).is(':checked'))
                 {
-                    products.push($(this).val())
+                    products.push($(this).val());
                     $('#wrapperHotelProductDescription' + $(this).val()).fadeIn()
                 }
                 else
                 {
-                    var i = products.indexOf($(this).val())
+                    var i = products.indexOf($(this).val());
                     if(i != -1)
-                        products.splice(i, 1)
+                        products.splice(i, 1);
                     $('#wrapperHotelProductDescription' + $(this).val()).fadeOut()
                 }
-                $('[name=products]').val(JSON.stringify(products))
-            })
+                $('[name=products]').val(JSON.stringify(products));
+            });
 
             // hide price hotel field, no select
-            $('.not-select').hide()
+            $('.not-select').hide();
 
             // set tab active
             @if(isset($tab))
-                $('.tabbable li:eq({{ $tab }}) a').tab('show')
+                $('.tabbable li:eq({{ $tab }}) a').tab('show');
             @endif
         })
     </script>
