@@ -22,7 +22,7 @@ class HotelsCreateTableHotelsProducts extends Migration {
 				$table->decimal('hotel_price_177', 10, 2);
 				$table->text('description_177');
 
-				$table->primary(['hotel_177', 'product_177', 'lang_177']);
+				$table->primary(['hotel_177', 'product_177', 'lang_177'], 'pk01_007_177_hotels_products');
 
 				$table->foreign('hotel_177', 'fk01_007_177_hotels_products')->references('id_170')->on('007_170_hotel')
 					->onDelete('cascade')->onUpdate('cascade');

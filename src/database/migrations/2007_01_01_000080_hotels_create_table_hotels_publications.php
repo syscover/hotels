@@ -17,7 +17,7 @@ class HotelsCreateTableHotelsPublications extends Migration {
             $table->integer('hotel_175')->unsigned();
             $table->integer('publication_175')->unsigned();
 
-            $table->primary(['hotel_175', 'publication_175']);
+            $table->primary(['hotel_175', 'publication_175'], 'pk01_007_175_hotels_publications');
         });
 	}
 

@@ -17,7 +17,7 @@ class HotelsCreateTableHotelsServices extends Migration {
             $table->integer('hotel_176')->unsigned();
             $table->integer('service_176')->unsigned();
 
-            $table->primary(['hotel_176', 'service_176']);
+            $table->primary(['hotel_176', 'service_176'], 'pk01_007_176_hotels_services');
 
 			$table->foreign('hotel_176', 'fk01_007_176_hotels_services')->references('id_170')->on('007_170_hotel')
 				->onDelete('cascade')->onUpdate('cascade');
