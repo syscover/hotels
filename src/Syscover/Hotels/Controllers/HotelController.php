@@ -224,7 +224,7 @@ class HotelController extends Controller
         AttachmentLibrary::storeAttachments($attachments, $this->package, 'hotels-hotel', $id, $this->request->input('lang'));
 
         // set custom fields
-        if(!empty($this->request->input('customFieldGroup')))
+        if(! empty($this->request->input('customFieldGroup')))
             CustomFieldResultLibrary::storeCustomFieldResults($this->request, $this->request->input('customFieldGroup'), 'hotels-hotel', $id, $this->request->input('lang'));
     }
 
@@ -392,10 +392,14 @@ class HotelController extends Controller
             HotelProduct::insert($hotelProducts);
 
         // set custom fields
-        if(!empty($this->request->input('customFieldGroup')))
+        if(! empty($this->request->input('customFieldGroup')))
         {
             CustomFieldResultLibrary::deleteCustomFieldResults('hotels-hotel', $parameters['id'], $this->request->input('lang'));
             CustomFieldResultLibrary::storeCustomFieldResults($this->request, $this->request->input('customFieldGroup'), 'hotels-hotel', $parameters['id'], $this->request->input('lang'));
+        }
+        else
+        {
+            CustomFieldResultLibrary::deleteCustomFieldResults('hotels-hotel', $parameters['id'], $this->request->input('lang'));
         }
     }
 
