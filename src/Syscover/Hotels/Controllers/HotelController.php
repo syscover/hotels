@@ -62,7 +62,7 @@ class HotelController extends Controller
             return $object;
         }, config('hotels.restaurantTypes'));
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_id_015' => 'hotels-hotel']);
-        $parameters['customFieldGroups']    = CustomFieldGroup::where('resource_025', 'hotels-hotel')->get();
+        $parameters['customFieldGroups']    = CustomFieldGroup::where('resource_id_025', 'hotels-hotel')->get();
         $parameters['attachmentsInput']     = json_encode([]);
         $parameters['hotelProductsIds']     = json_encode([]);
 
@@ -72,9 +72,9 @@ class HotelController extends Controller
         $parameters['attachmentsProducts']  = Attachment::builder()
             ->where('lang_id_016', $parameters['lang']->id_001)
             ->where('resource_id_016', 'market-product')
-            ->where('family_016', config('hotels.idAttachmentsFamily.productList'))
+            ->where('family_id_016', config('hotels.idAttachmentsFamily.productList'))
             ->get()
-            ->keyBy('object_016');
+            ->keyBy('object_id_016');
 
         if(isset($parameters['id']))
         {
@@ -249,12 +249,12 @@ class HotelController extends Controller
         $parameters['attachmentsProducts']  = Attachment::builder()
             ->where('lang_id_016', $parameters['lang']->id_001)
             ->where('resource_id_016', 'market-product')
-            ->where('family_016', config('hotels.idAttachmentsFamily.productList'))
+            ->where('family_id_016', config('hotels.idAttachmentsFamily.productList'))
             ->get()
-            ->keyBy('object_016');
+            ->keyBy('object_id_016');
 
         // merge parameters and attachments array
-        $parameters['customFieldGroups']    = CustomFieldGroup::builder()->where('resource_025', 'hotels-hotel')->get();
+        $parameters['customFieldGroups']    = CustomFieldGroup::builder()->where('resource_id_025', 'hotels-hotel')->get();
         $parameters['attachmentFamilies']   = AttachmentFamily::getAttachmentFamilies(['resource_id_015' => 'hotels-hotel']);
         $parameters                         = array_merge($parameters, $attachments);
 
