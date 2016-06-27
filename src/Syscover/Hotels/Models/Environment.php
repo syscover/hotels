@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
  * Class Environment
  *
  * Model with properties
- * <br><b>[id, lang, name, icon, data_lang, data]</b>
+ * <br><b>[id, lang_id, name, icon, data_lang, data]</b>
  *
  * @package     Syscover\Hotels\Models
  */
@@ -22,7 +22,7 @@ class Environment extends Model
     protected $primaryKey   = 'id_150';
     protected $suffix        = '150';
     public $timestamps      = false;
-    protected $fillable     = ['id_150', 'lang_150', 'name_150', 'data_lang_150', 'data_150'];
+    protected $fillable     = ['id_150', 'lang_id_150', 'name_150', 'data_lang_150', 'data_150'];
     protected $maps         = [];
     protected $relationMaps = [
         'lang'  => \Syscover\Pulsar\Models\Lang::class
@@ -38,25 +38,25 @@ class Environment extends Model
 
     public function scopeBuilder($query)
     {
-        return $query->join('001_001_lang', '007_150_environment.lang_150', '=', '001_001_lang.id_001');
+        return $query->join('001_001_lang', '007_150_environment.lang_id_150', '=', '001_001_lang.id_001');
     }
 
     public function getLang()
     {
-        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_150');
+        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_id_150');
     }
 
     public function addToGetIndexRecords($request, $parameters)
     {
         $query =  $this->builder();
 
-        if(isset($parameters['lang'])) $query->where('lang_150', $parameters['lang']);
+        if(isset($parameters['lang'])) $query->where('lang_id_150', $parameters['lang']);
 
         return $query;
     }
 
     public static function customCount($request, $parameters)
     {
-        return Environment::where('lang_150', $parameters['lang'])->getQuery();
+        return Environment::where('lang_id_150', $parameters['lang'])->getQuery();
     }
 }

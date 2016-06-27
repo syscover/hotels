@@ -14,6 +14,7 @@ class HotelsCreateTablePublication extends Migration {
 	{
         Schema::create('007_174_publication', function(Blueprint $table) {
             $table->engine = 'InnoDB';
+			
             $table->increments('id_174')->unsigned();
             $table->string('name_174');
         });

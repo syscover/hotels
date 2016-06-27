@@ -21,7 +21,7 @@ class HotelsUpdateV4 extends Migration
 			if($key == null)
 			{
 				Schema::table('007_153_service', function (Blueprint $table) {
-					$table->unique(['lang_153','slug_153'], 'uk01_007_153_service');
+					$table->unique(['lang_id_153','slug_153'], 'uk01_007_153_service');
 				});
 			}
 		}

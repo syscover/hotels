@@ -43,7 +43,7 @@ class ServiceController extends Controller
 
         Service::create([
             'id_153'        => $id,
-            'lang_153'      => $this->request->input('lang'),
+            'lang_id_153'   => $this->request->input('lang'),
             'name_153'      => $this->request->input('name'),
             'slug_153'      => $this->request->input('slug'),
             'icon_153'      => $this->request->input('icon'),
@@ -53,7 +53,7 @@ class ServiceController extends Controller
 
     public function updateCustomRecord($parameters)
     {
-        Service::where('id_153', $parameters['id'])->where('lang_153', $this->request->input('lang'))->update([
+        Service::where('id_153', $parameters['id'])->where('lang_id_153', $this->request->input('lang'))->update([
             'name_153'  => $this->request->input('name'),
             'slug_153'  => $this->request->input('slug'),
             'icon_153'  => $this->request->input('icon')
@@ -64,7 +64,7 @@ class ServiceController extends Controller
     {
         $slug = $this->request->input('slug');
 
-        $query = Service::where('lang_153', $this->request->input('lang'))
+        $query = Service::where('lang_id_153', $this->request->input('lang'))
             ->where('slug_153', $slug);
 
         if($this->request->has('id'))
@@ -79,7 +79,7 @@ class ServiceController extends Controller
             {
                 $suffix++;
                 $slug = $this->request->input('slug') . '-' . $suffix;
-                $nObjects = Service::where('lang_153', $this->request->input('lang'))
+                $nObjects = Service::where('lang_id_153', $this->request->input('lang'))
                     ->where('slug_153', $slug)
                     ->count();
             }

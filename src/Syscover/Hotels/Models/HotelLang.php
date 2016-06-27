@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
  * Class HotelLang
  *
  * Model with properties
- * <br><b>[id, lang, cuisine, special_dish, indications, interest_points, environment_description, construction, activities, description_title, description]</b>
+ * <br><b>[id, lang_id, cuisine, special_dish, indications, interest_points, environment_description, construction, activities, description_title, description]</b>
  *
  * @package     Syscover\Hotels\Models
  */
@@ -22,7 +22,7 @@ class HotelLang extends Model
     protected $primaryKey   = 'id_171';
     protected $suffix       = '171';
     public $timestamps      = false;
-    protected $fillable     = ['id_171', 'lang_171', 'cuisine_171', 'special_dish_171', 'indications_171', 'interest_points_171', 'environment_description_171', 'construction_171', 'activities_171', 'description_title_171', 'description_171'];
+    protected $fillable     = ['id_171', 'lang_id_171', 'cuisine_171', 'special_dish_171', 'indications_171', 'interest_points_171', 'environment_description_171', 'construction_171', 'activities_171', 'description_title_171', 'description_171'];
     protected $maps         = [];
     protected $relationMaps = [
         'lang'  => \Syscover\Pulsar\Models\Lang::class
@@ -36,6 +36,6 @@ class HotelLang extends Model
 
     public function getLang()
     {
-        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_171');
+        return $this->belongsTo('Syscover\Pulsar\Models\Lang', 'lang_id_171');
     }
 }

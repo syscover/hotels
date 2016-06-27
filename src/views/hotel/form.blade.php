@@ -56,10 +56,10 @@
                 useSeparatorHighlight:      true,
                 textSeparatorHighlight:     '------------------',
 
-                countryValue:               '{{ old('country', isset($object->country_170)? $object->country_170 : null) }}',
-                territorialArea1Value:      '{{ old('territorialArea1', isset($object->territorial_area_1_170)? $object->territorial_area_1_170 : null) }}',
-                territorialArea2Value:      '{{ old('territorialArea2', isset($object->territorial_area_2_170)? $object->territorial_area_2_170 : null) }}',
-                territorialArea3Value:      '{{ old('territorialArea3', isset($object->territorial_area_3_170)? $object->territorial_area_3_170 : null) }}'
+                countryValue:               '{{ old('country', isset($object->country_id_170)? $object->country_id_170 : null) }}',
+                territorialArea1Value:      '{{ old('territorialArea1', isset($object->territorial_area_1_id_170)? $object->territorial_area_1_id_170 : null) }}',
+                territorialArea2Value:      '{{ old('territorialArea2', isset($object->territorial_area_2_id_170)? $object->territorial_area_2_id_170 : null) }}',
+                territorialArea3Value:      '{{ old('territorialArea3', isset($object->territorial_area_3_id_170)? $object->territorial_area_3_id_170 : null) }}'
             });
 
             // to billing data
@@ -85,10 +85,10 @@
                 tA2Select:                  'billingTerritorialArea2',
                 tA3Select:                  'billingTerritorialArea3',
 
-                countryValue:               '{{ old('billingCountry', isset($object->billing_country_170)? $object->billing_country_170 : null) }}',
-                territorialArea1Value:      '{{ old('billingTerritorialArea1', isset($object->billing_territorial_area_1_170)? $object->billing_territorial_area_1_170 : null) }}',
-                territorialArea2Value:      '{{ old('billingTerritorialArea2', isset($object->billing_territorial_area_2_170)? $object->billing_territorial_area_2_170 : null) }}',
-                territorialArea3Value:      '{{ old('billingTerritorialArea3', isset($object->billing_territorial_area_3_170)? $object->billing_territorial_area_3_170 : null) }}'
+                countryValue:               '{{ old('billingCountry', isset($object->billing_country_id_170)? $object->billing_country_id_170 : null) }}',
+                territorialArea1Value:      '{{ old('billingTerritorialArea1', isset($object->billing_territorial_area_1_id_170)? $object->billing_territorial_area_1_id_170 : null) }}',
+                territorialArea2Value:      '{{ old('billingTerritorialArea2', isset($object->billing_territorial_area_2_id_170)? $object->billing_territorial_area_2_id_170 : null) }}',
+                territorialArea3Value:      '{{ old('billingTerritorialArea3', isset($object->billing_territorial_area_3_id_170)? $object->billing_territorial_area_3_id_170 : null) }}'
             });
 
             $.mapPoint({
@@ -290,7 +290,7 @@
                 'fieldSize' => 7,
                 'label' => trans_choice('pulsar::pulsar.field_group', 1),
                 'name' => 'customFieldGroup',
-                'value' => old('customFieldGroup', isset($object->custom_field_group_170)? $object->custom_field_group_170 : null),
+                'value' => old('customFieldGroup', isset($object->field_group_id_170)? $object->field_group_id_170 : null),
                 'objects' => $customFieldGroups,
                 'idSelect' => 'id_025',
                 'nameSelect' => 'name_025'
@@ -371,7 +371,7 @@
     @include('pulsar::includes.html.form_dual_list_group', [
         'name' => 'services',
         'value' => old('countries'),
-        'objectsSelect' => isset($object)? $object->getServices->where('lang_153', $lang->id_001) : null,
+        'objectsSelect' => isset($object)? $object->getServices->where('lang_id_153', $lang->id_001) : null,
         'objects' => $services,
         'idSelect' => 'id_153',
         'nameSelect' => 'name_153',
@@ -537,7 +537,7 @@
             @include('pulsar::includes.html.form_select_group', [
                 'label' => trans_choice('pulsar::pulsar.type', 1),
                 'name' => 'restaurantType',
-                'value' => old('restaurantType', isset($object->restaurant_type_170)? $object->restaurant_type_170 : null),
+                'value' => old('restaurantType', isset($object->restaurant_type_id_170)? $object->restaurant_type_id_170 : null),
                 'objects' => $restaurantTypes,
                 'idSelect' => 'id',
                 'nameSelect' => 'name',

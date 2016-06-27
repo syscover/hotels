@@ -52,10 +52,10 @@ class HotelController extends Controller
 
     public function createCustomRecord($parameters)
     {
-        $parameters['services']             = Service::where('lang_153', $parameters['lang']->id_001)->get();
-        $parameters['environments']         = Environment::where('lang_150', $parameters['lang']->id_001)->get();
-        $parameters['decorations']          = Decoration::where('lang_151', $parameters['lang']->id_001)->get();
-        $parameters['relationships']        = Relationship::where('lang_152', $parameters['lang']->id_001)->get();
+        $parameters['services']             = Service::where('lang_id_153', $parameters['lang']->id_001)->get();
+        $parameters['environments']         = Environment::where('lang_id_150', $parameters['lang']->id_001)->get();
+        $parameters['decorations']          = Decoration::where('lang_id_151', $parameters['lang']->id_001)->get();
+        $parameters['relationships']        = Relationship::where('lang_id_152', $parameters['lang']->id_001)->get();
         $parameters['publications']         = Publication::all();
         $parameters['restaurantTypes']      = array_map(function($object){
             $object->name = trans($object->name);
@@ -85,7 +85,7 @@ class HotelController extends Controller
             $parameters  = array_merge($parameters, $attachments);
 
             // get hotel products
-            $parameters['hotelProducts']        = HotelProduct::getRecords(['hotel_177' => $parameters['id'], 'lang_177' => session('baseLang')->id_001])->keyBy('product_177');
+            $parameters['hotelProducts']        = HotelProduct::getRecords(['hotel_id_177' => $parameters['id'], 'lang_id_177' => session('baseLang')->id_001])->keyBy('product_id_177');
             $parameters['hotelProductsIds']     = json_encode($parameters['hotelProducts']->keys()->map(function($item, $key) { return strval($item); }));
         }
 
@@ -112,7 +112,7 @@ class HotelController extends Controller
         {
             // create new hotel
             $hotel = Hotel::create([
-                'custom_field_group_170'                        => $this->request->has('customFieldGroup')? $this->request->input('customFieldGroup') : null,
+                'field_group_id_170'                            => $this->request->has('customFieldGroup')? $this->request->input('customFieldGroup') : null,
                 'name_170'                                      => $this->request->input('name'),
                 'slug_170'                                      => $this->request->input('slug'),
                 'web_170'                                       => $this->request->input('web'),
@@ -133,10 +133,10 @@ class HotelController extends Controller
                 'user_170'                                      => $this->request->input('user'),
                 'password_170'                                  => Hash::make($this->request->input('password')),
                 'active_170'                                    => $this->request->has('active'),
-                'country_170'                                   => $this->request->input('country'),
-                'territorial_area_1_170'                        => $this->request->has('territorialArea1')? $this->request->input('territorialArea1') : null,
-                'territorial_area_2_170'                        => $this->request->has('territorialArea2')? $this->request->input('territorialArea2') : null,
-                'territorial_area_3_170'                        => $this->request->has('territorialArea3')? $this->request->input('territorialArea3') : null,
+                'country_id_170'                                => $this->request->input('country'),
+                'territorial_area_1_id_170'                     => $this->request->has('territorialArea1')? $this->request->input('territorialArea1') : null,
+                'territorial_area_2_id_170'                     => $this->request->has('territorialArea2')? $this->request->input('territorialArea2') : null,
+                'territorial_area_3_id_170'                     => $this->request->has('territorialArea3')? $this->request->input('territorialArea3') : null,
                 'cp_170'                                        => $this->request->has('cp')? $this->request->input('cp') : null,
                 'locality_170'                                  => $this->request->input('locality'),
                 'address_170'                                   => $this->request->input('address'),
@@ -146,16 +146,16 @@ class HotelController extends Controller
                 'country_chef_restaurant_170'                   => $this->request->has('countryChefRestaurant'),
                 'country_chef_url_170'                          => $this->request->input('countryChefUrl'),
                 'restaurant_name_170'                           => $this->request->input('restaurantName'),
-                'restaurant_type_170'                           => $this->request->has('restaurantType')? $this->request->input('restaurantType') : null,
+                'restaurant_type_id_170'                        => $this->request->has('restaurantType')? $this->request->input('restaurantType') : null,
                 'restaurant_terrace_170'                        => $this->request->has('restaurantTerrace'),
                 'billing_name_170'                              => $this->request->input('billingName'),
                 'billing_surname_170'                           => $this->request->input('billingSurname'),
                 'billing_company_name_170'                      => $this->request->input('billingCompanyName'),
                 'billing_tin_170'                               => $this->request->input('billingTin'),
-                'billing_country_170'                           => $this->request->has('billingCountry')? $this->request->input('billingCountry') : null,
-                'billing_territorial_area_1_170'                => $this->request->has('billingTerritorialArea1')? $this->request->input('billingTerritorialArea1') : null,
-                'billing_territorial_area_2_170'                => $this->request->has('billingTerritorialArea2')? $this->request->input('billingTerritorialArea2') : null,
-                'billing_territorial_area_3_170'                => $this->request->has('billingTerritorialArea3')? $this->request->input('billingTerritorialArea3') : null,
+                'billing_country_id_170'                        => $this->request->has('billingCountry')? $this->request->input('billingCountry') : null,
+                'billing_territorial_area_1_id_170'             => $this->request->has('billingTerritorialArea1')? $this->request->input('billingTerritorialArea1') : null,
+                'billing_territorial_area_2_id_170'             => $this->request->has('billingTerritorialArea2')? $this->request->input('billingTerritorialArea2') : null,
+                'billing_territorial_area_3_id_170'             => $this->request->has('billingTerritorialArea3')? $this->request->input('billingTerritorialArea3') : null,
                 'billing_cp_170'                                => $this->request->has('billingCp')? $this->request->input('billingCp') : null,
                 'billing_locality_170'                          => $this->request->input('billingLocality'),
                 'billing_address_170'                           => $this->request->input('billingAddress'),
@@ -191,7 +191,7 @@ class HotelController extends Controller
 
         HotelLang::create([
             'id_171'                        => $id,
-            'lang_171'                      => $this->request->input('lang'),
+            'lang_id_171'                   => $this->request->input('lang'),
             'cuisine_171'                   => $this->request->has('cuisine')? $this->request->input('cuisine') : null,
             'special_dish_171'              => $this->request->has('specialDish')? $this->request->input('specialDish') : null,
             'indications_171'               => $this->request->has('indications')? $this->request->input('indications') : null,
@@ -209,9 +209,9 @@ class HotelController extends Controller
         foreach($products as $product)
         {
             $hotelProducts[] = [
-                'hotel_177'         => $id,
-                'product_177'       => $product,
-                'lang_177'          => $this->request->input('lang'),
+                'hotel_id_177'      => $id,
+                'product_id_177'    => $product,
+                'lang_id_177'       => $this->request->input('lang'),
                 'description_177'   => $this->request->input('d' . $product),
             ];
         }
@@ -230,10 +230,10 @@ class HotelController extends Controller
 
     public function editCustomRecord($parameters)
     {
-        $parameters['services']             = Service::where('lang_153', $parameters['lang']->id_001)->get();
-        $parameters['environments']         = Environment::where('lang_150', $parameters['lang']->id_001)->get();
-        $parameters['decorations']          = Decoration::where('lang_151', $parameters['lang']->id_001)->get();
-        $parameters['relationships']        = Relationship::where('lang_152', $parameters['lang']->id_001)->get();
+        $parameters['services']             = Service::where('lang_id_153', $parameters['lang']->id_001)->get();
+        $parameters['environments']         = Environment::where('lang_id_150', $parameters['lang']->id_001)->get();
+        $parameters['decorations']          = Decoration::where('lang_id_151', $parameters['lang']->id_001)->get();
+        $parameters['relationships']        = Relationship::where('lang_id_152', $parameters['lang']->id_001)->get();
         $parameters['publications']         = Publication::all();
         $parameters['restaurantTypes']      = array_map(function($object){
             $object->name = trans($object->name);
@@ -259,7 +259,7 @@ class HotelController extends Controller
         $parameters                         = array_merge($parameters, $attachments);
 
         // get hotel products
-        $parameters['hotelProducts']        = $parameters['object']->getHotelProducts->keyBy('product_177');
+        $parameters['hotelProducts']        = $parameters['object']->getHotelProducts->keyBy('product_id_177');
         $parameters['hotelProductsIds']     = json_encode($parameters['hotelProducts']->keys()->map(function($item, $key) { return strval($item); }));
 
         return $parameters;
@@ -279,7 +279,7 @@ class HotelController extends Controller
     public function updateCustomRecord($parameters)
     {
         $hotel = [
-            'custom_field_group_170'                        => $this->request->has('customFieldGroup')? $this->request->input('customFieldGroup') : null,
+            'field_group_id_170'                            => $this->request->has('customFieldGroup')? $this->request->input('customFieldGroup') : null,
             'name_170'                                      => $this->request->input('name'),
             'slug_170'                                      => $this->request->input('slug'),
             'web_170'                                       => $this->request->input('web'),
@@ -299,10 +299,10 @@ class HotelController extends Controller
             'n_events_rooms_places_170'                     => $this->request->input('nEventsRoomsPlaces'),
             'user_170'                                      => $this->request->input('user'),
             'active_170'                                    => $this->request->has('active'),
-            'country_170'                                   => $this->request->input('country'),
-            'territorial_area_1_170'                        => $this->request->has('territorialArea1')? $this->request->input('territorialArea1') : null,
-            'territorial_area_2_170'                        => $this->request->has('territorialArea2')? $this->request->input('territorialArea2') : null,
-            'territorial_area_3_170'                        => $this->request->has('territorialArea3')? $this->request->input('territorialArea3') : null,
+            'country_id_170'                                => $this->request->input('country'),
+            'territorial_area_1_id_170'                     => $this->request->has('territorialArea1')? $this->request->input('territorialArea1') : null,
+            'territorial_area_2_id_170'                     => $this->request->has('territorialArea2')? $this->request->input('territorialArea2') : null,
+            'territorial_area_3_id_170'                     => $this->request->has('territorialArea3')? $this->request->input('territorialArea3') : null,
             'cp_170'                                        => $this->request->has('cp')? $this->request->input('cp') : null,
             'locality_170'                                  => $this->request->input('locality'),
             'address_170'                                   => $this->request->input('address'),
@@ -312,16 +312,16 @@ class HotelController extends Controller
             'country_chef_restaurant_170'                   => $this->request->has('countryChefRestaurant'),
             'country_chef_url_170'                          => $this->request->input('countryChefUrl'),
             'restaurant_name_170'                           => $this->request->input('restaurantName'),
-            'restaurant_type_170'                           => $this->request->has('restaurantType')? $this->request->input('restaurantType') : null,
+            'restaurant_type_id_170'                        => $this->request->has('restaurantType')? $this->request->input('restaurantType') : null,
             'restaurant_terrace_170'                        => $this->request->has('restaurantTerrace'),
             'billing_name_170'                              => $this->request->input('billingName'),
             'billing_surname_170'                           => $this->request->input('billingSurname'),
             'billing_company_name_170'                      => $this->request->input('billingCompanyName'),
             'billing_tin_170'                               => $this->request->input('billingTin'),
-            'billing_country_170'                           => $this->request->has('billingCountry')? $this->request->input('billingCountry') : null,
-            'billing_territorial_area_1_170'                => $this->request->has('billingTerritorialArea1')? $this->request->input('billingTerritorialArea1') : null,
-            'billing_territorial_area_2_170'                => $this->request->has('billingTerritorialArea2')? $this->request->input('billingTerritorialArea2') : null,
-            'billing_territorial_area_3_170'                => $this->request->has('billingTerritorialArea3')? $this->request->input('billingTerritorialArea3') : null,
+            'billing_country_id_170'                        => $this->request->has('billingCountry')? $this->request->input('billingCountry') : null,
+            'billing_territorial_area_1_id_170'             => $this->request->has('billingTerritorialArea1')? $this->request->input('billingTerritorialArea1') : null,
+            'billing_territorial_area_2_id_170'             => $this->request->has('billingTerritorialArea2')? $this->request->input('billingTerritorialArea2') : null,
+            'billing_territorial_area_3_id_170'             => $this->request->has('billingTerritorialArea3')? $this->request->input('billingTerritorialArea3') : null,
             'billing_cp_170'                                => $this->request->has('billingCp')? $this->request->input('billingCp') : null,
             'billing_locality_170'                          => $this->request->input('billingLocality'),
             'billing_address_170'                           => $this->request->input('billingAddress'),
@@ -361,7 +361,7 @@ class HotelController extends Controller
             $hotel->getServices()->detach();
         }
 
-        HotelLang::where('id_171', $parameters['id'])->where('lang_171', $this->request->input('lang'))->update([
+        HotelLang::where('id_171', $parameters['id'])->where('lang_id_171', $this->request->input('lang'))->update([
             'cuisine_171'                   => $this->request->has('cuisine')? $this->request->input('cuisine') : null,
             'special_dish_171'              => $this->request->has('specialDish')? $this->request->input('specialDish') : null,
             'indications_171'               => $this->request->has('indications')? $this->request->input('indications') : null,
@@ -374,16 +374,16 @@ class HotelController extends Controller
         ]);
 
         // set hotel products
-        HotelProduct::where('hotel_177', $parameters['id'])->where('lang_177', $this->request->input('lang'))->delete();
+        HotelProduct::where('hotel_id_177', $parameters['id'])->where('lang_id_177', $this->request->input('lang'))->delete();
         $hotelProducts = [];
         $products = json_decode($this->request->input('products'));
 
         foreach($products as $product)
         {
             $hotelProducts[] = [
-                'hotel_177'         => $parameters['id'],
-                'product_177'       => $product,
-                'lang_177'          => $this->request->input('lang'),
+                'hotel_id_177'      => $parameters['id'],
+                'product_id_177'    => $product,
+                'lang_id_177'       => $this->request->input('lang'),
                 'description_177'   => $this->request->input('d' . $product),
             ];
         }
@@ -412,7 +412,7 @@ class HotelController extends Controller
     public function deleteCustomTranslationRecord($object)
     {
         // delete all attachments from lang object
-        AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_171, $object->lang_171);
+        AttachmentLibrary::deleteAttachment($this->package, 'hotels-hotel', $object->id_171, $object->lang_id_171);
     }
 
     public function deleteCustomRecordsSelect($ids)

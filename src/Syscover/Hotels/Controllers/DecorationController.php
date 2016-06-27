@@ -43,7 +43,7 @@ class DecorationController extends Controller
 
         Decoration::create([
             'id_151'        => $id,
-            'lang_151'      => $this->request->input('lang'),
+            'lang_id_151'   => $this->request->input('lang'),
             'name_151'      => $this->request->input('name'),
             'data_lang_151' => Decoration::addLangDataRecord($this->request->input('lang'), $idLang)
         ]);
@@ -51,7 +51,7 @@ class DecorationController extends Controller
 
     public function updateCustomRecord($parameters)
     {
-        Decoration::where('id_151', $parameters['id'])->where('lang_151', $this->request->input('lang'))->update([
+        Decoration::where('id_151', $parameters['id'])->where('lang_id_151', $this->request->input('lang'))->update([
             'name_151'  => $this->request->input('name')
         ]);
     }

@@ -43,7 +43,7 @@ class EnvironmentController extends Controller
 
         Environment::create([
             'id_150'        => $id,
-            'lang_150'      => $this->request->input('lang'),
+            'lang_id_150'   => $this->request->input('lang'),
             'name_150'      => $this->request->input('name'),
             'data_lang_150' => Environment::addLangDataRecord($this->request->input('lang'), $idLang)
         ]);
@@ -51,7 +51,7 @@ class EnvironmentController extends Controller
 
     public function updateCustomRecord($parameters)
     {
-        Environment::where('id_150', $parameters['id'])->where('lang_150', $this->request->input('lang'))->update([
+        Environment::where('id_150', $parameters['id'])->where('lang_id_150', $this->request->input('lang'))->update([
             'name_150'  => $this->request->input('name')
         ]);
     }

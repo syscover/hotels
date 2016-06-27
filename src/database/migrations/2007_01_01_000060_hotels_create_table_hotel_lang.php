@@ -16,7 +16,7 @@ class HotelsCreateTableHotelLang extends Migration {
             $table->engine = 'InnoDB';
 
             $table->integer('id_171')->unsigned();
-            $table->string('lang_171', 2);
+            $table->string('lang_id_171', 2);
 
             // cuisine
             $table->string('cuisine_171')->nullable();
@@ -32,14 +32,19 @@ class HotelsCreateTableHotelLang extends Migration {
             $table->text('activities_171')->nullable();
             $table->string('description_title_171')->nullable();
             $table->text('description_171')->nullable();
+            
+            $table->foreign('id_171', 'fk01_007_171_hotel_lang')
+                ->references('id_170')
+                ->on('007_170_hotel')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('lang_id_171', 'fk02_007_171_hotel_lang')
+                ->references('id_001')
+                ->on('001_001_lang')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
 
-            $table->primary(['id_171', 'lang_171'], 'pk01_007_171_hotel_lang');
-
-            $table->foreign('id_171', 'fk01_007_171_hotel_lang')->references('id_170')->on('007_170_hotel')
-                ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('lang_171', 'fk02_007_171_hotel_lang')->references('id_001')->on('001_001_lang')
-                ->onDelete('restrict')->onUpdate('cascade');
-
+            $table->primary(['id_171', 'lang_id_171'], 'pk01_007_171_hotel_lang');
         });
 	}
 

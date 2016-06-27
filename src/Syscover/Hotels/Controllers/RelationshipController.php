@@ -43,7 +43,7 @@ class RelationshipController extends Controller
 
         Relationship::create([
             'id_152'        => $id,
-            'lang_152'      => $this->request->input('lang'),
+            'lang_id_152'   => $this->request->input('lang'),
             'name_152'      => $this->request->input('name'),
             'data_lang_152' => Relationship::addLangDataRecord($this->request->input('lang'), $idLang)
         ]);
@@ -51,7 +51,7 @@ class RelationshipController extends Controller
 
     public function updateCustomRecord($parameters)
     {
-        Relationship::where('id_152', $parameters['id'])->where('lang_152', $this->request->input('lang'))->update([
+        Relationship::where('id_152', $parameters['id'])->where('lang_id_152', $this->request->input('lang'))->update([
             'name_152'  => $this->request->input('name')
         ]);
     }
