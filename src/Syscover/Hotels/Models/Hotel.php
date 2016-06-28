@@ -57,8 +57,8 @@ class Hotel extends Model
                 $join->on('007_170_hotel.country_id_170', '=', '001_002_country.id_002')
                     ->on('001_002_country.lang_id_002', '=', '001_001_lang.id_001');
             })
-            ->leftJoin('001_003_territorial_area_1', '007_170_hotel.territorial_area_1_170', '=', '001_003_territorial_area_1.id_003')
-            ->leftJoin('001_004_territorial_area_2', '007_170_hotel.territorial_area_2_170', '=', '001_004_territorial_area_2.id_004')
+            ->leftJoin('001_003_territorial_area_1', '007_170_hotel.territorial_area_1_id_170', '=', '001_003_territorial_area_1.id_003')
+            ->leftJoin('001_004_territorial_area_2', '007_170_hotel.territorial_area_2_id_170', '=', '001_004_territorial_area_2.id_004')
             ->leftJoin('007_150_environment', function($join){
                 $join->on('007_170_hotel.environment_170', '=', '007_150_environment.id_150')
                     ->on('007_150_environment.lang_id_150', '=', '007_171_hotel_lang.lang_id_171');
@@ -136,7 +136,7 @@ class Hotel extends Model
 
         if(isset($parameters['slug_170'])) $query->where('slug_170', $parameters['slug_170']);
         if(isset($parameters['lang_id_171'])) $query->where('lang_id_171', $parameters['lang_id_171']);
-        if(isset($parameters['territorial_area_1_170'])) $query->where('territorial_area_1_170', $parameters['territorial_area_1_170']);
+        if(isset($parameters['territorial_area_1_id_170'])) $query->where('territorial_area_1_id_170', $parameters['territorial_area_1_id_170']);
 
         if(isset($parameters['publication_id_175'])) $query->whereIn('id_170', function($query) use ($parameters) {
             $query->select('hotel_id_175')
