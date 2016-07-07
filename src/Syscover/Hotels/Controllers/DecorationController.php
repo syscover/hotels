@@ -13,7 +13,7 @@ class DecorationController extends Controller
     protected $routeSuffix  = 'hotelsDecoration';
     protected $folder       = 'decoration';
     protected $package      = 'hotels';
-    protected $aColumns     = ['id_151', 'name_001', 'name_151'];
+    protected $indexColumns     = ['id_151', 'name_001', 'name_151'];
     protected $nameM        = 'name_151';
     protected $model        = Decoration::class;
     protected $icon         = 'icon-lightbulb';
