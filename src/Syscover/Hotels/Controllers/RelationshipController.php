@@ -13,7 +13,7 @@ class RelationshipController extends Controller
     protected $routeSuffix  = 'hotelsRelationship';
     protected $folder       = 'relationship';
     protected $package      = 'hotels';
-    protected $indexColumns     = ['id_152', 'name_001', 'name_152'];
+    protected $indexColumns = ['id_152', 'name_001', 'name_152'];
     protected $nameM        = 'name_152';
     protected $model        = Relationship::class;
     protected $icon         = 'fa fa-group';

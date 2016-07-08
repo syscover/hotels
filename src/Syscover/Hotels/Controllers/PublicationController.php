@@ -13,7 +13,7 @@ class PublicationController extends Controller
     protected $routeSuffix  = 'hotelsPublication';
     protected $folder       = 'publication';
     protected $package      = 'hotels';
-    protected $indexColumns     = ['id_174', 'name_174'];
+    protected $indexColumns = ['id_174', 'name_174'];
     protected $nameM        = 'name_174';
     protected $model        = Publication::class;
     protected $icon         = 'fa fa-object-ungroup';

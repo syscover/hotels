@@ -13,7 +13,7 @@ class ServiceController extends Controller
     protected $routeSuffix  = 'hotelsService';
     protected $folder       = 'service';
     protected $package      = 'hotels';
-    protected $indexColumns     = ['id_153', 'name_001', 'name_153', 'slug_153', 'icon_153'];
+    protected $indexColumns = ['id_153', 'name_001', 'name_153', 'slug_153', 'icon_153'];
     protected $nameM        = 'name_153';
     protected $model        = Service::class;
     protected $icon         = 'icomoon-icon-wand-2';

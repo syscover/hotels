@@ -27,7 +27,7 @@ class HotelController extends Controller
     protected $routeSuffix  = 'hotel';
     protected $folder       = 'hotel';
     protected $package      = 'hotels';
-    protected $indexColumns     = ['id_170', 'name_001', 'name_002', 'name_003', 'name_170', ['data' => 'active_170', 'type' => 'active']];
+    protected $indexColumns = ['id_170', 'name_001', 'name_002', 'name_003', 'name_170', ['data' => 'active_170', 'type' => 'active']];
     protected $nameM        = 'name_170';
     protected $model        = Hotel::class;
     protected $langModel    = HotelLang::class;
