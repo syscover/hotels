@@ -36,9 +36,9 @@ class HotelController extends Controller
 
     public function customIndex($parameters)
     {
-        $parameters['urlParameters']['lang']    = session('baseLang')->id_001;
+        $parameters['urlParameters']['lang'] = base_lang()->id_001;
         // init record on tap 4
-        $parameters['urlParameters']['tab']     = 4;
+        $parameters['urlParameters']['tab'] = 4;
 
         return $parameters;
     }
@@ -79,13 +79,13 @@ class HotelController extends Controller
         if(isset($parameters['id']))
         {
             // get attachments from base lang
-            $attachments = AttachmentLibrary::getRecords($this->package, 'hotels-hotel', $parameters['id'], session('baseLang')->id_001, true);
+            $attachments = AttachmentLibrary::getRecords($this->package, 'hotels-hotel', $parameters['id'], base_lang()->id_001, true);
 
             // merge parameters and attachments array
             $parameters  = array_merge($parameters, $attachments);
 
             // get hotel products
-            $parameters['hotelProducts']        = HotelProduct::getRecords(['hotel_id_177' => $parameters['id'], 'lang_id_177' => session('baseLang')->id_001])->keyBy('product_id_177');
+            $parameters['hotelProducts']        = HotelProduct::getRecords(['hotel_id_177' => $parameters['id'], 'lang_id_177' => base_lang()->id_001])->keyBy('product_id_177');
             $parameters['hotelProductsIds']     = json_encode($parameters['hotelProducts']->keys()->map(function($item, $key) { return strval($item); }));
         }
 
