@@ -1,9 +1,7 @@
 {
     "name": "syscover/hotels",
-    "version": "5.2",
     "description": "Hotels package",
     "keywords": ["syscover","pulsar","laravel","hotels"],
-    "license": "MIT",
     "authors": [
         {
             "name": "SYSCOVER SL",
