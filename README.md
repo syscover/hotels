@@ -1,12 +1,11 @@
-# Hotels to Laravel 5.2
-
+# Hotels to Laravel 5.3
 [![Total Downloads](https://poser.pugx.org/syscover/hotels/downloads)](https://packagist.org/packages/syscover/hotels)
 
 ## Installation
 
 **1 - After install Laravel framework, insert on file composer.json, inside require object this value**
 ```
-"syscover/hotels": "~1.0"
+"syscover/hotels": "~2.0"
 ```
 and execute on console:
 ```
