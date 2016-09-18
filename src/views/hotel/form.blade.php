@@ -690,7 +690,7 @@
         'containerId' => 'headerCustomFields'
     ])
     <div id="wrapperCustomFields"></div>
-    <!-- /.hotels::hotels.create -->
+    <!-- /hotels::hotels.create -->
 @stop
 
 @section('box_tab2')
@@ -936,7 +936,7 @@
                 </div>
             </div>
         @endforeach
-        <!-- /.list products -->
+        <!-- /list products -->
     </div>
     @include('pulsar::includes.html.form_hidden', [
         'name' => 'products',
