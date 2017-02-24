@@ -53,7 +53,7 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('longitude_170')->nullable();
 
             // booking data
-            $table->string('booking_url_170')->nullable();
+            $table->string('booking_data_170')->nullable();
             $table->string('booking_email_170')->nullable();
 
             // restaurant
@@ -88,6 +88,8 @@ class HotelsCreateTableHotel extends Migration {
             $table->string('billing_iban_check_digits_170', 2)->nullable();
             $table->string('billing_iban_basic_bank_account_number_170', 30)->nullable();
             $table->string('billing_bic_170', 11)->nullable();
+
+            // data
             $table->string('data_lang_170')->nullable();
             $table->text('data_170')->nullable();
             

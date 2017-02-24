@@ -3,9 +3,9 @@
 return [
     'activities'                            => 'Actividades',
     'billing_data'                          => 'Datos de facturación',
-    'booking_data'                          => 'Datos de reserva',
+    'booking_header'                        => 'Datos de reserva',
     'booking_email'                         => 'Email',
-    'booking_url'                           => 'URL',
+    'booking_data'                          => 'Data',
     'capacity'                              => 'Capacidad',
     'company_data'                          => 'Datos de empresa',
     'construction'                          => 'Construcción',

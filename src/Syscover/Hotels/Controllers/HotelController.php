@@ -119,7 +119,6 @@ class HotelController extends Controller
                 'web_url_170'                                   => $this->request->input('webUrl'),
                 'contact_170'                                   => $this->request->input('contact'),
                 'email_170'                                     => $this->request->input('email'),
-                'booking_email_170'                             => $this->request->input('bookingEmail'),
                 'phone_170'                                     => $this->request->input('phone'),
                 'mobile_170'                                    => $this->request->input('mobile'),
                 'fax_170'                                       => $this->request->input('fax'),
@@ -142,7 +141,8 @@ class HotelController extends Controller
                 'address_170'                                   => $this->request->input('address'),
                 'latitude_170'                                  => str_replace(',', '', $this->request->input('latitude')),   // replace ',' character, can contain this character that damage script
                 'longitude_170'                                 => str_replace(',', '', $this->request->input('longitude')),  // replace ',' character, can contain this character that damage script
-                'booking_url_170'                               => $this->request->input('bookingUrl'),
+                'booking_data_170'                              => $this->request->input('bookingData'),
+                'booking_email_170'                             => $this->request->input('bookingEmail'),
                 'country_chef_restaurant_170'                   => $this->request->has('countryChefRestaurant'),
                 'country_chef_url_170'                          => $this->request->input('countryChefUrl'),
                 'restaurant_name_170'                           => $this->request->input('restaurantName'),
@@ -286,7 +286,6 @@ class HotelController extends Controller
             'web_url_170'                                   => $this->request->input('webUrl'),
             'contact_170'                                   => $this->request->input('contact'),
             'email_170'                                     => $this->request->input('email'),
-            'booking_email_170'                             => $this->request->input('bookingEmail'),
             'phone_170'                                     => $this->request->input('phone'),
             'mobile_170'                                    => $this->request->input('mobile'),
             'fax_170'                                       => $this->request->input('fax'),
@@ -308,7 +307,8 @@ class HotelController extends Controller
             'address_170'                                   => $this->request->input('address'),
             'latitude_170'                                  => str_replace(',', '', $this->request->input('latitude')),       // replace ',' character, can contain this character that damage script
             'longitude_170'                                 => str_replace(',', '', $this->request->input('longitude')),      // replace ',' character, can contain this character that damage script
-            'booking_url_170'                               => $this->request->input('bookingUrl'),
+            'booking_data_170'                              => $this->request->input('bookingData'),
+            'booking_email_170'                             => $this->request->input('bookingEmail'),
             'country_chef_restaurant_170'                   => $this->request->has('countryChefRestaurant'),
             'country_chef_url_170'                          => $this->request->input('countryChefUrl'),
             'restaurant_name_170'                           => $this->request->input('restaurantName'),

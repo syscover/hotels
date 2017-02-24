@@ -3,9 +3,9 @@
 return [
     'activities'                            => 'Activities',
     'billing_data'                          => 'Billing data',
-    'booking_data'                          => 'Booking data',
+    'booking_header'                        => 'Booking data',
     'booking_email'                         => 'Email',
-    'booking_url'                           => 'URL',
+    'booking_data'                          => 'Data',
     'capacity'                              => 'Capacity',
     'company_data'                          => 'Company data',
     'construction'                          => 'Construction',

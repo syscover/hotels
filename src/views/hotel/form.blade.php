@@ -554,8 +554,8 @@
     </div>
 
     @include('pulsar::includes.html.form_section_header', [
-        'label' => trans('hotels::pulsar.booking_data'),
-        'icon' => 'fa fa-bed'
+        'label' => trans('hotels::pulsar.booking_header'),
+        'icon' => 'fa fa fa-book'
     ])
     @include('pulsar::includes.html.form_text_group', [
         'labelSize' => 1,
@@ -571,12 +571,11 @@
     @include('pulsar::includes.html.form_text_group', [
         'labelSize' => 1,
         'fieldSize' => 11,
-        'label' => trans('hotels::pulsar.booking_url'),
-        'name' => 'bookingUrl',
-        'value' => old('bookingUrl', isset($object->booking_url_170)? $object->booking_url_170 : null),
+        'label' => trans('hotels::pulsar.booking_data'),
+        'name' => 'bookingData',
+        'value' => old('bookingData', isset($object->booking_data_170)? $object->booking_data_170 : null),
         'maxLength' => '100',
         'rangeLength' => '2,100',
-        'placeholder' => 'http://www.booking.com/',
         'readOnly' => $action == 'update' || $action == 'store'? false : true
     ])
 
