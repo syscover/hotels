@@ -31,8 +31,8 @@ class Hotel extends Model
     ];
     private static $rules   = [
         'name'      => 'required|between:2,100',
-        'email'     => 'required|between:2,50|email|mysql2.unique:007_170_hotel,email_170',
-        'user'      => 'required|between:2,50|mysql2.unique:007_170_hotel,user_170',
+        'email'     => 'required|between:2,50|email|unique:mysql2.007_170_hotel,email_170',
+        'user'      => 'required|between:2,50|unique:mysql2.007_170_hotel,user_170',
         'password'  => 'required|between:4,50|same:repassword'
     ];
 
