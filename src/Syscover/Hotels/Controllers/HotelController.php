@@ -108,7 +108,7 @@ class HotelController extends Controller
 
     public function storeCustomRecord($parameters)
     {
-        if(!$this->request->has('id'))
+        if(empty($this->request->input('id')))
         {
             // create new hotel
             $hotel = Hotel::create([
