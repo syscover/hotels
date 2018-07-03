@@ -8,7 +8,7 @@ use Syscover\Hotels\Models\HotelProduct;
 use Syscover\Hotels\Models\Publication;
 use Syscover\Hotels\Models\Relationship;
 use Syscover\Hotels\Models\Service;
-use Syscover\Market\Models\Product;
+use Syscover\Market\Old\Models\Product;
 use Syscover\Pulsar\Libraries\AttachmentLibrary;
 use Syscover\Pulsar\Libraries\CustomFieldResultLibrary;
 use Syscover\Pulsar\Models\Attachment;
@@ -296,7 +296,6 @@ class HotelController extends Controller
             'n_places_170'                                  => $this->request->input('nPlaces'),
             'n_events_rooms_170'                            => $this->request->input('nEventsRooms'),
             'n_events_rooms_places_170'                     => $this->request->input('nEventsRoomsPlaces'),
-            'user_170'                                      => $this->request->input('user'),
             'active_170'                                    => $this->request->has('active'),
             'country_id_170'                                => $this->request->input('country'),
             'territorial_area_1_id_170'                     => $this->request->has('territorialArea1')? $this->request->input('territorialArea1') : null,

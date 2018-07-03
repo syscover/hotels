@@ -110,7 +110,7 @@ class Hotel extends Model
 
     public function getProducts()
     {
-        return $this->belongsToMany('Syscover\Market\Models\Product', '007_177_hotels_products', 'hotel_id_177', 'product_id_177');
+        return $this->belongsToMany('Syscover\Market\Old\Models\Product', '007_177_hotels_products', 'hotel_id_177', 'product_id_177');
     }
 
     public function addToGetIndexRecords($request, $parameters)
