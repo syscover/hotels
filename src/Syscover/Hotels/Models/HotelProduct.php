@@ -36,7 +36,9 @@ class HotelProduct extends Model
 
     public function scopeBuilder($query)
     {
-        return $query->join('001_001_lang', '007_177_hotels_products.lang_id_177', '=', '001_001_lang.id_001');
+        return $query
+            ->join('001_001_lang', '007_177_hotels_products.lang_id_177', '=', '001_001_lang.id_001')
+            ->join('007_170_hotel', '007_177_hotels_products.hotel_id_177', '=', '007_170_hotel.id_170');
     }
 
     public static function getRecords($parameters)
