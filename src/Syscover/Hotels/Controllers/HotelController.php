@@ -164,7 +164,8 @@ class HotelController extends Controller
                 'billing_iban_country_170'                      => $this->request->input('billingIbanCountry'),
                 'billing_iban_check_digits_170'                 => $this->request->input('billingIbanCheckDigits'),
                 'billing_iban_basic_bank_account_number_170'    => $this->request->input('billingIbanBasicBankAccountNumber'),
-                'billing_bic_170'                               => $this->request->input('billingBic')
+                'billing_bic_170'                               => $this->request->input('billingBic'),
+                'map_url_170'                                   => $this->request->input('mapUrl')
             ]);
 
             $id     = $hotel->id_170;
@@ -329,7 +330,8 @@ class HotelController extends Controller
             'billing_iban_country_170'                      => $this->request->input('billingIbanCountry'),
             'billing_iban_check_digits_170'                 => $this->request->input('billingIbanCheckDigits'),
             'billing_iban_basic_bank_account_number_170'    => $this->request->input('billingIbanBasicBankAccountNumber'),
-            'billing_bic_170'                               => $this->request->input('billingBic')
+            'billing_bic_170'                               => $this->request->input('billingBic'),
+            'map_url_170'                                   => $this->request->input('mapUrl')
         ];
 
         if($parameters['specialRules']['emailRule'])  $hotel['email_170']       = $this->request->input('email');

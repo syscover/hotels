@@ -92,6 +92,10 @@ class HotelsCreateTableHotel extends Migration {
             // data
             $table->string('data_lang_170')->nullable();
             $table->text('data_170')->nullable();
+
+            // map url
+            $table->string('map_url_170')->nullable();
+            
             
             $table->foreign('country_id_170', 'fk01_007_170_hotel')
                 ->references('id_002')

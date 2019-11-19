@@ -35,4 +35,5 @@ return [
     'only_guest_reservation'                => 'Solo para huéspedes previa reserva',
     'open_public'                           => 'Abierto al público',
     'published'                             => 'Publicado en',
+    'map_url'                               => 'Url del mapa',
 ];

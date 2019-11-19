@@ -35,4 +35,5 @@ return [
     'only_guest_reservation'                => 'Only for guests upon reservation',
     'open_public'                           => 'Open to public',
     'published'                             => 'Published on',
+    'map_url'                               => 'Map url',
 ];
