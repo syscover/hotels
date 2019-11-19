@@ -678,7 +678,7 @@
                 'readOnly' => $action == 'update' || $action == 'store'? false : true
             ])
             @include('pulsar::includes.html.form_text_group', [
-                'label' => trans('pulsar::pulsar.map_url'),
+                'label' => trans('hotels::pulsar.map_url'),
                 'name' => 'mapUrl',
                 'value' => old('mapUrl', isset($object->map_url_170)? $object->map_url_170 : null),
                 'maxLength' => '1024',
